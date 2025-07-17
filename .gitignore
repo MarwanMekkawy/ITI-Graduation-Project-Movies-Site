@@ -1,0 +1,50 @@
+########################################
+# Angular
+########################################
+**/node_modules/
+**/dist/
+**/tmp/
+**/out-tsc/
+**/.angular/
+**/coverage/
+
+# Angular logs
+npm-debug.log
+yarn-error.log
+
+# Angular cache
+.angular/cache/
+
+# IDEs
+**/.vscode/
+**/.idea/
+*.sublime-workspace
+*.code-workspace
+
+########################################
+# .NET & Visual Studio
+########################################
+**/bin/
+**/obj/
+*.user
+*.suo
+*.sln.docstates
+**/.vs/
+*.db
+*.env
+*.nupkg
+*.snupkg
+*.log
+[Ll]og/
+project.lock.json
+project.fragment.lock.json
+packages/
+.nuget/
+*.psmdcp
+*.nuspec
+
+########################################
+# System
+########################################
+.DS_Store
+Thumbs.db
