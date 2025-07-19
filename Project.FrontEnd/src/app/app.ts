@@ -4,9 +4,7 @@ import { LoadingSpinner } from './loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
-    LoadingSpinner
-  ],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
