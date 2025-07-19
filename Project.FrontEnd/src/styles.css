@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*global color pallete */
+:root {
+  --background-color: #00030c; 
+  --text-color: #d5d7d8; 
+  --gray-color: #42464d;
+}
+.blury-grey{                                       /*for the cards*/
+  background-color: rgba(66, 70, 77, 0.4); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+  
