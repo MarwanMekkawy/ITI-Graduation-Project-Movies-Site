@@ -25,7 +25,16 @@
   --font-display: 4rem;        /* 64px - very large banner text (e.g., Featured Movie Title) */
 }
 
-.blury-grey {                            /* for the cards */
+.blury-grey {
+  /* for the cards */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background-color: rgba(20, 20, 20, 0.7);
+  border: none;
+  box-shadow: none;
+}
+
+.blury-grey-old {
   background-color: rgba(66, 70, 77, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
