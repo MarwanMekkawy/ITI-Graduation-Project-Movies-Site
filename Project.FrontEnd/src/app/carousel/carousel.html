@@ -1,1 +1,29 @@
-<p>carousel works!</p>
+<!-- Entire carousel container -->
+<div class="carousel-wrapper">
+
+  <!-- Left scroll arrow button -->
+  <button class="scroll-button left" (click)="scroll('left')">
+    &#10094;
+  </button>
+
+  <!-- Scrollable content container -->
+  <div class="carousel-scrollbar-wrapper">
+    <div #scrollContainer class="carousel-scrollbar">
+
+      <!-- Horizontal row of cards -->
+      <div class="carousel-track">
+        <!-- Loop through all movies and render each one -->
+        <div class="card-wrapper" *ngFor="let movie of movies">
+          <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Right scroll arrow button -->
+  <button class="scroll-button right" (click)="scroll('right')">
+    &#10095;
+  </button>
+
+</div>

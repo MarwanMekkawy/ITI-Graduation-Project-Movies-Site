@@ -1,0 +1,88 @@
+/* === GLOBAL OVERRIDES === */
+body,
+html {
+  overflow: visible !important;
+ /* Allow overflow globally if needed */
+}
+
+
+/* === CONTAINER STRUCTURE === */
+.carousel-wrapper,
+.carousel-scrollbar-wrapper,
+.carousel-scrollbar,
+.carousel-track {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+/* === SCROLLABLE STRIP === */
+.carousel-scrollbar {
+  overflow-x: auto;              /* Horizontal scrolling */
+  overflow-y: visible;
+  scroll-behavior: smooth;       /* Smooth animation */
+  scrollbar-width: none;         /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; 
+  background-color: var(--background-color);
+       /* Hide scrollbar in IE/Edge */
+}
+
+.carousel-scrollbar::-webkit-scrollbar {
+  display: none;   
+                /* Hide scrollbar in Chrome/Safari */
+}
+
+/* === FLEX LAYOUT OF MOVIES === */
+.carousel-track {
+  display: flex;
+  gap: 1rem;                     /* Space between cards */
+  padding: 1rem 0;
+  
+}
+
+/* === INDIVIDUAL CARD WRAPPER === */
+.card-wrapper {
+  position: relative;
+  flex: 0 0 auto;                /* Prevents card from shrinking/growing */
+  max-width: 320px;
+  width: 100%;
+  overflow: visible;
+  
+}
+
+/* === SCROLL ARROW BUTTONS (Redesigned) === */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  height: 79%;
+  z-index: 10000;
+    background: rgba(0, 0, 0, 0.4);             /* ⬅ dark translucent black */
+  border: none;
+  font-size: 1.5rem;                         /* small arrow initially */
+  cursor: pointer;
+  padding: 0 0.75rem;
+  width: 42px;
+  color: white;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);                 /* optional glass effect */
+}
+
+.scroll-button.left {
+  left: 0;
+  border-radius: 0 10px 10px 0; /* Rounded left corners */
+}
+
+.scroll-button.right {
+  right: 0;
+  border-radius: 10px 0 0 10px; /* Rounded right corners */
+}
+
+.scroll-button:hover {
+  background: rgba(0, 0, 0, 0.6);             /* darker on hover */
+  font-size: 2.5rem;                         /* grow the arrow */
+}

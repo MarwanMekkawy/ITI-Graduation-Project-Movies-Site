@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-color: #00030c; 
+  --text-color: #d5d7d8; 
+  --gray-color: #42464d;
+}
+
+.blury-grey{
+         background-color: rgba(66, 70, 77, 0.4);
+  backdrop-filter: blur(12px);             
+  -webkit-backdrop-filter: blur(12px);    
+  padding: 16px;
+  border-radius: 12px;
+  color: white;
+  font-family: sans-serif;
+    }
+    html{
+        background-color: var(--background-color);
+    }
