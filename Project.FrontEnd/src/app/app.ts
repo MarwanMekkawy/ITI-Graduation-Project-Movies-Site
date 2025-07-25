@@ -5,11 +5,12 @@ import { MovieCard } from "./movie-card/movie-card";
 import { CarouselComponent } from "./carousel/carousel";
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
+import { SlideShow } from "./slide-show/slide-show";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
-    LoadingSpinner, MovieCard, CarouselComponent,OverlayModule,PortalModule],
+    LoadingSpinner, MovieCard, CarouselComponent, OverlayModule, PortalModule, SlideShow],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
