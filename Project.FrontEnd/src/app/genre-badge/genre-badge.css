@@ -1,0 +1,39 @@
+.genre-card-wrapper {
+  position: relative;
+  width: 15rem;
+  height: 8rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  /* no background here anymore */
+}
+
+.bg-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630');
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px);
+  transform: scale(1.1); 
+  /* scale up a bit so blurred edges don’t show gaps */
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(66, 70, 77, 0.4);
+  z-index: 1;
+}
+
+.text-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  font-size: calc(1.75 * var(--font-body));
+  font-weight: 500;
+  color: var(--text-color);
+}
