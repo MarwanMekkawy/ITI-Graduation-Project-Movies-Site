@@ -1,1 +1,59 @@
-<p>profile works!</p>
+<div class="container d-flex justify-content-center mt-5">
+  <div class=" card p-5 w-100" style="max-width: 960px;">
+    <div class="row">
+      <!-- Profile Picture -->
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <div class="profile-pic-wrapper position-relative" (click)="triggerFileInput()">
+          <img [src]="profileImage" alt="Profile" class="profile-pic rounded-circle" />
+          <div class="overlay text-white d-flex justify-content-center align-items-center">Change</div>
+        </div>
+        <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
+      </div>
+
+      <!-- Profile Info -->
+      <div class="col-md-8">
+        <div class="form-group mb-3">
+          <label>Username</label>
+          <div *ngIf="!editMode">{{ username }}</div>
+          <input *ngIf="editMode" [(ngModel)]="newUsername" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Email</label>
+          <div *ngIf="!editMode">{{ email }}</div>
+          <input *ngIf="editMode" [(ngModel)]="newEmail" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Password</label>
+          <div *ngIf="!editMode">{{ password }}</div> 
+
+          <div *ngIf="editMode">
+            <input type="password" [(ngModel)]="newPassword" class="form-control mb-2" (input)="checkPasswords()"
+              placeholder="New Password" />
+            <input type="password" [(ngModel)]="confirmPassword" class="form-control" (input)="checkPasswords()"
+              placeholder="Confirm Password" />
+            <small *ngIf="newPassword && confirmPassword"
+              [ngClass]="{ 'text-danger': !passwordMatch, 'text-success': passwordMatch }">
+              {{ passwordMatch ? 'Passwords match' : 'Passwords do not match' }}
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Date Created</label>
+          <div>{{ createdAt }}</div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-column align-items-center mt-4">
+          <button class="btn btn-primary w-100 mb-2" *ngIf="!editMode" (click)="toggleEdit()">Change Info</button>
+          <div *ngIf="editMode" class="w-100">
+            <button class="btn btn-success w-100 mb-2" (click)="saveChanges()">Save Changes</button>
+            <button class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

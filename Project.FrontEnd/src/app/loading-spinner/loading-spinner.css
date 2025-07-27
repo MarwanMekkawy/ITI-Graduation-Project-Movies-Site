@@ -1,0 +1,6 @@
+.custom-spinner {
+    color: color-mix(in srgb, var(--gray-color) 70%, transparent);
+    width: calc(3.5*var(--font-body));
+    height:calc(3.5*var(--font-body));
+    border-width: calc(.7*var(--font-body));
+}

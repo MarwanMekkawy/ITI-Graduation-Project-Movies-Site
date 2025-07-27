@@ -1,0 +1,144 @@
+.carousel-item {
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.movie-slide {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 20%, transparent 100%);
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem 4rem;
+  position: relative;
+}
+
+.content {
+  color: red;
+  z-index: 2;
+  max-width: 600px;
+  transition: all 0.3s ease;
+}
+
+.content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.summary {
+  font-size: 1.05rem;
+  color: white;
+  font-weight: 400;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     /* WebKit-specific */
+  line-clamp: 3;             /* Draft standard, future-proofing */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* WATCH NOW BUTTON */
+.btn-watch {
+  background: #2c2f34;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative;
+}
+
+.btn-watch::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 14px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  transition: border-left-color 0.2s ease;
+}
+
+.btn-watch:hover {
+  background: white;
+  color: black;
+}
+
+.btn-watch:hover::before {
+  border-left-color: black;
+}
+
+/* ADD (+) BUTTON */
+.btn-add {
+  width: 66px;
+  height: 66px;
+  background: #2c2f34;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 3rem;
+  font-weight: 400;
+  padding-bottom: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-add:hover {
+  background: white;
+  color: black;
+}
+
+/* VIDEO PREVIEW */
+.video-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.video-preview video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.movie-slide:hover .video-preview video {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.movie-slide:hover .content {
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2); 
+}

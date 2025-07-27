@@ -1,1 +1,17 @@
-<p>carousel works!</p>
+<div class="carousel-wrapper" >
+
+  <button class="scroll-button left" (click)="scroll('left')">&#10094;</button>
+
+  <div class="carousel-scrollbar-wrapper">
+    <div #scrollContainer class="carousel-scrollbar">
+      <div class="carousel-track">
+        <div class="card-wrapper" *ngFor="let movie of movies">
+          <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-button right" (click)="scroll('right')">&#10095;</button>
+
+</div>
