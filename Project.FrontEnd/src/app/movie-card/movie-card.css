@@ -1,0 +1,35 @@
+.movie-card {
+  margin-top: 10px;                          /* Top margin */
+  position: relative;                        /* Allows overlay positioning */
+  width: 100%;
+  max-width: 320px;                          /* Fixed card width */
+  color: white;
+  font-family: Arial, sans-serif;
+  background-color: transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+  z-index: 1;
+  transform-origin: center center;           /* For scaling transforms */
+}
+
+.poster-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: opacity 0.3s ease;
+  height: 180px;                             /* Fixed height */
+}
+
+.poster {
+  width: 90%;
+  height: 100%;
+  object-fit: fill;                          /* Stretch image to fill */
+  border-radius: 12px;
+  transition: transform 0.4s ease-in-out 0.1s, border-radius 0.3s ease;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+  .movie-card {
+    max-width: 100%;                         /* Full width on smaller screens */
+  }
+}

@@ -1,6 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 
-/* global color palette & fonts */
+
 :root {
   /*Colors*/
   --background-color: #00030c;
@@ -39,3 +38,4 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
