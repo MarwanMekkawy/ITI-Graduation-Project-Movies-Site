@@ -20,7 +20,7 @@
 }
 
 .poster {
-  width: 85%;
+  width: 90%;
   height: 100%;
   object-fit: fill;                          /* Stretch image to fill */
   border-radius: 12px;

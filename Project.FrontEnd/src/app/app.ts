@@ -6,11 +6,13 @@ import { CarouselComponent } from "./carousel/carousel";
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { SlideShow } from "./slide-show/slide-show";
+import { VideoPlayer } from "./video-player/video-player";
+import { EpisodeList } from "./episode-list/episode-list";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
-    LoadingSpinner, MovieCard, CarouselComponent, OverlayModule, PortalModule, SlideShow],
+    LoadingSpinner, MovieCard, CarouselComponent, OverlayModule, PortalModule, SlideShow, VideoPlayer, EpisodeList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

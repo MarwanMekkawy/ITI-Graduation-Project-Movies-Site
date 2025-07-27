@@ -1,0 +1,5 @@
+.container-fluid {
+  background: var(--background-color); /* Netflix-like dark */
+  min-height: 100vh; 
+    /* Make sure it covers the whole viewport */
+}

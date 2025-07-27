@@ -2,6 +2,8 @@
 body,
 html {
   overflow: visible !important;
+     /* Layout never gets smaller than 1200px */
+
  /* Allow overflow globally if needed */
 }
 
@@ -14,6 +16,7 @@ html {
   position: relative;
   overflow: visible;
   width: 100%;
+  
   background-color: var(--background-color);
 }
 

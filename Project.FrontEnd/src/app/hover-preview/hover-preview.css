@@ -1,6 +1,8 @@
 /* Card container styling */
 .hover-card {
   position: relative;
+  top: -25px;              /* Move it 30px higher (adjust as needed) */
+  left: 0;    
   background: #111;
   color: white;
   border-radius: 12px;
@@ -9,7 +11,7 @@
   padding: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
   pointer-events: auto;
-  animation: fadeIn 0.2s ease-out;
+  animation: fadeIn 0.35s ease-out;
 }
 
 /* Fade-in animation */
@@ -27,6 +29,7 @@
 /* Poster image styling */
 .hover-card img.hover-img {
   width: 100%;
+  
   border-radius: 12px;
   margin-bottom: 12px;
 }
