@@ -30,6 +30,7 @@
     "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.1",
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "bootstrap": "^5.3.7",
     "cloudinary-video-player": "^3.1.1",
     "express": "^5.1.0",
