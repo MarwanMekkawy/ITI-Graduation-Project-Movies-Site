@@ -5,7 +5,7 @@ import { CarouselComponent } from "../../child-components/carousel/carousel";
 
 @Component({
   selector: 'app-watchlist-page',
-  imports: [MovieCard, CommonModule, CarouselComponent],
+  imports: [MovieCard, CommonModule],
   templateUrl: './watchlist-page.html',
   styleUrl: './watchlist-page.css'
 })

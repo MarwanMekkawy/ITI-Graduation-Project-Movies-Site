@@ -8,8 +8,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './video-player.css',
 })
 export class VideoPlayer implements AfterViewInit, OnDestroy {
-  @Input() cloudName!: string;
-  @Input() publicId!: string;
+  @Input({ required: true }) cloudName!: string;
+@Input({ required: true }) publicId!: string;
   @Input() width: string = '100%';
   @Input() height: string = '360';
   @ViewChild('videoRef', { static: true }) videoRef!: ElementRef<HTMLVideoElement>;
