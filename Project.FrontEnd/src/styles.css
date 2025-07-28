@@ -1,19 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+/* global color palette & fonts */
 :root {
-  --background-color: #00030c; 
-  --text-color: #d5d7d8; 
+  /*Colors*/
+  --background-color: #00030c;
+  --text-color: #d5d7d8;
   --gray-color: #42464d;
+
+  /*****************************************************************/
+
+  /* Core sizes */
+  --font-caption: 0.75rem;     /* 12px - fine print, metadata */
+  --font-small: 0.875rem;      /* 14px - buttons, badges */
+  --font-body: 1rem;           /* 16px - paragraph/default */
+  --font-body-lg: 1.125rem;    /* 18px - large body/labels */
+
+  /* Titles & Emphasis */
+  --font-subtitle: 1.25rem;    /* 20px - card titles, secondary headings */
+  --font-title: 1.5rem;        /* 24px - section headers */
+  --font-heading: 2rem;        /* 32px - page headers */
+  --font-hero: 3rem;           /* 48px - landing banners/hero areas */
+
+  /* Optional extras */
+  --font-display: 4rem;        /* 64px - very large banner text (e.g., Featured Movie Title) */
 }
 
-.blury-grey{
-         background-color: rgba(66, 70, 77, 0.4);
-  backdrop-filter: blur(12px);             
-  -webkit-backdrop-filter: blur(12px);    
-  padding: 16px;
-  border-radius: 12px;
-  color: white;
-  font-family: sans-serif;
-    }
-    html{
-        background-color: var(--background-color);
-    }
-    
+.blury-grey {
+  /* for the cards */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background-color: rgba(20, 20, 20, 0.7);
+  border: none;
+  box-shadow: none;
+}
+
+.blury-grey-old {
+  background-color: rgba(66, 70, 77, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}

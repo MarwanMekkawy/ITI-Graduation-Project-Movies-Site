@@ -1,69 +1,103 @@
-/* === GLOBAL OVERRIDES === */
+/* === PAGE BACKGROUND === */
 body,
 html {
+  background-color: var(--background-color);  /* Dark background */
+  color: white;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   overflow: visible !important;
-     /* Layout never gets smaller than 1200px */
-
- /* Allow overflow globally if needed */
 }
 
+/* === CONTAINER WRAPPER === */
+.carousel-container {
+background-color: var(--background-color);;
+  margin: 0 auto;
+  padding-left: 30px;
+}
 
-/* === CONTAINER STRUCTURE === */
+/* === HEADER: Title + See More === */
+.carousel-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0 1vw;
+  margin-bottom: 0.5rem;
+  background-color: var(--background-color);
+}
+
+.carousel-title {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff;
+  
+}
+
+.see-more {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+
+.see-more:hover {
+  color: #82cfff;
+  
+}
+
+/* === CAROUSEL STRUCTURE === */
 .carousel-wrapper,
 .carousel-scrollbar-wrapper,
 .carousel-scrollbar,
 .carousel-track {
+  
   position: relative;
   overflow: visible;
   width: 100%;
-  
   background-color: var(--background-color);
 }
 
-/* === SCROLLABLE STRIP === */
 .carousel-scrollbar {
-  overflow-x: auto;              /* Horizontal scrolling */
+  overflow-x: auto;
   overflow-y: visible;
-  scroll-behavior: smooth;       /* Smooth animation */
-  scrollbar-width: none;         /* Hide scrollbar in Firefox */
-  -ms-overflow-style: none; 
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-color: var(--background-color);
-       /* Hide scrollbar in IE/Edge */
 }
 
 .carousel-scrollbar::-webkit-scrollbar {
-  display: none;   
-                /* Hide scrollbar in Chrome/Safari */
+  display: none;
 }
 
-/* === FLEX LAYOUT OF MOVIES === */
 .carousel-track {
   display: flex;
-  gap: 1rem;                     /* Space between cards */
+  gap: 1rem;
   padding: 1rem 0;
-  
 }
 
-/* === INDIVIDUAL CARD WRAPPER === */
+/* === MOVIE CARD === */
 .card-wrapper {
   position: relative;
-  flex: 0 0 auto;                /* Prevents card from shrinking/growing */
+  flex: 0 0 auto;
   max-width: 320px;
   width: 100%;
   overflow: visible;
-  
 }
 
-/* === SCROLL ARROW BUTTONS (Redesigned) === */
+/* === ARROW BUTTONS === */
 .scroll-button {
   position: absolute;
   top: 50%;
   transform: translateY(-45%);
   height: 79%;
   z-index: 10000;
-    background: rgba(0, 0, 0, 0.4);             /* ⬅ dark translucent black */
+  background: rgba(0, 0, 0, 0.4);
   border: none;
-  font-size: 1.5rem;                         /* small arrow initially */
+  font-size: 1.5rem;
   cursor: pointer;
   padding: 0 0.75rem;
   width: 42px;
@@ -72,20 +106,20 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(2px);                 /* optional glass effect */
+  backdrop-filter: blur(2px);
 }
 
 .scroll-button.left {
   left: 0;
-  border-radius: 0 10px 10px 0; /* Rounded left corners */
+  border-radius: 0 10px 10px 0;
 }
 
 .scroll-button.right {
   right: 0;
-  border-radius: 10px 0 0 10px; /* Rounded right corners */
+  border-radius: 10px 0 0 10px;
 }
 
 .scroll-button:hover {
-  background: rgba(0, 0, 0, 0.6);             /* darker on hover */
-  font-size: 2.5rem;                         /* grow the arrow */
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 2.5rem;
 }

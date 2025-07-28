@@ -17,6 +17,8 @@ export class VideoPlayer implements AfterViewInit, OnDestroy {
   private player: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  /* how to use the component <app-video-player  cloudName="dd3chr1un"
+  publicId="v1753532374/Countdown_-_Official_Trailer_Prime_Video_dacwsx" ></app-video-player>*/
 
   ngAfterViewInit(): void {
     // Only load player in the browser (not during SSR)

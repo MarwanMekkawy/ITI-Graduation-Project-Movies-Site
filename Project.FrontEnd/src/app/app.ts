@@ -12,7 +12,7 @@ import { EpisodeList } from "./episode-list/episode-list";
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
-    LoadingSpinner, MovieCard, CarouselComponent, OverlayModule, PortalModule, SlideShow, VideoPlayer, EpisodeList],
+    LoadingSpinner, MovieCard, CarouselComponent, OverlayModule, PortalModule, SlideShow, VideoPlayer, EpisodeList, ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
