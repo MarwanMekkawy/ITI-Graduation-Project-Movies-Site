@@ -1,11 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginPageComponent } from "./Page-components/login-page/login-page";
+import { CarouselComponent } from "./child-components/carousel/carousel";
+import { VideoPlayer } from "./child-components/video-player/video-player";
+import { HomePage } from "./Page-components/home-page/home-page";
+
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginPageComponent],
+  imports: [RouterOutlet, CarouselComponent, VideoPlayer, HomePage],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

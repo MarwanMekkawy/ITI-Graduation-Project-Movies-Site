@@ -3,9 +3,12 @@
   background-size: cover;
   background-position: center;
   position: relative;
+  
+  
 }
 
 .movie-slide {
+  border-radius: 20px;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -35,9 +38,9 @@
 }
 
 .summary {
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   color: white;
-  font-weight: 400;
+  font-weight: 500;
   max-width: 600px;
   margin-bottom: 1.5rem;
   display: -webkit-box;
@@ -113,6 +116,7 @@
 
 /* VIDEO PREVIEW */
 .video-preview {
+  border-radius: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -141,4 +145,11 @@
   border-radius: 12px;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.2); 
+}
+#movieCarousel{
+  background-color: var(--background-color);
+  padding-bottom: 50px;
+  padding-left: 40px  ;
+  padding-right: 40px;
+  padding-top: 20px;
 }
