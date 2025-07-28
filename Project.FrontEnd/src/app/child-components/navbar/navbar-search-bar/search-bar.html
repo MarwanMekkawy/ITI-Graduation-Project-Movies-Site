@@ -1,0 +1,32 @@
+<div class="search-wrapper">
+  <div class="search-box">
+    <i class="fa fa-search search-icon"></i>
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Search"
+      [(ngModel)]="query"
+      (focus)="isFocused = true"
+      (blur)="isFocused = false"
+    />
+    <button
+      *ngIf="query"
+      class="btn btn-sm clear-btn text-white"
+      (click)="clearSearch()"
+    >
+      Clear
+    </button>
+  </div>
+
+  <div
+    class="results-box"
+    *ngIf="filteredSuggestions.length > 0"
+  >
+    <div
+      *ngFor="let result of filteredSuggestions"
+      class="result-item"
+    >
+      {{ result }}
+    </div>
+  </div>
+</div>

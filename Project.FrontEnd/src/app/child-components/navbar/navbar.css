@@ -1,0 +1,69 @@
+/* NAV CONTAINER (always 90% wide & centered) */
+.nav-container {
+  width: 94%;
+  max-width: 94%;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem;
+}
+
+/* Transparent at top; dark when scrolled */
+nav.navbar {
+  background: transparent;
+  transition: background 0.3s ease;
+}
+nav.navbar.scrolled {
+  background: #191f2b;
+  width: 94%;
+  margin: auto;
+  border-radius: 15px;
+}
+
+/* Nav links: pill‑hover, no underline */
+.nav-item {
+  color: #fff !important;
+  margin-right: 1rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.25rem;
+  text-decoration: none !important;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-item:hover {
+  background: #fff;
+  color: #141414 !important;
+}
+
+/* Icon wrapper: perfect circle & hover */
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.icon-wrapper:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Profile image: perfect circle */
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Dropdowns appear on hover */
+.genres-wrapper:hover .genres-menu,
+.profile-wrapper:hover .profile-menu {
+  display: block;
+}
+
+/* Base dropdown styling */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+}
