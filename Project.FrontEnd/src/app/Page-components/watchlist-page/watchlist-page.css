@@ -1,0 +1,19 @@
+/* watchlist-page.css */
+.watchlist-wrapper {
+  padding: 1rem 2rem;
+  background-color: var(--background-color);
+}
+
+.watchlist-title {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+  overflow: auto;
+}

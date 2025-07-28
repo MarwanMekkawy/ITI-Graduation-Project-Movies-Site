@@ -1,17 +1,21 @@
-.movie-card {
-  margin-top: 10px;                          /* Top margin */
-  position: relative;                        /* Allows overlay positioning */
+:host {
+  margin-top: 10px;
+  
+
+    display: block;                       /* This is critical */
+  position: relative;
   width: 100%;
-  max-width: 320px;                          /* Fixed card width */
+  max-width: 320px;
   color: white;
   font-family: Arial, sans-serif;
   background-color: transparent;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
-  transform-origin: center center;           /* For scaling transforms */
+  transform-origin: center center;
 }
 
 .poster-wrapper {
+    
   position: relative;
   overflow: hidden;
   border-radius: 12px;
