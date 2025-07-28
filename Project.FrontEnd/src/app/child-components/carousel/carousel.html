@@ -1,17 +1,31 @@
-<div class="carousel-wrapper" >
+<!-- Carousel Container -->
+<div class="carousel-container">
 
-  <button class="scroll-button left" (click)="scroll('left')">&#10094;</button>
+  <!-- Header: Title + See More -->
+  <div class="carousel-header">
+    <h2 class="carousel-title">{{ title }}</h2>
+    <a class="see-more" href="#">See more &gt;</a>
+  </div>
 
-  <div class="carousel-scrollbar-wrapper">
-    <div #scrollContainer class="carousel-scrollbar">
-      <div class="carousel-track">
-        <div class="card-wrapper" *ngFor="let movie of movies">
-          <app-movie-card [movie]="movie"></app-movie-card>
+  <!-- Carousel Body -->
+  <div class="carousel-wrapper">
+
+    <!-- Left Arrow -->
+    <button class="scroll-button left" (click)="scroll('left')">&#10094;</button>
+
+    <!-- Scrollable Track -->
+    <div class="carousel-scrollbar-wrapper">
+      <div #scrollContainer class="carousel-scrollbar">
+        <div class="carousel-track">
+          <div class="card-wrapper" *ngFor="let movie of movies">
+            <app-movie-card [movie]="movie"></app-movie-card>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Right Arrow -->
+    <button class="scroll-button right" (click)="scroll('right')">&#10095;</button>
+
   </div>
-
-  <button class="scroll-button right" (click)="scroll('right')">&#10095;</button>
-
 </div>

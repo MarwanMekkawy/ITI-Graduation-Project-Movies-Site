@@ -1,16 +1,8 @@
-<!-- Movie card container rendered in the carousel -->
-<div class="movie-card">
-  <!-- Wrapper to hold and clip the image -->
-  <div class="poster-wrapper">
-    <!-- Poster image of the movie -->
-     
-      <!-- Dynamic binding for image source -->
-       <!-- Alt text for accessibility -->
-        <!-- Styled using movie-card.css -->
-    <img
-      [src]="movie.image"    
-      [alt]="movie.title"     
-      class="poster"          
-    />
-  </div>
+<!-- movie-card.html -->
+<div class="poster-wrapper">
+  <img
+    [src]="movie.image"
+    [alt]="movie.title"
+    class="poster"
+  />
 </div>

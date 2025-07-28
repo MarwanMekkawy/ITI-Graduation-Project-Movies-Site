@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef ,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';            // Required for *ngFor structural directive
 import { MovieCard } from '../movie-card/movie-card';      // The movie card component rendered inside the carousel
 
@@ -10,6 +10,8 @@ import { MovieCard } from '../movie-card/movie-card';      // The movie card com
   imports: [CommonModule, MovieCard]                       // Declares usage of ngFor and MovieCard
 })
 export class CarouselComponent {
+    @Input() title: string = '';  // Title passed from parent
+
   // Access the scrollable div using template reference
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 

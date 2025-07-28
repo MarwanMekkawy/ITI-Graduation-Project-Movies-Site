@@ -1,1 +1,11 @@
-<p>watchlist-page works!</p>
+<!-- watchlist-page.html -->
+<div class="watchlist-wrapper">
+  <h2 class="watchlist-title">My Watchlist</h2>
+
+  <div class="watchlist-grid">
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [movie]="movie">
+    </app-movie-card>
+  </div>
+</div>
