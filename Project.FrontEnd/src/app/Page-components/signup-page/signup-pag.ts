@@ -8,4 +8,4 @@ import { RegisterForm } from '../../child-components/register-form/register-form
   templateUrl: './signup-page.html',
   styleUrl: './signup-page.css',
 })
-export class SignupPageComponent {}
+export class SignupPage {}
