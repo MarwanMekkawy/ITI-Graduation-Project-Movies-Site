@@ -1,7 +1,12 @@
+.text-color{
+  color: var(--text-color) !important;
+}
 /* container */
 .search-wrapper {
-  width: 60%;
-  margin: 2rem auto;
+  /* Changed width from fixed 60% to 100% to use Bootstrap grid instead */
+  width: 100%;       /* Make it responsive */
+  max-width: 1400px; /* Limit on large screens */
+  margin: 1rem auto 0rem auto;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 12px;
   padding: 1rem;
@@ -13,8 +18,14 @@
   display: flex;
   align-items: center;
   background-color: #1a1a1a;
+  margin: 0rem .5rem;
   border-radius: 8px;
   padding: 0.5rem 1rem;
+  border: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+.search-box:focus-within {
+  border-color: var(--text-color);
 }
 
 /* input styling */
@@ -24,6 +35,7 @@
   color: white;
   width: 100%;
   padding-left: 2rem;
+  font-size: 0.95rem;
 }
 
 .search-input:focus {
@@ -35,7 +47,7 @@
 .search-icon {
   position: absolute;
   left: 1rem;
-  color: #aaa;
+  color:  var(--text-color);
   pointer-events: none;
 }
 
@@ -45,7 +57,7 @@
   border: none;
 }
 
-/* result section (only shows when has results) */
+/* result section */
 .results-box {
   margin-top: 1rem;
   background-color: #1a1a1a;
@@ -66,7 +78,6 @@
 .result-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
 
 /* Dark scrollbar styling */
 .results-box::-webkit-scrollbar {

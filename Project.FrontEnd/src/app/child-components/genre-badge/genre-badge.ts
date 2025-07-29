@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-genre-badge',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './genre-badge.css'
 })
 export class GenreBadge {
-
+@Input() genre: string = '';
 }

@@ -7,6 +7,6 @@ import { LoginForm } from "../../child-components/login-form/login-form";
   templateUrl: './login-page.html',
   styleUrl: './login-page.css'
 })
-export class LoginPageComponent {
+export class LoginPage {
 
 }

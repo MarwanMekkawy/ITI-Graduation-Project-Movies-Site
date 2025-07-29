@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Profile } from "../../child-components/profile/profile";
 
 @Component({
   selector: 'app-profile-page',
-  imports: [],
+  imports: [Profile],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css'
 })

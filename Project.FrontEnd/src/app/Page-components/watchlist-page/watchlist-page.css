@@ -1,5 +1,6 @@
 /* watchlist-page.css */
 .watchlist-wrapper {
+  height: 100vh;
   padding: 1rem 2rem;
   background-color: var(--background-color);
 }

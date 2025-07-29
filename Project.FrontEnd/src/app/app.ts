@@ -6,7 +6,6 @@ import { ErrorPage } from './Page-components/error-page/error-page';
 
 
 
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, LoginPageComponent, SignupPageComponent,ErrorPage],

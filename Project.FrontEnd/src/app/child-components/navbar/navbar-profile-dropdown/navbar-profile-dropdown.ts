@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component ,ElementRef} from '@angular/core';
 
 
 @Component({
@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './navbar-profile-dropdown.css'
 })
 export class NavbarProfileDropdown {
-
+constructor(public el: ElementRef) {}      //dropdown link with navbar
 }
