@@ -10,7 +10,7 @@
 .error-code-top {
   font-size: 2rem;
   font-weight: 700;
-  color: hsl(241, 100%, 56%);
+  color: #5271ff;
   margin-bottom: 0.5rem;
 }
 
@@ -40,7 +40,7 @@
   font-size: 200px;
   font-weight: 900;
   color: transparent;
-  background: linear-gradient(135deg, #1f295575, #0000ff);
+  background: linear-gradient(135deg, #1f295575, #5271ff);
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0px 0px 10px rgba(33, 25, 143, 0.3));
