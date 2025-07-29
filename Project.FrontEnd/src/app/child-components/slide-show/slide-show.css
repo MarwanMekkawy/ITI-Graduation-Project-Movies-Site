@@ -1,5 +1,6 @@
 .carousel-item {
   height: 80vh;
+  width: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -8,7 +9,6 @@
 }
 
 .movie-slide {
-  border-radius: 20px;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -116,7 +116,6 @@
 
 /* VIDEO PREVIEW */
 .video-preview {
-  border-radius: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -149,7 +148,6 @@
 #movieCarousel{
   background-color: var(--background-color);
   padding-bottom: 50px;
-  padding-left: 40px  ;
-  padding-right: 40px;
-  padding-top: 20px;
+  
+  
 }
