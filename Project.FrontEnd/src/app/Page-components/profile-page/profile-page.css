@@ -1,0 +1,12 @@
+.profile-container {
+  height: 100vh;      
+  width: 100%;
+  background-color: var(--background-color);    
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+.profile-resize{
+  width:900px;
+}
