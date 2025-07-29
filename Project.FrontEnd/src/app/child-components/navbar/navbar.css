@@ -1,9 +1,37 @@
-/* NAV CONTAINER (always 90% wide & centered) */
+.text-color {
+  color: var(--text-color) !important;
+}
+
+/* toggle colaps button animation */
+.navbar-toggler {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--text-color);
+  border-radius: 0 0 4px 4px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.2);
+  border-color: var(--text-color);
+  /* border color when clicked */
+}
+
+/* container holding the navbar and the childs */
+.main-container {
+  background: transparent;
+  width: 100vw;
+}
+
 .nav-container {
   width: 94%;
   max-width: 94%;
   margin: 0 auto;
-  padding: 0.5rem 0.5rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 0 0 12px 12px;
 }
 
 /* Transparent at top; dark when scrolled */
@@ -11,11 +39,12 @@ nav.navbar {
   background: transparent;
   transition: background 0.3s ease;
 }
+
 nav.navbar.scrolled {
   background: #191f2b;
   width: 94%;
   margin: auto;
-  border-radius: 15px;
+  border-radius: 0 0 12px 12px;
 }
 
 /* Nav links: pill‑hover, no underline */
@@ -27,6 +56,7 @@ nav.navbar.scrolled {
   text-decoration: none !important;
   transition: background 0.2s, color 0.2s;
 }
+
 .nav-item:hover {
   background: #fff;
   color: #141414 !important;
@@ -43,8 +73,13 @@ nav.navbar.scrolled {
   transition: background 0.2s;
   cursor: pointer;
 }
+
 .icon-wrapper:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.icon-wrapper.active-search {
+  background-color:rgba(255, 255, 255, 0.2);
 }
 
 /* Profile image: perfect circle */
@@ -67,3 +102,27 @@ nav.navbar.scrolled {
   position: absolute;
   top: calc(100% + 8px);
 }
+
+/*hidden childs*/
+.childs-container {
+  position: relative
+}
+
+.search-container {
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  z-index: 1000;
+}
+
+.dropdown-container {
+  position: absolute;
+  width: 100vw;
+  display: flex;
+  z-index: 1001;
+}
+
+.move-to-right-container {
+  margin: 1rem 3% 0rem auto;
+}
+

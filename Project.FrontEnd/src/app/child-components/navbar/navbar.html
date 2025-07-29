@@ -1,68 +1,63 @@
-<nav class="navbar fixed-top nav-container" [class.scrolled]="isScrolled">
-  <div class="container-fluid  d-flex justify-content-between align-items-center">
-    <!-- Left side -->
-    <div class="d-flex align-items-center">
-      <span class="navbar-brand text-white me-4">prime video</span>
-      <a class="nav-item" href="#">Home</a>
-      <a class="nav-item" href="#">Movies</a>
-      <a class="nav-item" href="#">TV shows</a>
-      <a class="nav-item" href="#">My Stuff</a>
+<section class="main-container fixed-top">
+  <nav class="navbar nav-container navbar-expand-lg" [class.scrolled]="isScrolled">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <!-- Left side -->
+      <div class="d-flex align-items-center">
+        <span class="navbar-brand text-white me-4">prime video</span>
+
+        <!-- 🔽 Toggler for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-caret-down text-color"></i>
+        </button>
+      </div>
+
+      <!-- 🔽 Collapsible nav links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home</a>
+          <a class="nav-item nav-link" href="#">Movies</a>
+          <a class="nav-item nav-link" href="#">TV shows</a>
+          <a class="nav-item nav-link" href="#">My Stuff</a>
+        </div>
+      </div>
+
+      <!-- Right side (search moved before genres) -->
+      <div class="d-flex align-items-center">
+        <!-- Search -->
+        <div class="icon-wrapper mx-3" (click)="toggleSearch()"  [class.active-search]="searchVisible">
+          <i class="fas fa-search fa-lg text-color"></i>
+        </div>
+
+        <!-- Genres -->
+        <div class="icon-wrapper genres-wrapper dropdown-trigger" #trigger (mouseenter)="onTriggerEnter()"
+          (mouseleave)="onTriggerLeave()">
+          <i class="fa-solid fa-bars text-color"></i>
+        </div>
+
+        <!-- Profile -->
+        <div class="icon-wrapper profile-wrapper ms-3" #profileTrigger (mouseenter)="onProfileTriggerEnter()"
+          (mouseleave)="onProfileTriggerLeave()">
+          <img src="https://via.placeholder.com/32" alt="Avatar" class="profile-img" />
+        </div>
+
+      </div>
     </div>
+  </nav>
 
-    <!-- Right side (search moved before genres) -->
-    <div class="d-flex align-items-center">
-      <!-- Search -->
-      <div class="icon-wrapper mx-3">
-        <i class="fas fa-search fa-lg text-white"></i>
-      </div>
-
-      <!-- Genres -->
-      <div class="icon-wrapper genres-wrapper">
-        <i class="fa-solid fa-bars text-white"></i>
-
-        <!-- <div class="dropdown-menu genres-menu p-3">
-          <button class="dropdown-item active">Action and adventure</button>
-          <button class="dropdown-item">Comedy</button>
-          <button class="dropdown-item">Documentary</button>
-          <button class="dropdown-item">Drama</button>
-          <button class="dropdown-item">Fantasy</button>
-          <button class="dropdown-item">Horror</button>
-          <button class="dropdown-item">Kids</button>
-          <button class="dropdown-item">Mystery and thrillers</button>
-          <button class="dropdown-item">Romance</button>
-          <button class="dropdown-item">Science fiction</button>
-        </div> -->
-
-      </div>
-
-      <!-- Profile -->
-      <div class="icon-wrapper profile-wrapper ms-3">
-        <img
-          src="https://via.placeholder.com/32"
-          alt="Avatar"
-          class="profile-img"
-        />
-        
-        <!-- <div class="dropdown-menu profile-menu p-3">
-          <h6 class="dropdown-header text-white">YOUR ACCOUNT</h6>
-          <div class="menu-grid">
-            <button class="dropdown-item">Help</button>
-            <button class="dropdown-item">Watch Anywhere</button>
-            <button class="dropdown-item">Account & Settings</button>
-            <button class="dropdown-item">Sign out</button>
-          </div>
-          <div class="dropdown-divider bg-secondary my-2"></div>
-          <h6 class="dropdown-header text-white">PROFILES</h6>
-          <div class="menu-grid">
-            <button class="dropdown-item">👶 Kids</button>
-            <button class="dropdown-item">➕ Add new</button>
-            <button class="dropdown-item">Manage profiles</button>
-          </div>
-          <button class="btn btn-sm btn-light mt-2 w-100">Learn more</button>
-        </div> -->
-        
-      
+  <div class="childs-container">
+    <div class="search-container">
+      <app-navbar-search-bar *ngIf="searchVisible" #searchBarComp>
+      </app-navbar-search-bar>
+    </div>
+    <div class="dropdown-container">
+      <div class="move-to-right-container">
+        <app-navbar-genre-dropdown *ngIf="showDropdown" (mouseenter)="onDropdownEnter()" (mouseleave)="onDropdownLeave()">
+        </app-navbar-genre-dropdown>
+        <app-navbar-profile-dropdown *ngIf="showProfileDropdown" (mouseenter)="onProfileDropdownEnter()" (mouseleave)="onProfileDropdownLeave()">
+        </app-navbar-profile-dropdown>
       </div>
     </div>
   </div>
-</nav>
+</section>

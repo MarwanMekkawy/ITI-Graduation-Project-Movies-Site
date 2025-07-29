@@ -1,10 +1,10 @@
 .genre-card-wrapper {
   position: relative;
-  width: 15rem;
-  height: 8rem;
+  width: 17.5rem;
+  height: 9rem;
   border-radius: 0.6rem;
   overflow: hidden;
-  /* no background here anymore */
+  display: block;
 }
 
 .bg-image {
@@ -31,9 +31,11 @@
   z-index: 2;
   height: 100%;
   display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  font-size: calc(1.75 * var(--font-body));
-  font-weight: 500;
+  align-items: center;       
+  justify-content: flex-start; 
+  padding-left: 0.8rem;
+  font-size: calc(1.5 * var(--font-body));
+  font-weight: 700;
   color: var(--text-color);
 }
+

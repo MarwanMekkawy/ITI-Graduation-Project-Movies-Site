@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component ,ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-navbar-genre-dropdown',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './navbar-genre-dropdown.css'
 })
 export class NavbarGenreDropdown {
+constructor(public el: ElementRef) {}      //dropdown link with navbar
+
 selectedGenre: string = 'Action and adventure';
 
   genres = [
