@@ -1,14 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginPageComponent } from "./Page-components/login-page/login-page";
-import { SignupPageComponent } from "./Page-components/signup-page/signup-pag";
-import { ErrorPage } from './Page-components/error-page/error-page';
+import { Navbar } from "./child-components/navbar/navbar";
+import { Footer } from "./child-components/footer/footer";
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginPageComponent, SignupPageComponent,ErrorPage],
+  imports: [RouterOutlet, Navbar, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,3 +1,15 @@
+/* saved data selection background and text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgb(59, 59, 59) inset !important;
+  -webkit-text-fill-color: var(--text-color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
 /* Make login card wider */
 .login-card {
   max-width: 400px; /* زودنا العرض */
@@ -33,9 +45,10 @@
 }
 
 .login-input:focus {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  color: white !important;
-  box-shadow: 0 0 8px var(--gray-color);
+  border: var(--text-color) solid 1px;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 0 2px var(--gray-color);
 }
 
 /* Label styling */
@@ -44,24 +57,6 @@
   padding-left: 0.75rem;
   font-size: 0.9rem;
 }
-
-/* Login Button */
-/* .login-button {
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #082783;
-  color: var(--text-color);
-  font-weight: bold;
-  font-size: 1rem;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
-}
-
-.login-button:hover {
-  background-color: #5a5f68;
-} */
 
 /* Footer */
 .login-footer {
