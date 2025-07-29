@@ -8,8 +8,9 @@
 }
 
 .error-code-top {
-  font-size: 14px;
-  color: #a78bfa;
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(241, 100%, 56%);
   margin-bottom: 0.5rem;
 }
 
@@ -21,13 +22,14 @@
 
 .error-message {
   font-size: 18px;
-  color: #aaa;
+  color: var(--text-color);
   margin-bottom: 2rem;
 }
 
 .btn-custom {
   margin-right: 1rem;
   font-weight: bold;
+  color: var(--text-color);
 }
 
 .right-404 {
@@ -38,7 +40,7 @@
   font-size: 200px;
   font-weight: 900;
   color: transparent;
-  background: linear-gradient(135deg, #1c1925, #2b2b7c);
+  background: linear-gradient(135deg, #1f295575, #0000ff);
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0px 0px 10px rgba(33, 25, 143, 0.3));
