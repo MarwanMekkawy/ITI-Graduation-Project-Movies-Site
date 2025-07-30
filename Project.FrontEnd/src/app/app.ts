@@ -3,9 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./child-components/navbar/navbar";
 import { Footer } from "./child-components/footer/footer";
 
-
-
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Navbar, Footer],
