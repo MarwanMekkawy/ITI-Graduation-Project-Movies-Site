@@ -8,7 +8,7 @@
   border: 1px solid var(--text-color);
   border-radius: 0 0 4px 4px;
   background-color: transparent;
-  box-shadow: none;
+  box-shadow: none;                            
 }
 
 .navbar-toggler:focus,
@@ -23,16 +23,17 @@
 /* container holding the navbar and the childs */
 .main-container {
   background: transparent;
-  width: 100vw;
+  width: 100%;
   z-index: 950;
 }
 
 .nav-container {
   width: 94%;
-  max-width: 94%;
   margin: 0 auto;
   padding: 0.8rem 0.7rem;
   border-radius: 0 0 12px 12px;
+    outline: red solid 1px;                                      /*///////////////////////////////*/
+
 }
 
 /* Transparent at top; dark when scrolled */
@@ -42,14 +43,20 @@ nav.navbar {
 }
 
 nav.navbar.scrolled {
-  background: #191f2b;
-  width: 94%;
-  margin: auto;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background-color: rgba(20, 20, 20, 0.7);
   border-radius: 0 0 12px 12px;
 }
 
+.navbar-brand{
+font-size: 1.3rem;
+font-weight: 700;
+}
 /* Nav links: pill‑hover, no underline */
 .nav-item {
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #fff !important;
   margin-right: 1rem;
   padding: 0.4rem 0.9rem;
@@ -118,7 +125,7 @@ nav.navbar.scrolled {
 
 .dropdown-container {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   display: flex;
   z-index: 1001;
 }

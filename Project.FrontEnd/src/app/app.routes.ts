@@ -1,7 +1,8 @@
+import { SeriesplayerPage } from './Page-components/seriesplayer-page/seriesplayer-page';
+import { MoviesplayerPage } from './Page-components/moviesplayer-page/moviesplayer-page';
 import { SeriesPage } from './Page-components/series-page/series-page';
 import { MoviesPage } from './Page-components/movies-page/movies-page';
 import { WatchlistPage } from './Page-components/watchlist-page/watchlist-page';
-import { VideoplayerPage } from './Page-components/videoplayer-page/videoplayer-page';
 import { SearchPage } from './Page-components/search-page/search-page';
 import { ProfilePage } from './Page-components/profile-page/profile-page';
 import { SignupPage } from './Page-components/signup-page/signup-pag';
@@ -22,7 +23,8 @@ export const routes: Routes = [
     { path: 'genres', component: GenrePage, title: 'Genres' },
     { path: 'movies', component: MoviesPage, title: 'Movies' },
     { path: 'series', component: SeriesPage, title: 'Series' },
-    { path: 'video', component: VideoplayerPage, title: 'Videoplayer' },
+    { path: 'moviesplayer', component: MoviesplayerPage, title: 'MoviesPlayer' },
+    { path: 'seriesplayer', component: SeriesplayerPage, title: 'SeriesPlayer' },
     { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' },
 
     { path: '**', component: ErrorPage, title: 'Error' }

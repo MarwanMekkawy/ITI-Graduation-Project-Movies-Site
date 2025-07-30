@@ -1,13 +1,11 @@
-
 :root {
-  /*Colors*/
-  --background-color: #00030c;
-  --text-color: #d5d7d8;
   /*Colors*/
   --background-color: #00030c;
   --text-color: #d5d7d8;
   --gray-color: #42464d;
   --footer-gray:#212121;
+  --white-color:white;
+  --black-color:black;
 
   /*****************************************************************/
 
@@ -27,6 +25,7 @@
   --font-display: 4rem;        /* 64px - very large banner text (e.g., Featured Movie Title) */
 }
 
+/*****************************************************************/
 
 .blury-grey {
   /* for the cards */
