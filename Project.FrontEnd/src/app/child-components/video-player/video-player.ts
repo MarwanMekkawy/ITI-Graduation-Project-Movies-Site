@@ -1,13 +1,12 @@
 import { Component, Input, ElementRef, AfterViewInit, OnDestroy, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { EpisodeList } from "../episode-list/episode-list";
 
 @Component({
   selector: 'app-video-player',
   standalone: true,
   templateUrl: './video-player.html',
   styleUrl: './video-player.css',
-  imports: [EpisodeList],
+  imports: [],
 })
 export class VideoPlayer implements AfterViewInit, OnDestroy {
   @Input({ required: true }) cloudName!: string;
