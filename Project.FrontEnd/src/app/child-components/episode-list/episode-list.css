@@ -1,24 +1,19 @@
 body {
   background: #0f1117;
+  
 }
-
-/* Center the list with max width */
 .episode-list-center {
   display: flex;
   justify-content: center;
 background-color: var(--background-color);
-}
 
+}
 .episode-list {
-  display: flex;
-  flex-direction: column;
   gap: 2.1rem;
   width: 100%;
-  max-width: 1200px;
-  margin: 2rem 0;
+  max-width: 95vw;
+  
 }
-
-/* Card styling */
 .episode-card {
   display: flex;
   background: var(--background-color);
@@ -30,15 +25,12 @@ background-color: var(--background-color);
   min-height: 210px;
   align-items: stretch;
 }
-
 .episode-card:hover {
   transform: scale(1.0125);
   background-color:  #181b23;;
   box-shadow: 0 18px 52px 12px rgba(0,0,0,0.22);
-  z-index: 2;
+ 
 }
-
-/* Big image block */
 .episode-image-big-wrapper {
   position: relative;
   width: 320px;

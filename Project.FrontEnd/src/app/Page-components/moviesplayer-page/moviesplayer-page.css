@@ -1,0 +1,69 @@
+/* Container spacing */
+.tab-container{
+  margin: 7vh 2rem  ;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--background-color);
+  padding-bottom: 30vh;
+ 
+}
+
+/* Tab bar styles */
+.tab-bar {
+  border-radius: 15px;
+  margin: 7vh 0 0 0rem  ;
+  position: sticky;
+  display: flex;
+  background-color: var(--gray-color);
+  padding-left: 2rem;
+  height: 7vh;
+  align-items: center; /* Align tabs to bottom for better underline alignment */
+  gap: 2rem;
+  
+}
+
+/* Individual tab */
+.tab {
+  padding-bottom: 0.5rem;
+  position: relative;
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: 600;
+  font-size:var(--font-heading); ;
+   /* Space for underline */
+  transition: color 0.3s;
+  
+}
+
+/* Hover effect */
+.tab:hover {
+  color: #e2ded8;
+}
+
+/* Active tab */
+.tab.active {
+  color: #ffffff;
+  font-weight: 600;
+  
+}
+
+/* Active tab underline */
+.tab.active::after {
+
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-color);
+  border-radius: 2px;
+  transition: width 0.3s, left 0.3s;
+}
+.related-slider{
+    min-height: 60vh;
+     padding-top: 2rem;
+}

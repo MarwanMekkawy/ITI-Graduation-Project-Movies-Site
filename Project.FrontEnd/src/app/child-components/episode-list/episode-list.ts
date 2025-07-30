@@ -18,6 +18,30 @@ export class EpisodeList {
       image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
       desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
     },
+     {
+      title: 'S1 E1 - Suits Pilot - Part 1',
+      date: 'June 23, 2011',
+      duration: '40min',
+      rating: '16+',
+      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
+      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
+    },
+     {
+      title: 'S1 E1 - Suits Pilot - Part 1',
+      date: 'June 23, 2011',
+      duration: '40min',
+      rating: '16+',
+      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
+      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
+    },
+     {
+      title: 'S1 E1 - Suits Pilot - Part 1',
+      date: 'June 23, 2011',
+      duration: '40min',
+      rating: '16+',
+      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
+      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
+    },
     
   ];
 

@@ -18,7 +18,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(128, 128, 128, 0.6);
   opacity: 0;
   border-radius: 50%;
   transition: opacity 0.3s ease;
@@ -30,13 +29,12 @@
   opacity: 1;
 }
 
-.card {
+.profile-card {
   /*blury-grey color*/
   backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  background-color: rgba(20, 20, 20, 0.7);
   border: none;
   box-shadow: none;
+  animation: slideUp 0.8s ease-in-out;
  /******************/
   color: white;
   border: none !important;
@@ -61,4 +59,15 @@ input.form-control:focus {
 ::placeholder {
   color: rgba(255, 255, 255, 0.7); /* Bright white-ish placeholder */
   opacity: 1;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

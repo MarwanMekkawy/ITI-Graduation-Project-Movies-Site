@@ -1,0 +1,24 @@
+<div class="page-container">
+  <app-video-player
+    cloudName="dd3chr1un"
+    publicId="v1753877347/Countdown_-_Official_Trailer_Prime_Video_tptawo">
+  </app-video-player>
+
+  <!-- Tab Bar -->
+  <div class="tab-bar" >
+  
+    <div
+      class="tab"
+      [class.active]="activeTab === 'related'"
+      (click)="activeTab = 'related'">
+      Related
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+
+  <div class="related-slider" *ngIf="activeTab === 'related'">
+    <app-carousel title="Related" ></app-carousel>
+     <app-carousel title="Recommended Movies" ></app-carousel>
+  </div>
+</div>
