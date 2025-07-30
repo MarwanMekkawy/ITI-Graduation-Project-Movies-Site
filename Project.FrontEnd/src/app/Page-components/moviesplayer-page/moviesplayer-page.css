@@ -8,11 +8,11 @@
 .page-container {
   display: flex;
   flex-direction: column;
+  padding: 4.5rem 0rem 0 0rem;
   gap: 1rem;
   background-color: var(--background-color);
-  padding-bottom: 30vh;
-}
 
+}
 /* Tab bar styles */
 .tab-bar {
   width: 97%;
@@ -74,7 +74,6 @@
 
 /* Active tab underline */
 .tab.active::after {
-
   content: '';
   position: absolute;
   left: 0;
