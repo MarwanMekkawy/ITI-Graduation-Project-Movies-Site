@@ -1,6 +1,7 @@
 /* Container spacing */
+
 .tab-container{
-  margin: 7vh 2rem  ;
+  margin: 0 2rem  ;
   display: flex;
   flex-direction: column;
 }
@@ -16,7 +17,7 @@
 .tab-bar {
   width: 97%;
   border-radius: 15px;
-  margin: 7vh auto 1rem auto  ;
+  margin: 3vh auto 1rem auto  ;
   position: sticky;
   display: flex;
   background-color: var(--gray-color);
