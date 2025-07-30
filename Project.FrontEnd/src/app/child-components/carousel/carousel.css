@@ -93,7 +93,7 @@ background-color: var(--background-color);;
   top: 50%;
   transform: translateY(-45%);
   height: 79%;
-  z-index: 10000;
+  z-index: 800;
   background: rgba(0, 0, 0, 0.4);
   border: none;
   font-size: 1.5rem;

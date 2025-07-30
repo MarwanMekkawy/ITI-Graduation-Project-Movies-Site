@@ -24,13 +24,14 @@
 .main-container {
   background: transparent;
   width: 100vw;
+  z-index: 950;
 }
 
 .nav-container {
   width: 94%;
   max-width: 94%;
   margin: 0 auto;
-  padding: 0.6rem 0.5rem;
+  padding: 0.8rem 0.7rem;
   border-radius: 0 0 12px 12px;
 }
 
@@ -79,7 +80,7 @@ nav.navbar.scrolled {
 }
 
 .icon-wrapper.active-search {
-  background-color:rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Profile image: perfect circle */
@@ -126,3 +127,10 @@ nav.navbar.scrolled {
   margin: 1rem 3% 0rem auto;
 }
 
+.tranperant-layer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 900;
+  background-color: rgba(0, 0, 0, 0.6);
+}

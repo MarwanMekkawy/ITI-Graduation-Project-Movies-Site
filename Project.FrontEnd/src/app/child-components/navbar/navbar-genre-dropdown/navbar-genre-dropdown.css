@@ -1,9 +1,6 @@
 .genre-card {
   width: 380px;
   padding: 1.5rem;
-  background: rgba(66, 70, 77, 0.5); /* #42464d transparent */
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   color: #fff;
