@@ -1,1 +1,12 @@
-<p>search-page works!</p>
+
+<!-- watchlist-page.html -->
+<div class="search-wrapper">
+  <h2 class="search-title">Top Results</h2>
+
+  <div class="search-grid">
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [movie]="movie">
+    </app-movie-card>
+  </div>
+</div>
