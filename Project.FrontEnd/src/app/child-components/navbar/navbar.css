@@ -32,8 +32,6 @@
   margin: 0 auto;
   padding: 0.8rem 0.7rem;
   border-radius: 0 0 12px 12px;
-    outline: red solid 1px;                                      /*///////////////////////////////*/
-
 }
 
 /* Transparent at top; dark when scrolled */
@@ -52,6 +50,7 @@ nav.navbar.scrolled {
 .navbar-brand{
 font-size: 1.3rem;
 font-weight: 700;
+cursor: pointer;
 }
 /* Nav links: pill‑hover, no underline */
 .nav-item {

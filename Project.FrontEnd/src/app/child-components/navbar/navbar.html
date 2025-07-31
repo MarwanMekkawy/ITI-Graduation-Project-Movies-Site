@@ -4,7 +4,7 @@
 
       <!-- Left side -->
       <div class="d-flex align-items-center">
-        <span class="navbar-brand text-white me-4">prime video</span>
+        <span class="navbar-brand text-white me-4" routerLink="/home">prime video</span>
 
         <!-- 🔽 Toggler for small screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -16,10 +16,10 @@
       <!-- 🔽 Collapsible nav links --> 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">Home</a>
-          <a class="nav-item nav-link" href="#">Movies</a>
-          <a class="nav-item nav-link" href="#">TV shows</a>
-          <a class="nav-item nav-link" href="#">My Stuff</a>
+          <a class="nav-item nav-link" routerLink="/home">Home</a>
+          <a class="nav-item nav-link" routerLink="/movies">Movies</a>
+          <a class="nav-item nav-link" routerLink="/series">TV shows</a>
+          <a class="nav-item nav-link" routerLink="/watchlist">My Stuff</a>
         </div>
       </div>
 

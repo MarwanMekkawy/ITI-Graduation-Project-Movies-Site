@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from "./navbar-search-bar/search-bar";
 import { NavbarProfileDropdown } from "./navbar-profile-dropdown/navbar-profile-dropdown";
 import { NavbarGenreDropdown } from "./navbar-genre-dropdown/navbar-genre-dropdown";
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, SearchBarComponent, NavbarProfileDropdown, NavbarGenreDropdown],
+  imports: [CommonModule, SearchBarComponent, NavbarProfileDropdown, NavbarGenreDropdown,RouterLink,RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
 })

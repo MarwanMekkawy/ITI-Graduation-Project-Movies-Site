@@ -1,4 +1,4 @@
-.container-fluid {
+.container-fluid { 
   overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
 .btn-custom {
   margin-right: 1rem;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--white-color);
 }
 
 .right-404 {

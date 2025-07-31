@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component ,ElementRef} from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-navbar-profile-dropdown',
- imports: [CommonModule],
+ imports: [CommonModule,RouterLink],
   templateUrl: './navbar-profile-dropdown.html',
   styleUrl: './navbar-profile-dropdown.css'
 })

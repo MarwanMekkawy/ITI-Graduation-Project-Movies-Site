@@ -1,11 +1,11 @@
 :root {
   /*Colors*/
-  --background-color: #00030c;
-  --text-color: #d5d7d8;
-  --gray-color: #42464d;
-  --footer-gray:#212121;
-  --white-color:white;
-  --black-color:black;
+  --background-color: rgb(0, 3, 12);
+  --text-color: rgb(213, 215, 216);
+  --gray-color: rgb(66, 70, 77);
+  --footer-gray:rgb(33, 33, 33);
+  --white-color:rgb(255,255,255);
+  --black-color:rgb(0, 0, 0);
 
   /*****************************************************************/
 
