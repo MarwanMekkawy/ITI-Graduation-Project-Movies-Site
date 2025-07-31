@@ -11,9 +11,12 @@ import { ErrorPage } from './Page-components/error-page/error-page';
 import { Routes } from '@angular/router';
 import { HomePage } from './Page-components/home-page/home-page';
 import { AllgenresPage } from './Page-components/allgenres-page/allgenres-page';
+import { WelcomePage } from './Page-components/welcome-page/welcome-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Home' },                              //welcome-each genre still to impelement
+
+    { path: 'w', component: WelcomePage, title: 'Home' },
 
     { path: 'home', component: HomePage, title: 'Home' },
     { path: 'login', component: LoginPage, title: 'Login' },

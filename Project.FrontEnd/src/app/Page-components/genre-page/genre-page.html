@@ -1,0 +1,10 @@
+<div class="genre-wrapper">
+  <h2 class="genre-title">Genre Movies</h2>
+
+  <div class="genre-grid">
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [movie]="movie">
+    </app-movie-card>
+  </div>
+</div>

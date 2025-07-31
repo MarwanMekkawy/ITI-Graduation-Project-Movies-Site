@@ -1,0 +1,21 @@
+.genre-wrapper {
+  height: 100vh;
+  padding: 1rem 2rem;
+  background-color: var(--background-color);
+}
+
+.genre-title {
+  padding-top: 50px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5rem;
+  padding: 1rem 0;
+  overflow: auto;
+}

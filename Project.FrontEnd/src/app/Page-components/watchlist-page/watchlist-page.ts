@@ -112,7 +112,5 @@ movies = [
       image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
       episodeInfo: 'New episode Wednesday'
     },
-    
-    // Add more items as needed
   ];
 }

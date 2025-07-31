@@ -1,81 +1,114 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  background-color: black;
+/* =================================== */
+/* Global Styles */
+/* =================================== */
+.main-container {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.section1 {
-  padding-top: 5rem;
   width: 100%;
-  height: 100vh;
+  min-width: 100%;
+  padding-top: 5rem;
+  background-color: var(--background-color);
+}
+
+
+/* =================================== */
+/* SECTION 1 */
+/* =================================== */
+.section1 {
+  position: relative;
+  width: 100%;
+  height: 75vh;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* font-size: 2rem; */
-  background-color: black;
 }
+
 .left-section1 {
-  padding-left: 3rem;
-  padding: 2rem;
-  gap: 1rem;
-  width: 50%;
+  width: 51%;
   height: 100%;
-  /* background-color: rgb(255, 255, 255); */
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
-  background-color: black;
-  color: white;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  gap: 1rem;
+  padding: 0% 0% 12% 4%;
 }
+
 .left-section1 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(1rem, 8vw, 3rem);
   margin-bottom: 1rem;
+  font-weight: 700;
 }
-.sub-heading {
-  font-size: 1.5rem !important;
-  margin-bottom: 2rem;
-}
+
 .left-section1 p {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sub-heading {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .footer-left-section {
   margin-top: 2rem;
-  /* font-size: small; */
-  /* color: rgb(255, 255, 255); */
 }
 
-.Right-section1 {
-  width: 50%;
+.right-section1 {
+  width: 49%;
   height: 100%;
-  /* background-color: rgb(255, 255, 255); */
-
-  /* background-color: blue; */
+  position: relative;
+  z-index: 1;
 }
+
 .right-section1 img {
   width: 100%;
   height: 100%;
-}
-/****************************************************************************************/
-.section2 {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-  font-size: 2rem;
+  object-fit: cover;
+  display: block;
 }
 
-/* الجزء اللي فيه الصورة */
-.left-section2 {
-  width: 50%;
+.left-shadow-edge {
   height: 100%;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to right,
+      rgba(var(--black-color-2), 0.999) 0%,
+      rgba(var(--black-color-2), 0.99) 2%,
+      rgba(var(--black-color-2), 0.9) 3%,
+      rgba(var(--black-color-2), 0.9) 6%,
+      rgba(var(--black-color-2), 0.7) 10%,
+      rgba(var(--black-color-2), 0) 20%,
+      rgba(var(--black-color-2), 0) 40%,
+      rgba(var(--black-color-2), 0) 70%,
+      rgba(var(--black-color-2), 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* =================================== */
+/* SECTION 2 */
+/* =================================== */
+.section2 {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-section2 {
+  width: 49%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .left-section2 img {
@@ -85,37 +118,200 @@ body {
   display: block;
 }
 
-/* الجزء اللي فيه النص */
 .right-section2 {
-  width: 50%;
+  width: 51%;
   height: 100%;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
-  background-color: black;
-  color: white;
+  background-color: var(--black-color);
+  color: var(--white-color);
   gap: 1rem;
+  padding: 0% 0% 12% 3%;
 }
 
+
 .right-section2 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(0.5rem, 6vw, 2rem);
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .right-section2 .sub-heading {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.right-shadow-edge {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to left,
+      rgba(var(--black-color-2), 0.999) 0%,
+      rgba(var(--black-color-2), 0.99) 2%,
+      rgba(var(--black-color-2), 0.9) 3%,
+      rgba(var(--black-color-2), 0.9) 6%,
+      rgba(var(--black-color-2), 0.7) 10%,
+      rgba(var(--black-color-2), 0) 20%,
+      rgba(var(--black-color-2), 0) 40%,
+      rgba(var(--black-color-2), 0) 70%,
+      rgba(var(--black-color-2), 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =================================== */
+/* SECTION 3 */
+/* =================================== */
+.section3 {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  padding: 3% 5%;
+  /* Optional spacing */
+  gap: 2%;
+  flex-wrap: nowrap;
+  /* force inline row layout */
+}
+
+.first-image,
+.second-image,
+.third-image {
+  width: 28%;
+  height: 100%;
+  color: var(--white-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.first-image img,
+.second-image img,
+.third-image img {
+  width: 100%;
+  /* scales image with parent div */
+  max-width: 300px;
+  /* original max size */
+  height: auto;
+  object-fit: contain;
+}
+
+.first-image h2,
+.second-image h2,
+.third-image h2 {
+  padding: 10% 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.first-image p,
+.second-image p,
+.third-image p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: clamp(0.5rem, 6vw, 1.2rem);
+  font-weight: bold;
+  text-align: left;
+}
+
+/* =================================== */
+/* SECTION 4 */
+/* =================================== */
+.section4 {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-section4 {
+  width: 51%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  gap: 1rem;
+  padding: 0% 0% 12% 4%;
+}
+
+.left-section4 h1 {
+  font-size: clamp(1rem, 8vw, 3rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.left-section4 p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sub-heading4 {
   font-size: 1.5rem;
   margin-bottom: 2rem;
 }
 
+.right-section4 {
+  width: 49%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.right-section4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.left-shadow-edge4 {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to right,
+      rgba(var(--black-color-2), 0.999) 0%,
+      rgba(var(--black-color-2), 0.99) 2%,
+      rgba(var(--black-color-2), 0.9) 3%,
+      rgba(var(--black-color-2), 0.9) 6%,
+      rgba(var(--black-color-2), 0.7) 10%,
+      rgba(var(--black-color-2), 0) 20%,
+      rgba(var(--black-color-2), 0) 40%,
+      rgba(var(--black-color-2), 0) 70%,
+      rgba(var(--black-color-2), 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* =================================== */
+/* Common Elements */
+/* =================================== */
 .common-button {
-  width: 250px;
-  height: 60px !important;
+  width: clamp(120px, 30%, 200px);
+  height: clamp(2.5rem, 8vw, 3.5rem);
   border-radius: 8px;
-  font-size: 1.2rem !important;
-  background-color: white;
-  color: black;
+  font-size: clamp(0.5rem, 2vw, 1rem);
+  font-weight: 600;
+  background-color: var(--white-color);
+  color:var(--black-color);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -126,255 +322,6 @@ body {
 
 .common-button:hover {
   transform: scale(1.05);
-  background-color: #ddd;
+  background-color: var(--text-color);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-/* موبايلات صغيرة (iPhone SE وغيره) */
-@media (max-width: 480px) {
-  .section1,
-  .section2 {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .right-section1,
-  .left-section2 {
-    order: -1;
-    width: 100%;
-    height: auto;
-  }
-
-  .left-section1,
-  .right-section2 {
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    align-items: center;
-    text-align: center;
-  }
-
-  .left-section1 h1,
-  .right-section2 h1 {
-    font-size: 1.8rem;
-  }
-
-  .sub-heading {
-    font-size: 1rem !important;
-  }
-
-  .common-button {
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
-    height: 45px !important;
-  }
-
-  .footer-left-section {
-    font-size: 0.8rem;
-    text-align: center;
-  }
-
-  .right-section1 img,
-  .left-section2 img {
-    height: auto;
-    object-fit: cover;
-  }
-}
-
-/* موبايلات وتابلت أفقي */
-@media (min-width: 481px) and (max-width: 768px) {
-  .section1,
-  .section2 {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .right-section1,
-  .left-section2 {
-    order: -1;
-    width: 100%;
-    height: auto;
-  }
-
-  .left-section1,
-  .right-section2 {
-    width: 100%;
-    padding: 1.5rem;
-    align-items: center;
-    text-align: center;
-  }
-
-  .left-section1 h1,
-  .right-section2 h1 {
-    font-size: 2rem;
-  }
-
-  .sub-heading {
-    font-size: 1.2rem !important;
-  }
-
-  .common-button {
-    width: 90%;
-    max-width: 300px;
-    font-size: 1rem;
-    height: 50px !important;
-  }
-
-  .footer-left-section {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-}
-.section3 {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background-color);
-}
-.first-image,
-.second-image,
-.third-image {
-  padding-top: 5rem;
-  padding-bottom: 4rem;
-  width: 30%;
-  height: 100%;
-  color: white;
-  text-align: center;
-}
-.first-image h2,
-.second-image h2,
-.third-image h2 {
-  padding: 1rem;
-}
-.first-image p,
-.second-image p,
-.third-image p {
-  padding: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.first-image img,
-.second-image img,
-.third-image img {
-  width: 300px; /* غيّر الرقم حسب الحجم اللي تحبه */
-  height: auto; /* يخليها تحافظ على النسبة */
-  display: block;
-  margin: 0 auto; /* تخليها في النص */
-}
-
-/**********************************************/
-
-/* تابلت إلى لابتوب متوسط */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .section1,
-  .section2 {
-    flex-direction: row;
-    height: auto;
-  }
-
-  .left-section1,
-  .right-section2,
-  .right-section1,
-  .left-section2 {
-    width: 50%;
-    padding: 2rem;
-  }
-
-  .left-section1 h1,
-  .right-section2 h1 {
-    font-size: 2.5rem;
-  }
-
-  .sub-heading {
-    font-size: 1.3rem !important;
-  }
-
-  .common-button {
-    font-size: 1.1rem;
-    height: 55px !important;
-  }
-}
-
-/* شاشات كبيرة (Desktop) */
-@media (min-width: 1025px) {
-  .section1,
-  .section2 {
-    flex-direction: row;
-    height: 100vh;
-  }
-
-  .left-section1,
-  .right-section2 {
-    width: 50%;
-    padding: 2rem;
-  }
-
-  .right-section1,
-  .left-section2 {
-    width: 50%;
-  }
-
-  .left-section1 h1,
-  .right-section2 h1 {
-    font-size: 3.5rem;
-  }
-
-  .sub-heading {
-    font-size: 1.5rem !important;
-  }
-
-  .common-button {
-    font-size: 1.2rem;
-    height: 60px !important;
-  }
-}
-@media (max-width: 768px) {
-  .section3 {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .first-image,
-  .second-image,
-  .third-image {
-    width: 100%;
-    height: auto;
-    padding: 2rem 1rem;
-  }
-
-  .first-image img,
-  .second-image img,
-  .third-image img {
-    width: 80%;
-    max-width: 250px;
-    height: auto;
-  }
-
-  .first-image h2,
-  .second-image h2,
-  .third-image h2,
-  .first-image p,
-  .second-image p,
-  .third-image p {
-    font-size: 1rem;
-  }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-  .first-image,
-  .second-image,
-  .third-image {
-    width: 33.3%;
-    padding: 2rem 1rem;
-  }
-
-  .first-image img,
-  .second-image img,
-  .third-image img {
-    width: 90%;
-    max-width: 280px;
-  }
-}
-
