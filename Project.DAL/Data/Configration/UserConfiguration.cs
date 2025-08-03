@@ -28,7 +28,11 @@ namespace Project.DAL.Data.Configration
 
             builder.Property(u => u.CreatedAt)
                    .HasDefaultValueSql("GETDATE()");
+
+            builder.Property(u => u.UserImage)
+                   .HasMaxLength(300); 
         }
+
     }
 
 }

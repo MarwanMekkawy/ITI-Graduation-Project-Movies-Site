@@ -9,17 +9,18 @@ namespace Project.DAL.Models_Entities_
     public class Movie
     {
         public int MovieId { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Title { get; set; }
+        public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public int Duration { get; set; }
-        public string Language { get; set; } = null!;
-        public string PosterUrl { get; set; } = null!;
+        public string PosterUrl { get; set; }
+        public string MovieImage { get; set; } 
         public decimal IMDbRating { get; set; }
 
-        public ICollection<MovieGenre> MovieGenres { get; set; } = new List<MovieGenre>();
-        public ICollection<Watchlist> Watchlists { get; set; } = new List<Watchlist>();
-        public ICollection<UserRating> UserRatings { get; set; } = new List<UserRating>();
+        public ICollection<MovieGenre> MovieGenres { get; set; }
+        public ICollection<UserRating> UserRatings { get; set; }
+        public ICollection<Watchlist> Watchlists { get; set; }
+        public ICollection<MovieEpisode> MovieEpisodes { get; set; } 
     }
+
 
 }

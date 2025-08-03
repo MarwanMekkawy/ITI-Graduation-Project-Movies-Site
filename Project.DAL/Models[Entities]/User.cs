@@ -9,12 +9,14 @@ namespace Project.DAL.Models_Entities_
     public class User
     {
         public int UserId { get; set; }
-        public string Username { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string PasswordHash { get; set; } = null!;
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string UserImage { get; set; } 
 
-        public ICollection<Watchlist> Watchlists { get; set; } = new List<Watchlist>();
-        public ICollection<UserRating> UserRatings { get; set; } = new List<UserRating>();
+        public ICollection<UserRating> UserRatings { get; set; }
+        public ICollection<Watchlist> Watchlists { get; set; }
     }
+
 }

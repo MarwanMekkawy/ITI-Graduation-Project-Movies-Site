@@ -25,14 +25,11 @@ namespace Project.DAL.Data.Configration
             builder.Property(m => m.ReleaseDate)
                    .IsRequired();
 
-            builder.Property(m => m.Duration)
-                   .IsRequired();
-
-            builder.Property(m => m.Language)
-                   .HasMaxLength(50);
-
             builder.Property(m => m.PosterUrl)
                    .HasMaxLength(300);
+
+            builder.Property(m => m.MovieImage)
+                   .HasMaxLength(300); 
 
             builder.Property(m => m.IMDbRating)
                    .HasColumnType("decimal(3,1)");
@@ -44,6 +41,14 @@ namespace Project.DAL.Data.Configration
             builder.HasMany(m => m.UserRatings)
                    .WithOne(ur => ur.Movie)
                    .HasForeignKey(ur => ur.MovieId);
+
+            builder.HasMany(m => m.Watchlists)
+                   .WithOne(w => w.Movie)
+                   .HasForeignKey(w => w.MovieId);
+
+            builder.HasMany(m => m.MovieEpisodes)
+                   .WithOne(e => e.Movie)
+                   .HasForeignKey(e => e.MovieId);
         }
     }
 
