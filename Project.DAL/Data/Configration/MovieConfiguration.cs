@@ -49,6 +49,11 @@ namespace Project.DAL.Data.Configration
             builder.HasMany(m => m.MovieEpisodes)
                    .WithOne(e => e.Movie)
                    .HasForeignKey(e => e.MovieId);
+
+            builder.Property(m => m.IsMovie)
+                   .IsRequired()
+                   .HasDefaultValue(true);
+
         }
     }
 

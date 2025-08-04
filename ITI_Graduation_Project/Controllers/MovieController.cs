@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.DAL.Models_Entities_;
 using Project.DAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 //test controller
 
@@ -8,6 +9,7 @@ namespace ITI_Graduation_Project.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class MovieController : ControllerBase
     {
         private readonly IGenericRepository<Movie> _movieRepository;
