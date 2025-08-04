@@ -11,20 +11,31 @@ namespace Project.BLL.Repositories
 {
     public class UserRatingService : IUserRatingService
     {
-        private readonly IUserRatingRepository _repo;
+        private readonly IUserRatingRepository _ratingRepo;
 
-        public UserRatingService(IUserRatingRepository repo)
+        public UserRatingService(IUserRatingRepository ratingRepo)
         {
-            _repo = repo;
+            _ratingRepo = ratingRepo;
         }
 
-        public async Task<IEnumerable<UserRating>> GetAllAsync() => await _repo.GetAllAsync();
-
-        public async Task<UserRating?> GetByIdAsync(int userId, int movieId)
+        public async Task AddRatingAsync(int userId, int movieId, double rating)
         {
-            var all = await _repo.GetAllAsync();
-            return all.FirstOrDefault(r => r.UserId == userId && r.MovieId == movieId);
+            var entry = new UserRating { UserId = userId, MovieId = movieId, Rating = (int)rating };
+            await _ratingRepo.AddAsync(entry);
+            await _ratingRepo.SaveAsync();
+        }
+
+        public async Task<double?> GetUserRatingForMovieAsync(int userId, int movieId)
+        {
+            var all = await _ratingRepo.GetAllAsync();
+            return all.FirstOrDefault(r => r.UserId == userId && r.MovieId == movieId)?.Rating;
+        }
+
+        public async Task<double> GetAverageRatingForMovieAsync(int movieId)
+        {
+            var all = await _ratingRepo.GetAllAsync();
+            var ratings = all.Where(r => r.MovieId == movieId).Select(r => r.Rating).ToList();
+            return ratings.Count == 0 ? 0 : ratings.Average();
         }
     }
-
 }

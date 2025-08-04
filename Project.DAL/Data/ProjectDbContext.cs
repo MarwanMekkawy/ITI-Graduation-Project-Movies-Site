@@ -17,7 +17,8 @@ namespace Project.DAL.Data
         
         public DbSet<MovieGenre> MovieGenres { get; set; }          
         public DbSet<Watchlist> Watchlists { get; set; }           
-        public DbSet<UserRating> UserRatings { get; set; }         
+        public DbSet<UserRating> UserRatings { get; set; }
+        public DbSet<MovieEpisode> MovieEpisodes { get; set; }
 
         public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options)
         {

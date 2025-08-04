@@ -9,8 +9,9 @@ namespace Project.BLL.Interfaces
 {
     public interface IUserRatingService
     {
-        Task<IEnumerable<UserRating>> GetAllAsync();
-        Task<UserRating?> GetByIdAsync(int userId, int movieId);
+        Task AddRatingAsync(int userId, int movieId, double rating);
+        Task<double?> GetUserRatingForMovieAsync(int userId, int movieId);
+        Task<double> GetAverageRatingForMovieAsync(int movieId);
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using Project.DAL.Models_Entities_;
+﻿using Project.BLL.DTOs.WatchlistDTO;
+using Project.DAL.Models_Entities_;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Project.BLL.Interfaces
 {
     public interface IWatchlistService
     {
-        Task<IEnumerable<Watchlist>> GetByUserIdAsync(int userId);
+        Task<IEnumerable<WatchlistReadDto>> GetUserWatchlistAsync(int userId);
+        Task AddToWatchlistAsync(WatchlistAddDto dto);
+        Task RemoveFromWatchlistAsync(int userId, int movieId);
     }
 
 }

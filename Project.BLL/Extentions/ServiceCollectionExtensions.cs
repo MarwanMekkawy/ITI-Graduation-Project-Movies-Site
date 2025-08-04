@@ -31,6 +31,8 @@ namespace Project.BLL.Extentions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserRatingRepository, UserRatingRepository>();
             services.AddScoped<IWatchlistRepository, WatchlistRepository>();
+            services.AddScoped<IMovieEpisodeRepository, MovieEpisodeRepository>();
+
 
             // Services
             services.AddScoped<IMovieService, MovieService>();
@@ -38,6 +40,8 @@ namespace Project.BLL.Extentions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRatingService, UserRatingService>();
             services.AddScoped<IWatchlistService, WatchlistService>();
+            services.AddScoped<IMovieEpisodeService, MovieEpisodeService>();
+
 
             return services;
         }

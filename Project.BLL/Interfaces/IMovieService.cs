@@ -1,4 +1,5 @@
-﻿using Project.DAL.Models_Entities_;
+﻿using Project.BLL.DTOs.MovieDTO;
+using Project.DAL.Models_Entities_;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,13 @@ namespace Project.BLL.Interfaces
 {
     public interface IMovieService
     {
-        Task<IEnumerable<Movie>> GetAllAsync();
-        Task<Movie?> GetByIdAsync(int id);
-        Task AddAsync(Movie movie);
-        Task<IEnumerable<Movie>> GetTopRatedAsync(int count);
+        Task<IEnumerable<MovieReadDto>> GetAllItemsAsync();
+        Task<MovieReadDto?> GetMovieByIdAsync(int id);
+        Task<IEnumerable<SeriesReadDto>> GetAllSeriesAsync();
+        Task<IEnumerable<MovieReadDto>> GetAllMoviesAsync();
+        Task<IEnumerable<MovieReadDto>> GetTopRatedMoviesAsync(int count);
+        Task<IEnumerable<MovieReadDto>> GetLatestMoviesAsync(int count);
+        Task<IEnumerable<MovieReadDto>> SearchByTitleAsync(string title);
     }
 
 }

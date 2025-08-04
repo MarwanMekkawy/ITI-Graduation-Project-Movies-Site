@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Project.BLL.Extentions;
 using Project.DAL.Data;
+using Project.BLL.Mappings;
 
 namespace ITI_Graduation_Project
 {
@@ -17,6 +18,11 @@ namespace ITI_Graduation_Project
             //DI services extention method call
             builder.Services.AddApplicationServices(builder.Configuration);
 
+            //automapper config
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<MappingConfig>();
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

@@ -21,6 +21,41 @@ namespace Project.DAL.Repositories
                 .Take(count)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<Movie>> GetAllWithGenresAsync()
+        {
+            return await _context.Movies
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .ToListAsync();
+        }
+
+        public async Task<Movie?> GetByIdWithGenresAsync(int id)
+        {
+            return await _context.Movies
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .FirstOrDefaultAsync(m => m.MovieId == id);
+        }
+
+        public async Task<IEnumerable<Movie>> GetTopRatedWithGenresAsync(int count)
+        {
+            return await _context.Movies
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .OrderByDescending(m => m.IMDbRating)
+                .Take(count)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Movie>> SearchByTitleAsync(string title)
+        {
+            return await _context.Movies
+                .Where(m => m.Title.ToLower().Contains(title.ToLower()))
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .OrderBy(m => m.Title)
+                .Take(10)                                   // top 10 suggestions
+                .ToListAsync();
+        }
     }
 
 }

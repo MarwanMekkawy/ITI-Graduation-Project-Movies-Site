@@ -1,4 +1,5 @@
-﻿using Project.DAL.Models_Entities_;
+﻿using Project.BLL.DTOs.UserDTO;
+using Project.DAL.Models_Entities_;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,11 @@ namespace Project.BLL.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllAsync();
-        Task<User?> GetByIdAsync(int id);
+        Task<IEnumerable<UserReadDto>> GetAllUsersAsync();
+        Task<UserReadDto?> GetUserByIdAsync(int id);
+        Task AddUserAsync(UserCreateDto dto);
+        Task UpdateUserAsync(int id, UserUpdateDto dto);
+        Task DeleteUserAsync(int id);
     }
 
 }
