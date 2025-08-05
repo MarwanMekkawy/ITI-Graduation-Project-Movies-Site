@@ -15,6 +15,7 @@ namespace Project.BLL.Interfaces
         Task AddUserAsync(UserCreateDto dto);
         Task UpdateUserAsync(int id, UserUpdateDto dto);
         Task DeleteUserAsync(int id);
+        Task<User?> GetUserByUsernameAsync(string username);
     }
 
 }

@@ -1,8 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Project.BLL.Extentions;
-using Project.DAL.Data;
 using Project.BLL.Mappings;
+using Project.DAL.Data;
+using System.Text;
 
 namespace ITI_Graduation_Project
 {
@@ -28,6 +30,19 @@ namespace ITI_Graduation_Project
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //authintication
+            builder.Services.AddAuthentication(cfg => cfg.DefaultAuthenticateScheme = "AuthSchema").AddJwtBearer("AuthSchema", option =>
+            {
+                var key = Encoding.ASCII.GetBytes("jhnaksdhndjbajhasdjhaskhdasjdhasjdhkasjdhjkhasdjh");
+                var securitykey = new SymmetricSecurityKey(key);
+                option.TokenValidationParameters=new TokenValidationParameters()
+                {
+                    IssuerSigningKey=securitykey,
+                    ValidateAudience=false,
+                    ValidateIssuer=false,
+                };
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -39,8 +54,8 @@ namespace ITI_Graduation_Project
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

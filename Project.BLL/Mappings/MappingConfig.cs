@@ -39,27 +39,20 @@ namespace Project.BLL.Mappings
                 // Genre to GenreReadDto
                 CreateMap<Genre, GenreReadDto>().ReverseMap();
 
-                // User mappings
-                CreateMap<User, UserReadDto>().ReverseMap();
-                                
-                CreateMap<UserCreateDto, User>()
-                   .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => HashPassword(src.Password)));
+                // Watchlist mappings
+                CreateMap<WatchlistAddDto, Watchlist>().ReverseMap();
+                CreateMap<Watchlist, WatchlistReadDto>().ReverseMap();
 
-                CreateMap<UserUpdateDto, User>()
-                   .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src =>
-                    string.IsNullOrEmpty(src.Password) ? null : HashPassword(src.Password)));
 
-            // Watchlist mappings
-            CreateMap<WatchlistAddDto, Watchlist>().ReverseMap();
-            CreateMap<Watchlist, WatchlistReadDto>().ReverseMap();
-        }
-
-        private static string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            // User mappings
+            CreateMap<User, UserReadDto>().ReverseMap();
+            // Map create: copy Password -> PasswordHash (controller will hash before calling AddUserAsync)
+            CreateMap<UserCreateDto, User>()
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
+            // Map update: if Password provided map it; otherwise ignore (keep existing hash)
+            CreateMap<UserUpdateDto, User>()
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src =>
+                    string.IsNullOrEmpty(src.Password) ? null : src.Password));
         }
     }
     }

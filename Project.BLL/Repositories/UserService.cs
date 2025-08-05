@@ -30,6 +30,7 @@ namespace Project.BLL.Repositories
 
         public async Task AddUserAsync(UserCreateDto dto)
         {
+            // dto.Password here is expected to already be the hashed password (hashed in controller)
             var user = _mapper.Map<User>(dto);
             await _userRepo.AddAsync(user);
             await _userRepo.SaveAsync();
@@ -51,6 +52,18 @@ namespace Project.BLL.Repositories
                 _userRepo.Remove(user);
                 await _userRepo.SaveAsync();
             }
+        }
+
+        // new method to retrieve the actual User entity for login validation
+        public async Task<User?> GetUserByUsernameAsync(string username)
+        {
+            // Generic repo doesn't have a GetByUsername, so fetch all and find one (or add a repo method)
+            var users = await _userRepo.GetAllAsync();
+            foreach (var u in users)
+            {
+                if (u.Username == username) return u;
+            }
+            return null;
         }
     }
 }
