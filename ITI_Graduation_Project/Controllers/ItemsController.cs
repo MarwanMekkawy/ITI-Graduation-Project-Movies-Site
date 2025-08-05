@@ -50,17 +50,40 @@ namespace ITI_Graduation_Project.Controllers
             return Ok(results);
         }
 
+      
         [HttpGet("top/{count}")]
         public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetTopRated(int count)
         {
-            return Ok(await _service.GetTopRatedMoviesAsync(count));
+            return Ok(await _service.GetTopRatedItemsAsync(count));
         }
         [HttpGet("Latest/{count}")]
         public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetLatest(int count)
         {
-            return Ok(await _service.GetLatestMoviesAsync(count));
+            return Ok(await _service.GetLatestItemsAsync(count));
         }
 
         
+        [HttpGet("movies/top/{count}")]
+        public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetTopRatedMovies(int count)
+        {
+            return Ok(await _service.GetTopRatedMoviesAsync(count));
+        }
+        [HttpGet("movies/Latest/{count}")]
+        public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetLatestMovies(int count)
+        {
+            return Ok(await _service.GetLatestMoviesAsync(count));
+        }
+
+              
+        [HttpGet("series/top/{count}")]
+        public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetTopRatedSeries(int count)
+        {
+            return Ok(await _service.GetTopRatedSeriesAsync(count));
+        }
+        [HttpGet("series/Latest/{count}")]
+        public async Task<ActionResult<IEnumerable<MovieReadDto>>> GetLatestSeries(int count)
+        {
+            return Ok(await _service.GetLatestSeriesAsync(count));
+        }
     }
 }

@@ -14,5 +14,4 @@ namespace Project.DAL.Interfaces
         void Remove(T entity);
         Task SaveAsync(); 
     }
-
 }

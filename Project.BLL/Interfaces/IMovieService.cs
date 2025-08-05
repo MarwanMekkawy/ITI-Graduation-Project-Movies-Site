@@ -14,9 +14,13 @@ namespace Project.BLL.Interfaces
         Task<MovieReadDto?> GetMovieByIdAsync(int id);
         Task<IEnumerable<SeriesReadDto>> GetAllSeriesAsync();
         Task<IEnumerable<MovieReadDto>> GetAllMoviesAsync();
+        Task<IEnumerable<MovieReadDto>> SearchByTitleAsync(string title);
+        Task<IEnumerable<MovieReadDto>> GetTopRatedItemsAsync(int count);
+        Task<IEnumerable<MovieReadDto>> GetLatestItemsAsync(int count);
         Task<IEnumerable<MovieReadDto>> GetTopRatedMoviesAsync(int count);
         Task<IEnumerable<MovieReadDto>> GetLatestMoviesAsync(int count);
-        Task<IEnumerable<MovieReadDto>> SearchByTitleAsync(string title);
+        Task<IEnumerable<SeriesReadDto>> GetTopRatedSeriesAsync(int count);
+        Task<IEnumerable<SeriesReadDto>> GetLatestSeriesAsync(int count);
     }
 
 }

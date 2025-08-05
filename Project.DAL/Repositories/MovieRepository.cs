@@ -21,14 +21,6 @@ namespace Project.DAL.Repositories
                 .Take(count)
                 .ToListAsync();
         }
-        public async Task<IEnumerable<Movie>> GetAllWithGenresAsync()
-        {
-            return await _context.Movies
-                .Include(m => m.MovieGenres)
-                    .ThenInclude(mg => mg.Genre)
-                .ToListAsync();
-        }
-
         public async Task<Movie?> GetByIdWithGenresAsync(int id)
         {
             return await _context.Movies
@@ -37,7 +29,15 @@ namespace Project.DAL.Repositories
                 .FirstOrDefaultAsync(m => m.MovieId == id);
         }
 
-        public async Task<IEnumerable<Movie>> GetTopRatedWithGenresAsync(int count)
+        public async Task<IEnumerable<Movie>> GetAllWithGenresAsync()          
+        {
+            return await _context.Movies
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Movie>> GetTopRatedWithGenresAsync(int count) 
         {
             return await _context.Movies
                 .Include(m => m.MovieGenres)
@@ -46,6 +46,46 @@ namespace Project.DAL.Repositories
                 .Take(count)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Movie>> GetAllMoviesWithGenresAsync()           
+        {
+            return await _context.Movies
+                .Where(m=>m.IsMovie==true)
+                .Include(m => m.MovieGenres)
+                    .ThenInclude(mg => mg.Genre)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Movie>> GetTopRatedMoviesWithGenresAsync(int count) 
+        {
+            return await _context.Movies
+                .Where(m => m.IsMovie == true)
+                .Include(m => m.MovieGenres)
+                .ThenInclude(mg => mg.Genre)
+                .OrderByDescending(m => m.IMDbRating)
+                .Take(count)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Movie>> GetAllWithSeriesGenresAsync()          
+        {
+            return await _context.Movies
+                .Where(m => m.IsMovie == false)
+                .Include(m => m.MovieGenres)
+                .ThenInclude(mg => mg.Genre)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Movie>> GetTopRatedSeriesWithGenresAsync(int count) 
+        {
+            return await _context.Movies
+                .Where(m => m.IsMovie == false)
+                .Include(m => m.MovieGenres)
+                .ThenInclude(mg => mg.Genre)
+                .OrderByDescending(m => m.IMDbRating)
+                .Take(count)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Movie>> SearchByTitleAsync(string title)
         {
             return await _context.Movies

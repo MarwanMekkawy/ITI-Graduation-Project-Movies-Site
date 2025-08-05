@@ -49,21 +49,6 @@ namespace Project.BLL.Repositories
             return _mapper.Map<IEnumerable<MovieReadDto>>(movies);
         }
 
-        public async Task<IEnumerable<MovieReadDto>> GetTopRatedMoviesAsync(int count)
-        {
-            var top = await _movieRepo.GetTopRatedWithGenresAsync(count); 
-            return _mapper.Map<IEnumerable<MovieReadDto>>(top);
-        }
-
-        public async Task<IEnumerable<MovieReadDto>> GetLatestMoviesAsync(int count)
-        {
-            var latestMovies = await _movieRepo.GetAllWithGenresAsync(); 
-            var sorted = latestMovies
-                .OrderByDescending(m => m.ReleaseDate)
-                .Take(count);
-
-            return _mapper.Map<IEnumerable<MovieReadDto>>(sorted);
-        }
         public async Task<IEnumerable<MovieReadDto>> SearchByTitleAsync(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
@@ -71,6 +56,52 @@ namespace Project.BLL.Repositories
 
             var movies = await _movieRepo.SearchByTitleAsync(title);
             return _mapper.Map<IEnumerable<MovieReadDto>>(movies);
+        }
+
+        ////////////////////////////////////////////////////allitems
+        public async Task<IEnumerable<MovieReadDto>> GetTopRatedItemsAsync(int count)
+        {
+            var top = await _movieRepo.GetTopRatedWithGenresAsync(count);
+            return _mapper.Map<IEnumerable<MovieReadDto>>(top);
+        }
+
+        public async Task<IEnumerable<MovieReadDto>> GetLatestItemsAsync(int count)
+        {
+            var latestMovies = await _movieRepo.GetAllWithGenresAsync();
+            var sorted = latestMovies
+                .OrderByDescending(m => m.ReleaseDate)
+                .Take(count);
+            return _mapper.Map<IEnumerable<MovieReadDto>>(sorted);
+        }
+        /////////////////////////////////////////////////////movies
+        public async Task<IEnumerable<MovieReadDto>> GetTopRatedMoviesAsync(int count)
+        {
+            var top = await _movieRepo.GetTopRatedMoviesWithGenresAsync(count);
+            return _mapper.Map<IEnumerable<MovieReadDto>>(top);
+        }
+
+        public async Task<IEnumerable<MovieReadDto>> GetLatestMoviesAsync(int count)
+        {
+            var latestMovies = await _movieRepo.GetAllMoviesWithGenresAsync();
+            var sorted = latestMovies
+                .OrderByDescending(m => m.ReleaseDate)
+                .Take(count);
+            return _mapper.Map<IEnumerable<MovieReadDto>>(sorted);
+        }
+        ///////////////////////////////////////////////////// series
+        public async Task<IEnumerable<SeriesReadDto>> GetTopRatedSeriesAsync(int count)
+        {
+            var top = await _movieRepo.GetTopRatedSeriesWithGenresAsync(count);
+            return _mapper.Map<IEnumerable<SeriesReadDto>>(top);
+        }
+
+        public async Task<IEnumerable<SeriesReadDto>> GetLatestSeriesAsync(int count)
+        {
+            var latestMovies = await _movieRepo.GetAllWithSeriesGenresAsync();
+            var sorted = latestMovies
+                .OrderByDescending(m => m.ReleaseDate)
+                .Take(count);
+            return _mapper.Map<IEnumerable<SeriesReadDto>>(sorted);
         }
     }
 }
