@@ -43,6 +43,17 @@ namespace ITI_Graduation_Project.Controllers
         [HttpPost("signup")]
         public async Task<IActionResult> Create(UserCreateDto dto)
         {
+            //check for dublication
+            var errors = new List<string>();
+
+            if (await _service.UsernameExistsAsync(dto.Username))
+                errors.Add("Username already exists");
+
+            if (await _service.EmailExistsAsync(dto.Email))
+                errors.Add("Email already exists");
+
+            if (errors.Any()) return BadRequest(new { errors });
+
             // 1) Hash password here (SHA256 as your project used)
             dto.Password = HashPassword(dto.Password);
 

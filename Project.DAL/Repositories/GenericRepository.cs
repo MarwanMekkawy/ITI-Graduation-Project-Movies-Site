@@ -12,7 +12,7 @@ namespace Project.DAL.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly ProjectDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet; 
 
         public GenericRepository(ProjectDbContext context)
         {

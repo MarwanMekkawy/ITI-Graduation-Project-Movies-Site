@@ -65,6 +65,11 @@ namespace Project.BLL.Repositories
             }
             return null;
         }
+        public async Task<bool> EmailExistsAsync(string email) =>
+        await _userRepo.EmailExistsAsync(email);
+
+        public async Task<bool> UsernameExistsAsync(string username) =>
+            await _userRepo.UsernameExistsAsync(username);
     }
 }
 
