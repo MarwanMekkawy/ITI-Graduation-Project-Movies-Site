@@ -1,3 +1,4 @@
+import { Movie } from './../../core/models/movie.interface';
 // Angular core functionality: component setup, input binding, DOM access, event listening, lifecycle
 import {
   Component,
@@ -28,7 +29,7 @@ import { HoverPreview } from './../hover-preview/hover-preview';
   imports: []                    // The preview component is dynamically injected
 })
 export class MovieCard implements OnDestroy {
-  @Input() movie: any;                       // Movie object received from parent (Carousel)
+  @Input() movie!: Movie;                       // Movie object received from parent (Carousel)
 
   // CDK overlay reference (will hold the floating preview)
   private overlayRef: OverlayRef | null = null;

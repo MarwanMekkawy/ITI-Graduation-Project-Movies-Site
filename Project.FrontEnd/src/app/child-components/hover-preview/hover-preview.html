@@ -7,13 +7,13 @@
      
 
   <!-- Movie poster image -->
-  <img [src]="movie.image" class="hover-img" />
+  <img [src]="movie.movieImage" class="hover-img" />
 
   <!-- Title of the movie -->
   <h3 class="title">{{ movie.title }}</h3>
 
   <!-- Current episode or streaming status -->
-  <p class="episode">{{ movie.episodeInfo }}</p>
+  <p class="episode">{{ movie.title }}</p>
 
   <!-- Play button (label is static for now) -->
   <button class="play">Play S1 E1</button>
@@ -39,8 +39,8 @@
   <!-- Metadata row: Prime badge, release year, age rating -->
   <div class="hover-meta">
     <span class="prime">✔ Included with Prime</span>
-    <span class="tag">{{ movie.release }}</span>
-    <span class="tag">{{ movie.ageRating }}</span>
+    <span class="tag">{{ movie.releaseDate }}</span>
+    <span class="tag">{{ movie.imDbRating }}</span>
   </div>
 
   <!-- Movie description (clamped to 3 lines via CSS) -->

@@ -1,4 +1,6 @@
-import { Component, ViewChild, ElementRef ,Input } from '@angular/core';
+import { Movie } from './../../core/models/movie.interface';
+import { MoviesService } from './../../core/services/movies-service';
+import { Component, ViewChild, ElementRef ,Input, inject, OnInit, input } from '@angular/core';
 import { CommonModule } from '@angular/common';            // Required for *ngFor structural directive
 import { MovieCard } from '../movie-card/movie-card';      // The movie card component rendered inside the carousel
 
@@ -9,81 +11,15 @@ import { MovieCard } from '../movie-card/movie-card';      // The movie card com
   styleUrl: './carousel.css',                              // Stylesheet
   imports: [CommonModule, MovieCard]                       // Declares usage of ngFor and MovieCard
 })
-export class CarouselComponent {
+export class CarouselComponent  {
     @Input() title: string = '';  // Title passed from parent
-
+    @Input() movies!:Movie[];
+ 
   // Access the scrollable div using template reference
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
   // List of movie objects shown inside the carousel
-  movies = [
-    {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    },
-    {
-      title: 'My Fault: London',
-      release: '2024',
-      ageRating: '16+',
-      description: 'A teenager must navigate a dangerous web...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Now Streaming'
-    },
-    // Repeated test items for scrolling
-    {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-     {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-     {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-     {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-     {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-     {
-      title: 'Me Before You',
-      release: '2016',
-      ageRating: '13+',
-      description: 'A girl in a small town forms an unlikely bond...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'Available'
-    },
-    // Add more items as needed
-  ];
+  
 
   /**
    * Scrolls the carousel container left or right
