@@ -41,8 +41,16 @@
       <ul>
         @if(register.get(`password`)?.getError(`required`)){<li>password is required</li>}
         @else if(register.get(`password`)?.getError(`pattern`)){<li>[a-z & A-Z & 123] only allowed</li>}
-        @else if(register.get(`password`)?.getError(`minlength`)){<li>must be at least 8 characters</li>}
-        @else if(register.get(`password`)?.getError(`maxlength`)){<li>must not exceed 20 characters</li>}
+        @else if(register.get(`password`)?.getError(`minlength`)){<li>password must be at least 8 characters</li>}
+        @else if(register.get(`password`)?.getError(`maxlength`)){<li>password must not exceed 20 characters</li>}
+      </ul>
+    </div>
+    }
+
+    @if (error.length > 0) {
+    <div class="text-danger">
+      <ul class="mb-0">
+        @for (item of error; track $index) {<li class="fw-bold">{{ item }}</li>}
       </ul>
     </div>
     }

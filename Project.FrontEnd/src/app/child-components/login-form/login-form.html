@@ -12,7 +12,8 @@
       <label for="floatingPassword">Password</label>
     </div>
 
-    @if(login.get(`username`)?.errors && login.get(`username`)?.touched || login.get(`password`)?.errors && login.get(`password`)?.touched){
+    @if(login.get(`username`)?.errors && login.get(`username`)?.touched || login.get(`password`)?.errors &&
+    login.get(`password`)?.touched){
     <div class="text-danger">
       <ul>
         @if(login.get(`username`)?.getError(`required`)){<li>name cannot be empty</li>}
@@ -20,8 +21,14 @@
       </ul>
     </div>
     }
-    <button type="submit" class="btn login-button btn-primary mt-3 w-100">Login</button>
 
+    <div class="text-danger">
+      <ul class="mb-0">
+    @if (error) {<li class="fw-bold">{{ error }}</li>}
+      </ul>
+    </div>
+
+    <button type="submit" class="btn login-button btn-primary mt-3 w-100">Login</button>
     <p class="login-footer mt-3">
       Don't have an account? <a href="#">Sign up</a>
     </p>
