@@ -1,54 +1,75 @@
-import { Movie } from './../../core/models/movie.interface';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, OnInit } from '@angular/core';
+import { Movie } from '../../core/models/movie';
+import { WatchlistService } from '../../core/services/watchlist-service';
+import { WatchList } from '../../core/models/watch-list';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-hover-preview',         // The custom tag name used in parent components
-  standalone: true,                      // Allows this component to be used without NgModule
-  templateUrl: './hover-preview.html',   // HTML template
-  styleUrls: ['./hover-preview.css']     // Component-specific CSS
+  selector: 'app-hover-preview',
+  standalone: true,
+  templateUrl: './hover-preview.html',
+  styleUrls: ['./hover-preview.css'],
+  imports: [CommonModule]
 })
-export class HoverPreview {
-  /**
-   * Input: movie data passed from parent (e.g. title, image, etc.)
-   */
-  @Input() movie!: Movie;                       // Movie object received from parent (Carousel)
-
-  /**
-   * Output: emits when mouse enters the hover preview
-   * Used by MovieCard to keep overlay open
-   */
+export class HoverPreview implements OnInit {
+  @Input() movie!: Movie;
   @Output() mouseEntered = new EventEmitter<void>();
-
-  /**
-   * Output: emits when mouse leaves the hover preview
-   * Used by MovieCard to determine if it can safely close overlay
-   */
   @Output() mouseLeft = new EventEmitter<void>();
+  @Output() removed = new EventEmitter<number>();
 
-  /**
-   * Handler for the Add button (+)
-   * You can extend this to add the movie to a favorites list or watchlist
-   */
-  onAddClick(): void {
-    console.log('➕ Add clicked:', this.movie);
-    // TODO: Add to favorites/watchlist
+
+  private readonly watchlistService = inject(WatchlistService);
+  userId = 8; // Replace with actual auth user ID
+
+  isInWatchlist = false;
+
+  ngOnInit(): void {
+    // Check if the movie is already in the watchlist
+    this.watchlistService.getUserWatchlist(this.userId).subscribe({
+      next: (watchlist: WatchList[]) => {
+        this.isInWatchlist = watchlist.some(item => item.movieId === this.movie.movieId);
+      },
+      error: (err) => console.error('Failed to load watchlist for check:', err)
+    });
   }
 
-  /**
-   * Handler for the Watch button (TV icon)
-   * Extend this to open a video player or navigate to detail view
-   */
+  onAddClick(): void {
+    const entry: WatchList = {
+      userId: this.userId,
+      movieId: this.movie.movieId,
+      addedAt: new Date().toISOString()
+    };
+
+    this.watchlistService.addToWatchlist(entry).subscribe({
+      next: () => {
+        console.log(`➕ Added ${this.movie.title}`);
+        this.isInWatchlist = true;
+      },
+      error: (err) => console.error('Failed to add to watchlist:', err)
+    });
+  }
+
+ onRemoveClick(): void {
+  this.watchlistService.removeFromWatchlist(this.userId, this.movie.movieId).subscribe({
+    next: () => {
+      console.log(`🗑️ Removed ${this.movie.title}`);
+      this.isInWatchlist = false;
+      this.removed.emit(this.movie.movieId); // ✅ emit to parent
+    },
+    error: (err) => console.error('Failed to remove from watchlist:', err)
+  });
+}
+
+
   onWatchClick(): void {
     console.log('▶️ Watch clicked:', this.movie);
-    // TODO: Play the video or route to movie page
   }
 
-  /**
-   * Handler for the Block button (🚫)
-   * Extend this to filter or restrict access
-   */
   onBlockClick(): void {
-    console.log('🚫 Block clicked:', this.movie);
-    // TODO: Block content from being shown (parental control, etc.)
+  if (this.isInWatchlist) {
+    this.onRemoveClick();
+  } else {
+    console.log('🚫 Not in watchlist to remove:', this.movie);
   }
+}
 }

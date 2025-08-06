@@ -1,19 +1,22 @@
+import { MovieGenre } from './../../core/models/movie-genre';
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MoviesService } from './../../core/services/movies-service';
-import { Movie } from './../../core/models/movie.interface';
+import { GenreService } from './../../core/services/genre-service';
+import { Movie } from '../../core/models/movie';
 import { SlideShow } from "../../child-components/slide-show/slide-show";
 import { CarouselComponent } from "../../child-components/carousel/carousel";
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [SlideShow, CarouselComponent,CommonModule],
+  imports: [CommonModule, SlideShow, CarouselComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
 export class HomePage implements OnInit {
   private readonly moviesService = inject(MoviesService);
+  private readonly genreService = inject(GenreService);
 
   items!: Movie[];
   topRatedItems!: Movie[];
@@ -27,17 +30,8 @@ export class HomePage implements OnInit {
   topRatedSeries!: Movie[];
   LatestSeries!: Movie[];
 
-  genreMoviesMap: { [key: number]: Movie[] } = {};
-
-  genres = [
-    { id: 1, name: 'Action and adventure' },
-    { id: 2, name: 'Comedy' },
-    { id: 4, name: 'Drama' },
-    { id: 5, name: 'Fantasy' },
-    { id: 6, name: 'Horror' },
-    { id: 7, name: 'Kids' },
-    { id: 8, name: 'Romance' }
-  ];
+genres: MovieGenre[] = [];
+  genreItemsMap: { [genreId: number]: Movie[] } = {};
 
   ngOnInit(): void {
     // Core categories
@@ -56,10 +50,9 @@ export class HomePage implements OnInit {
       error: (err) => console.error('Failed to load latest items:', err)
     });
 
-    // Movies
     this.moviesService.getAllMovies().subscribe({
       next: (data) => this.movies = data,
-      error: (err) => console.error('Failed to load all movies:', err)
+      error: (err) => console.error('Failed to load movies:', err)
     });
 
     this.moviesService.getTopRatedMovies().subscribe({
@@ -72,10 +65,9 @@ export class HomePage implements OnInit {
       error: (err) => console.error('Failed to load latest movies:', err)
     });
 
-    // Series
     this.moviesService.getAllSeries().subscribe({
       next: (data) => this.series = data,
-      error: (err) => console.error('Failed to load all series:', err)
+      error: (err) => console.error('Failed to load series:', err)
     });
 
     this.moviesService.getTopRatedSeries().subscribe({
@@ -88,12 +80,18 @@ export class HomePage implements OnInit {
       error: (err) => console.error('Failed to load latest series:', err)
     });
 
-    // Genre-based sliders (excluding ID 3 = Documentary)
+    // Load genres and items per genre
+    this.genreService.getAllGenres().subscribe({
+  next: (allGenres) => {
+    this.genres = allGenres.filter(g => g.genreId !== 3);
     for (const genre of this.genres) {
-      this.moviesService.getItemsByGenreId(genre.id).subscribe({
-        next: (data) => this.genreMoviesMap[genre.id] = data,
-        error: (err) => console.error(`Failed to load genre ${genre.name}:`, err)
+      this.genreService.getItemsByGenreId(genre.genreId).subscribe({
+        next: (items) => this.genreItemsMap[genre.genreId] = items,
+        error: (err) => console.error(`Failed to load genre '${genre.name}':`, err)
       });
     }
+  },
+  error: (err) => console.error('Failed to load genres:', err)
+});
   }
 }

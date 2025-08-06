@@ -13,9 +13,10 @@
 }
 
 .genre-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0.5rem;
+ display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start; /* or center */
   padding: 1rem 0;
   overflow: auto;
 }

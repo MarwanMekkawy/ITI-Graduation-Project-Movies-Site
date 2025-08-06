@@ -1,5 +1,5 @@
-import { MovieGenre } from './../models/movie-genre.interface';
-import { Movie } from './../models/movie.interface';
+import { MovieGenre } from '../models/movie-genre';
+import { Movie } from '../models/movie';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
@@ -13,6 +13,9 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
+  getItemById(itemId:number): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiUrl}/Items/${itemId}`);
+  }
   // Get all items (movies + series)
   getAllItems(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items`);
@@ -29,13 +32,8 @@ export class MoviesService {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/Latest/30`);
   }
 
-  // Get all items (movies/series) by genre ID
-  getItemsByGenreId(genreId: number): Observable<Movie[]> {
-    return this.http.get<MovieGenre>(`${this.apiUrl}/Genres/${genreId}`).pipe(
-      map((genre) => genre.movies ?? []) // safely extract movies or return empty array
-    );
-  }
 
+ 
   // Get all movies only
   getAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/movies`);

@@ -16,6 +16,15 @@ namespace ITI_Graduation_Project
 
             // Add services to the container.
             builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
 
             //DI services extention method call
             builder.Services.AddApplicationServices(builder.Configuration);
@@ -51,6 +60,7 @@ namespace ITI_Graduation_Project
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
 
