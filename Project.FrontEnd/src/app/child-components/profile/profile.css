@@ -71,3 +71,9 @@ input.form-control:focus {
     opacity: 1;
   }
 }
+
+.confirm-warning {
+  color: #ffcf33; /* subtle yellow warning */
+  font-weight: 600;
+  text-align: center;
+}

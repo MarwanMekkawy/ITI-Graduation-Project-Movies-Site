@@ -15,7 +15,7 @@ export class Profile {
   profileImage = 'https://via.placeholder.com/150'; // Replace with actual default image URL
   username = 'JohnDoe';
   email = 'john@example.com';
-  password = 'mySecurePassword123';
+  password = '**************';
   createdAt = '2023-01-01';
 
   editMode = false;
@@ -25,8 +25,12 @@ export class Profile {
   confirmPassword = '';
   passwordMatch = true;
 
+  // CHANGED: new state to show inline delete-confirmation
+  deleteConfirmMode = false;
+
   triggerFileInput() {
-    this.fileInput.nativeElement.click();
+    // CHANGED: safer optional chaining to avoid runtime error if ViewChild not ready
+    this.fileInput?.nativeElement?.click();
   }
 
   onFileSelected(event: Event) {
@@ -41,6 +45,9 @@ export class Profile {
   }
 
   toggleEdit() {
+    // CHANGED: entering edit mode should cancel any delete prompt
+    this.deleteConfirmMode = false;
+
     this.editMode = !this.editMode;
     if (this.editMode) {
       this.newUsername = this.username;
@@ -69,5 +76,26 @@ export class Profile {
 
   checkPasswords() {
     this.passwordMatch = this.newPassword === this.confirmPassword;
+  }
+
+  // CHANGED: triggered when user clicks the Delete Account button
+  promptDelete() {
+    this.deleteConfirmMode = true;
+  }
+
+  // CHANGED: cancel the in-place delete prompt
+  cancelPromptDelete() {
+    this.deleteConfirmMode = false;
+  }
+
+  // CHANGED: final delete action (hook this to your backend)
+  confirmDelete() {
+    // TODO: replace with actual delete API call
+    console.log('User confirmed deletion — call backend API and then logout/redirect.');
+
+    // After deletion (or simulated):
+    this.deleteConfirmMode = false;
+    // Optionally redirect or clear user state:
+    // this.router.navigate(['/welcome']);
   }
 }

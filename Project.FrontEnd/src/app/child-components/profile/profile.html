@@ -1,5 +1,6 @@
+<!-- CHANGED: add (submit) preventDefault to avoid accidental form submit -->
 <div class="blury-grey profile-card p-5" style="max-width: 960px;">
-  <form action="">
+  <form (submit)="$event.preventDefault()">
     <div class="row">
       <!-- Profile Picture -->
       <div class="col-md-4 d-flex align-items-center justify-content-center">
@@ -15,13 +16,15 @@
         <div class="form-group mb-3">
           <label>Username</label>
           <div *ngIf="!editMode">{{ username }}</div>
-          <input *ngIf="editMode" [(ngModel)]="newUsername" class="form-control" />
+          <!-- CHANGED: added name attribute required for ngModel inside a form -->
+          <input *ngIf="editMode" name="newUsername" [(ngModel)]="newUsername" class="form-control" />
         </div>
 
         <div class="form-group mb-3">
           <label>Email</label>
           <div *ngIf="!editMode">{{ email }}</div>
-          <input *ngIf="editMode" [(ngModel)]="newEmail" class="form-control" />
+          <!-- CHANGED: added name attribute -->
+          <input *ngIf="editMode" name="newEmail" [(ngModel)]="newEmail" class="form-control" />
         </div>
 
         <div class="form-group mb-3">
@@ -29,9 +32,10 @@
           <div *ngIf="!editMode">{{ password }}</div>
 
           <div *ngIf="editMode">
-            <input type="password" [(ngModel)]="newPassword" class="form-control mb-2" (input)="checkPasswords()"
+            <!-- CHANGED: name attributes added -->
+            <input type="password" name="newPassword" [(ngModel)]="newPassword" class="form-control mb-2" (input)="checkPasswords()"
               placeholder="New Password" />
-            <input type="password" [(ngModel)]="confirmPassword" class="form-control" (input)="checkPasswords()"
+            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" (input)="checkPasswords()"
               placeholder="Confirm Password" />
             <small *ngIf="newPassword && confirmPassword"
               [ngClass]="{ 'text-danger': !passwordMatch, 'text-success': passwordMatch }">
@@ -47,10 +51,35 @@
 
         <!-- Action Buttons -->
         <div class="d-flex flex-column align-items-center mt-4">
-          <button class="btn btn-primary w-100 mb-2" *ngIf="!editMode" (click)="toggleEdit()">Change Info</button>
+
+          <!-- CHANGED: This block now handles three states
+               1) Not editing & not prompting delete  -> show Change Info + Delete
+               2) Not editing & prompting delete      -> show Confirm + Cancel (in-place)
+               3) editMode                             -> show Save + Cancel (editing controls)
+          -->
+          <ng-container *ngIf="!editMode">
+            <ng-container *ngIf="!deleteConfirmMode; else deleteConfirmBlock">
+              <!-- CHANGED: added type="button" to prevent form submit -->
+              <button type="button" class="btn btn-primary w-100 mb-2" (click)="toggleEdit()">Change Info</button>
+
+              <!-- CHANGED: Delete button appears exactly when Change Info appears -->
+              <button type="button" class="btn btn-danger w-100" (click)="promptDelete()">Delete Account</button>
+            </ng-container>
+
+            <!-- CHANGED: in-place confirm + cancel replacing Change Info + Delete -->
+            <ng-template #deleteConfirmBlock>
+              <div class="w-100">
+                <div class="mb-2 text-center confirm-warning">Are you sure you want to delete your account?</div>
+                <button type="button" class="btn btn-danger w-100 mb-2" (click)="confirmDelete()">Confirm Delete</button>
+                <button type="button" class="btn btn-secondary w-100" (click)="cancelPromptDelete()">Cancel</button>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <!-- Edit mode buttons (unchanged logic but add type="button") -->
           <div *ngIf="editMode" class="w-100">
-            <button class="btn btn-success w-100 mb-2" (click)="saveChanges()">Save Changes</button>
-            <button class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
+            <button type="button" class="btn btn-success w-100 mb-2" (click)="saveChanges()">Save Changes</button>
+            <button type="button" class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
           </div>
         </div>
       </div>
