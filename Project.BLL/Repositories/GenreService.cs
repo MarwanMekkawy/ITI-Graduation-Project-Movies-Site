@@ -64,6 +64,56 @@ namespace Project.BLL.Repositories
 
             return dto;
         }
+
+        public async Task<GenreReadDto?> GetMoviesByGenreAsync(int id)
+        {
+            var genre = await _genreRepo.GetByIdAsync(id);
+            if (genre == null) return null;
+
+            var movieGenres = await _movieGenreRepo.GetAllAsync();
+            var movies = await _movieRepo.GetAllAsync();
+
+            // get movie IDs for this genre
+            var movieIds = movieGenres
+                .Where(mg => mg.GenreId == id)
+                .Select(mg => mg.MovieId)
+                .ToList();
+
+            // filter to only items marked as movies
+            var relatedMovies = movies
+                .Where(m => movieIds.Contains(m.MovieId) && m.IsMovie == true)
+                .ToList();
+
+            var dto = _mapper.Map<GenreReadDto>(genre);
+            dto.movies = _mapper.Map<List<MovieReadDto>>(relatedMovies);
+
+            return dto;
+        }
+
+        public async Task<GenreReadDto?> GetSeriesByGenreAsync(int id)
+        {
+            var genre = await _genreRepo.GetByIdAsync(id);
+            if (genre == null) return null;
+
+            var movieGenres = await _movieGenreRepo.GetAllAsync();
+            var movies = await _movieRepo.GetAllAsync();
+
+            // get movie IDs for this genre
+            var movieIds = movieGenres
+                .Where(mg => mg.GenreId == id)
+                .Select(mg => mg.MovieId)
+                .ToList();
+
+            // filter to only items that are series (IsMovie == false)
+            var relatedSeries = movies
+                .Where(m => movieIds.Contains(m.MovieId) && m.IsMovie == false)
+                .ToList();
+
+            var dto = _mapper.Map<GenreReadDto>(genre);
+            dto.movies = _mapper.Map<List<MovieReadDto>>(relatedSeries);
+
+            return dto;
+        }
     }
 
 }

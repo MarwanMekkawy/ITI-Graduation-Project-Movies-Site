@@ -12,6 +12,8 @@ namespace Project.BLL.Interfaces
     {
         Task<IEnumerable<GenreReadDto>> GetAllAsync();
         Task<GenreReadDto?> GetByIdAsync(int id);
+        Task<GenreReadDto?> GetMoviesByGenreAsync(int id);
+        Task<GenreReadDto?> GetSeriesByGenreAsync(int id);
     }
 
 }
