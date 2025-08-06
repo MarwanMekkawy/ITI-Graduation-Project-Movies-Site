@@ -25,7 +25,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfilePage, title: 'Profile' },
     { path: 'search', component: SearchPage, title: 'Search' },
     { path: 'genres', component: AllgenresPage, title: 'Genres' },
-     { path: 'genres/:id', component: GenrePage ,title: 'Genres'},                                ///////////////////
+    { path: 'genres/:id', component: GenrePage },                                                           ///////////////////
     { path: 'movies', component: MoviesPage, title: 'Movies' },
     { path: 'series', component: SeriesPage, title: 'Series' },
     { path: 'moviesplayer', component: MoviesplayerPage, title: 'MoviesPlayer' },

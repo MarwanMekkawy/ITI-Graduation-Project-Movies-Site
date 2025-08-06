@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class Profile {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  profileImage = 'https://via.placeholder.com/150'; // Replace with actual default image URL
+  profileImage = '/ProfilePlaceholder.jpg'; 
   username = 'JohnDoe';
   email = 'john@example.com';
   password = '**************';
