@@ -1,11 +1,11 @@
 .genre-wrapper {
-  height: 100vh;
+   height: 100vh;
   padding: 1rem 2rem;
   background-color: var(--background-color);
 }
 
 .genre-title {
-  padding-top: 50px;
+   padding-top: 50px;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -13,7 +13,7 @@
 }
 
 .genre-grid {
- display: flex;
+display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: flex-start; /* or center */

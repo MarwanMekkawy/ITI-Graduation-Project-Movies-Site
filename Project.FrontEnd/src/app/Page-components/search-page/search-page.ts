@@ -1,117 +1,32 @@
-import { Component } from '@angular/core';
-import { MovieCard } from "../../child-components/movie-card/movie-card";
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MovieCard } from '../../child-components/movie-card/movie-card';
 import { CommonModule } from '@angular/common';
+import { SearchService } from '../../core/services/search-service';
+import { Movie } from '../../core/models/movie';
 
 @Component({
   selector: 'app-search-page',
-  imports: [MovieCard,CommonModule],
+  standalone: true,
+  imports: [MovieCard, CommonModule],
   templateUrl: './search-page.html',
   styleUrl: './search-page.css'
 })
 export class SearchPage {
-movies = [
-    {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    },
-     {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    },
-     {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    }, {
-      title: 'Countdown',
-      release: '2025',
-      ageRating: '16+',
-      description: 'Season 1 • A broad-daylight murder...',
-      image: 'https://i.ibb.co/C5kJZrYQ/Countdown.jpg',
-      episodeInfo: 'New episode Wednesday'
-    },
-    
-    
-  ];
+  private readonly route = inject(ActivatedRoute);
+  private readonly searchService = inject(SearchService);
+
+  movies: Movie[] = [];
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const query = params['q'];
+      if (query && query.length > 0) {
+        this.searchService.searchMovies(query).subscribe({
+          next: (res) => this.movies = res,
+          error: (err) => console.error('Search fetch failed:', err)
+        });
+      }
+    });
+  }
 }
