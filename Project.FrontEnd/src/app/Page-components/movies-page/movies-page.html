@@ -1,11 +1,17 @@
-<div class="movies-page-container">
-    <app-carousel title="Trending Movies"></app-carousel>
-    <app-carousel title="Top Rated Movies"></app-carousel>
-    <app-carousel title="Upcoming Movies"></app-carousel>
-    <app-carousel title="Popular Movies"></app-carousel>
-    <app-carousel title="Action Movies"></app-carousel>
-    <app-carousel title="Comedy Movies"></app-carousel>
-    <app-carousel title="Drama Movies"></app-carousel>
-    <app-carousel title="Horror Movies"></app-carousel>
-    <app-carousel title="Romantic Movies"></app-carousel>
+<div class="home-container">
+  <!-- General Carousels -->
+  
+  <app-carousel title="Recommended Movies" [movies]="movies"></app-carousel>
+  <app-carousel title="Top Rated Movies" [movies]="topRatedMovies"></app-carousel>
+  <app-carousel title="Latest Movies" [movies]="LatestMovies"></app-carousel>
+
+
+  <!-- Dynamic Genre Carousels -->
+  <ng-container *ngFor="let genre of genres">
+    <app-carousel
+      *ngIf="genreMoviesMap[genre.genreId]?.length"
+      [title]="genre.name"
+      [movies]="genreMoviesMap[genre.genreId]">
+    </app-carousel>
+  </ng-container>
 </div>

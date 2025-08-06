@@ -1,4 +1,4 @@
-import { Movie } from './../../core/models/movie.interface';
+import { Movie } from '../../core/models/movie';
 import { MoviesService } from './../../core/services/movies-service';
 import { Component, ViewChild, ElementRef ,Input, inject, OnInit, input } from '@angular/core';
 import { CommonModule } from '@angular/common';            // Required for *ngFor structural directive
