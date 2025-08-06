@@ -1,36 +1,51 @@
 <div class="register-card blury-grey animate-fade-in">
   <h2 class="text-center mb-4">Create Account</h2>
 
-  <form>
+  <form [formGroup]="register" (ngSubmit)="registerTheForm()">
     <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingName"
-        placeholder=""
-      />
+      <input formControlName="username" type="text" class="form-control" id="floatingName" placeholder="" />
       <label for="floatingName">Full Name</label>
     </div>
 
+    @if(register.get(`username`)?.errors && register.get(`username`)?.touched){
+    <div class="text-danger">
+      <ul>
+        @if(register.get(`username`)?.getError(`required`)){<li>name is required</li>}
+        @else if(register.get(`username`)?.getError(`minlength`)){<li>name min length 4 characters</li>}
+        @else if(register.get(`username`)?.getError(`maxlength`)){<li>name max length 20 characters</li>}
+      </ul>
+    </div>
+    }
+
     <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="floatingEmail"
-        placeholder=""
-      />
+      <input formControlName="email" type="email" class="form-control" id="floatingEmail" placeholder="" />
       <label for="floatingEmail">Email address</label>
     </div>
 
+    @if(register.get(`email`)?.errors && register.get(`email`)?.touched){
+    <div class="text-danger">
+      <ul>
+        @if(register.get(`email`)?.getError(`required`)){<li>email is required</li>}
+        @else if(register.get(`email`)?.getError(`email`)){<li>only valid E-mail format</li>}
+      </ul>
+    </div>
+    }
+
     <div class="form-floating mb-3">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder=""
-      />
+      <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="" />
       <label for="floatingPassword">Password</label>
     </div>
+
+    @if(register.get(`password`)?.errors && register.get(`password`)?.touched){
+    <div class="text-danger">
+      <ul>
+        @if(register.get(`password`)?.getError(`required`)){<li>password is required</li>}
+        @else if(register.get(`password`)?.getError(`pattern`)){<li>[a-z & A-Z & 123] only allowed</li>}
+        @else if(register.get(`password`)?.getError(`minlength`)){<li>must be at least 8 characters</li>}
+        @else if(register.get(`password`)?.getError(`maxlength`)){<li>must not exceed 20 characters</li>}
+      </ul>
+    </div>
+    }
 
     <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
   </form>
