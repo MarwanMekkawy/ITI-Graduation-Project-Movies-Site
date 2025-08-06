@@ -14,6 +14,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrls: ['./navbar.css'],
 })
 export class Navbar {
+   profileImage = '/ProfilePlaceholder.jpg';
   //scroll func./////////////////////////////////////////////////////////////////////////////
   isScrolled = false;
   @HostListener('window:scroll')
