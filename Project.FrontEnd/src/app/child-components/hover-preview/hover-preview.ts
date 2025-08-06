@@ -1,3 +1,4 @@
+import { Movie } from './../../core/models/movie.interface';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class HoverPreview {
   /**
    * Input: movie data passed from parent (e.g. title, image, etc.)
    */
-  @Input() movie: any;
+  @Input() movie!: Movie;                       // Movie object received from parent (Carousel)
 
   /**
    * Output: emits when mouse enters the hover preview
