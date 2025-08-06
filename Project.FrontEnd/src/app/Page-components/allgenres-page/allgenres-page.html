@@ -9,8 +9,9 @@
 
   <!-- Responsive Genre Grid -->
   <div class="row g-3 justify-content-start">
-    <ng-container *ngFor="let genre of genres"> 
-        <app-genre-badge class="genre-box" [genre]="genre"></app-genre-badge>
-    </ng-container>
+      <ng-container *ngFor="let g of genres">
+        <app-genre-badge class="genre-box" [genre]="g.name" [id]="g.id" (selectGenre)="goToGenre($event)">
+        </app-genre-badge>
+      </ng-container>
+    </div>
   </div>
-</div>

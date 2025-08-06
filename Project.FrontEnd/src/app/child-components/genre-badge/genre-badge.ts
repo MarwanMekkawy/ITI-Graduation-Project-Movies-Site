@@ -1,11 +1,16 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-genre-badge',
-  imports: [],
   templateUrl: './genre-badge.html',
-  styleUrl: './genre-badge.css'
+  styleUrls: ['./genre-badge.css']
 })
 export class GenreBadge {
-@Input() genre: string = '';
+  @Input() genre = '';
+  @Input() id?: number;
+  @Output() selectGenre = new EventEmitter<number>();
+
+  onClick() {
+    if (this.id != null) this.selectGenre.emit(this.id);
+  }
 }

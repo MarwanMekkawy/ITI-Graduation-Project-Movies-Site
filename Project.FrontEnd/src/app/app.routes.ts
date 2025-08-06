@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
 import { HomePage } from './Page-components/home-page/home-page';
 import { AllgenresPage } from './Page-components/allgenres-page/allgenres-page';
 import { WelcomePage } from './Page-components/welcome-page/welcome-page';
+import { GenrePage } from './Page-components/genre-page/genre-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Home' },                              //welcome-each genre still to impelement
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfilePage, title: 'Profile' },
     { path: 'search', component: SearchPage, title: 'Search' },
     { path: 'genres', component: AllgenresPage, title: 'Genres' },
+     { path: 'genres/:id', component: GenrePage },                                ///////////////////
     { path: 'movies', component: MoviesPage, title: 'Movies' },
     { path: 'series', component: SeriesPage, title: 'Series' },
     { path: 'moviesplayer', component: MoviesplayerPage, title: 'MoviesPlayer' },
