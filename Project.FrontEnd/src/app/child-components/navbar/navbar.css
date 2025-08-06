@@ -24,7 +24,7 @@
 .main-container {
   background: transparent;
   width: 100%;
-  z-index: 950;
+  z-index: 95000;
 }
 
 .nav-container {
@@ -133,14 +133,14 @@ cursor: pointer;
   position: absolute;
   width: 100vw;
   text-align: center;
-  z-index: 1000;
+  z-index: 100000;
 }
 
 .dropdown-container {
   position: absolute;
   width: 100%;
   display: flex;
-  z-index: 1001;
+  z-index: 100100;
 }
 
 .move-to-right-container {
@@ -151,6 +151,6 @@ cursor: pointer;
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 900;
+  z-index: 90000;
   background-color: rgba(var(--black-color-2), 0.6);
 }

@@ -1,4 +1,5 @@
 <div class="blury-grey profile-card p-5" style="max-width: 960px;">
+  <form action="">
     <div class="row">
       <!-- Profile Picture -->
       <div class="col-md-4 d-flex align-items-center justify-content-center">
@@ -25,7 +26,7 @@
 
         <div class="form-group mb-3">
           <label>Password</label>
-          <div *ngIf="!editMode">{{ password }}</div> 
+          <div *ngIf="!editMode">{{ password }}</div>
 
           <div *ngIf="editMode">
             <input type="password" [(ngModel)]="newPassword" class="form-control mb-2" (input)="checkPasswords()"
@@ -54,4 +55,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
+</div>
