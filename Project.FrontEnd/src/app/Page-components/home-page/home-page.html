@@ -1,13 +1,25 @@
 <div class="home-container">
-  <app-slide-show></app-slide-show> 
+  <app-slide-show></app-slide-show>
+
+  <!-- Static Sections -->
   <app-carousel title="All items" [movies]="items"></app-carousel>
-  <app-carousel title="All movies" [movies]="movies"></app-carousel>
-  <app-carousel title="All series" [movies]="series"></app-carousel>
   <app-carousel title="Top Rated Items" [movies]="topRatedItems"></app-carousel>
   <app-carousel title="Latest Items" [movies]="LatestItems"></app-carousel>
-  <app-carousel title="Action Movies" [movies]="actionMovies"></app-carousel>
-  <app-carousel title="Comedy Movies" [movies]="comedyMovies"></app-carousel>
-  <app-carousel title="Drama Movies" [movies]="dramaMovies"></app-carousel>
-  <app-carousel title="Kids Movies" [movies]="kidsMovies"></app-carousel>
-</div>
 
+  <app-carousel title="All Movies" [movies]="movies"></app-carousel>
+  <app-carousel title="Top Rated Movies" [movies]="topRatedMovies"></app-carousel>
+  <app-carousel title="Latest Movies" [movies]="LatestMovies"></app-carousel>
+
+  <app-carousel title="All Series" [movies]="series"></app-carousel>
+  <app-carousel title="Top Rated Series" [movies]="topRatedSeries"></app-carousel>
+  <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
+
+  <!-- Dynamic Genre Carousels -->
+  <ng-container *ngFor="let genre of genres">
+    <app-carousel
+      *ngIf="genreMoviesMap[genre.id]?.length"
+      [title]="genre.name + ' Movies'"
+      [movies]="genreMoviesMap[genre.id]">
+    </app-carousel>
+  </ng-container>
+</div>

@@ -23,6 +23,7 @@ export class MoviesService {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/top/30`);
   }
 
+
   // Get latest 30 added items
   getLatestItems(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/Latest/30`);
@@ -39,25 +40,24 @@ export class MoviesService {
   getAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/movies`);
   }
+  getTopRatedMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/Items/movies/top/30`);
+  }
+   getLatestMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/Items/movies/Latest/30`);
+  }
 
   // Get all series only
   getAllSeries(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/Items/series`);
   }
 
-  //  getTopRatedMovies(): Observable<Movie[]> {
-  //   return this.http.get<Movie[]>(this.apiItemsUrl);
-  // }
+  getTopRatedSeries(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/Items/series/top/30`);
+  }
+   getLatestSeries(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/Items/series/Latest/30`);
+  }
 
-  // getLatestMovies(): Observable<Movie[]> {
-  //   return this.http.get<Movie[]>(this.apiItemsUrl);
-  // }
-
-  //  getTopRatedSeries(): Observable<Movie[]> {
-  //   return this.http.get<Movie[]>(this.apiItemsUrl);
-  // }
-
-  // getLatestSeries(): Observable<Movie[]> {
-  //   return this.http.get<Movie[]>(this.apiItemsUrl);
-  // }
+  
 }
