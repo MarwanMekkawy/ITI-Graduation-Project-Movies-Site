@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { register } from 'node:module';
 import { RegisterForm } from '../../child-components/register-form/register-form';
 
 @Component({
