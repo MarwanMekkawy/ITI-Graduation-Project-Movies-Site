@@ -30,7 +30,8 @@ namespace Project.DAL.Data.Configration
                    .HasDefaultValueSql("GETDATE()");
 
             builder.Property(u => u.UserImage)
-                   .HasMaxLength(300).IsRequired(false); 
+                   .HasColumnType("VARBINARY(MAX)") 
+                   .IsRequired(false);
         }
 
     }

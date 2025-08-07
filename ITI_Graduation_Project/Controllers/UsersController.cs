@@ -78,7 +78,7 @@ namespace ITI_Graduation_Project.Controllers
             );
 
             var token = new JwtSecurityTokenHandler().WriteToken(tokenobj);
-            return Ok(token);
+            return Ok(new { token });
         }
 
         [HttpPost("login")]
@@ -98,7 +98,8 @@ namespace ITI_Graduation_Project.Controllers
             var userdata = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Email, user.Email)
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim("creationDate", user.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss"))
         };
 
             var key = Encoding.ASCII.GetBytes("jhnaksdhndjbajhasdjhaskhdasjdhasjdhkasjdhjkhasdjh");
@@ -112,7 +113,7 @@ namespace ITI_Graduation_Project.Controllers
             );
 
             var token = new JwtSecurityTokenHandler().WriteToken(tokenobj);
-            return Ok(token);
+            return Ok(new { token });
         }
 
         // helper: SHA256 hashing (same as your previous code)

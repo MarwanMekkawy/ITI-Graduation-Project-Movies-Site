@@ -71,8 +71,7 @@ namespace ITI_Graduation_Project
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseCors("AllowAll");
-
+            //cors
             app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
