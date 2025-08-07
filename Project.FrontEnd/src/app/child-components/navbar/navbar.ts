@@ -1,10 +1,11 @@
 import { UserService } from './../../core/services/user-service';
-import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from "./navbar-search-bar/search-bar";
 import { NavbarProfileDropdown } from "./navbar-profile-dropdown/navbar-profile-dropdown";
 import { NavbarGenreDropdown } from "./navbar-genre-dropdown/navbar-genre-dropdown";
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { User } from '../../core/models/user';
 
 
@@ -12,35 +13,46 @@ import { User } from '../../core/models/user';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, SearchBarComponent, NavbarProfileDropdown, NavbarGenreDropdown,RouterLink,RouterLinkActive],
+  imports: [CommonModule, SearchBarComponent, NavbarProfileDropdown, NavbarGenreDropdown, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
 })
 export class Navbar implements OnInit {
- ngOnInit(): void {
-  this.userService.user$.subscribe(user => {
-    if (user) {
-      this.user = user;
+  constructor(private userService: UserService, private router: Router) { }
 
-      // Ensure base64 prefix
-      if (user.userImage && !user.userImage.startsWith('data:image')) {
-        this.profileImage = `data:image/jpeg;base64,${user.userImage}`;
-      } else {
-        this.profileImage = user.userImage || '/ProfilePlaceholder.jpg';
+  ngOnInit(): void {
+    this.userService.user$.subscribe(user => {
+      if (user) {
+        this.user = user;
+
+        // Ensure base64 prefix
+        if (user.userImage && !user.userImage.startsWith('data:image')) {
+          this.profileImage = `data:image/jpeg;base64,${user.userImage}`;
+        } else {
+          this.profileImage = user.userImage || '/ProfilePlaceholder.jpg';
+        }
+      }
+    });
+
+    // Load once (e.g., for first load or page refresh)
+    this.userService.getUser(this.userId).subscribe(user => {
+      this.userService.setUser(user); // trigger initial state
+    });
+
+    // Detect route change and hide search bar if navigating to /search
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      if (event.url.includes('/search')) {
+        this.searchVisible = false;
       }
     }
   });
-
-  // Load once (e.g., for first load or page refresh)
-  this.userService.getUser(this.userId).subscribe(user => {
-    this.userService.setUser(user); // trigger initial state
-  });
-}
-  constructor(private userService: UserService) {}
+  }
 
   user: User | null = null;
-private userId = 14; // or fetch from auth/session
-   profileImage = '/ProfilePlaceholder.jpg';
+  private userId = 14; // or fetch from auth/session
+  profileImage = '/ProfilePlaceholder.jpg';
+
   //scroll func./////////////////////////////////////////////////////////////////////////////
   isScrolled = false;
   @HostListener('window:scroll')
