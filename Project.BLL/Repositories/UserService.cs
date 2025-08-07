@@ -40,9 +40,23 @@ namespace Project.BLL.Repositories
         {
             var user = await _userRepo.GetByIdAsync(id);
             if (user == null) return;
-            _mapper.Map(dto, user);
+
+            user.Username = dto.Username;
+            user.Email = dto.Email;
+
+            if (!string.IsNullOrWhiteSpace(dto.Password))
+            {
+                user.PasswordHash = dto.Password; // Already hashed in the controller
+            }
+
+            if (!string.IsNullOrEmpty(dto.UserImage))
+            {
+                user.UserImage = dto.UserImage;
+            }
+
             await _userRepo.SaveAsync();
         }
+
 
         public async Task DeleteUserAsync(int id)
         {

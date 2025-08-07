@@ -1,7 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
- 
+import { User } from './../../core/models/user';
+import { UserService } from './../../core/services/user-service';
+import { NgxImageCompressService } from 'ngx-image-compress';
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -9,14 +12,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.html',
   styleUrls: ['./profile.css']
 })
-export class Profile {
+export class Profile implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  profileImage = '/ProfilePlaceholder.jpg'; 
-  username = 'JohnDoe';
-  email = 'john@example.com';
-  password = '**************';
-  createdAt = '2023-01-01';
+  user: User | null = null;
+  profileImage: string = '/ProfilePlaceholder.jpg';
 
   editMode = false;
   newUsername = '';
@@ -24,49 +24,84 @@ export class Profile {
   newPassword = '';
   confirmPassword = '';
   passwordMatch = true;
-
-  // CHANGED: new state to show inline delete-confirmation
   deleteConfirmMode = false;
 
+  private userId = 14;
+
+  constructor(
+    private userService: UserService,
+    private imageCompress: NgxImageCompressService
+  ) {}
+
+  ngOnInit(): void {
+    this.userService.getUser(this.userId).subscribe(user => {
+      this.user = user;
+
+      // Ensure the image includes proper prefix
+      if (user.userImage && !user.userImage.startsWith('data:image')) {
+        this.profileImage = `data:image/jpeg;base64,${user.userImage}`;
+      } else {
+        this.profileImage = user.userImage || '/ProfilePlaceholder.jpg';
+      }
+    });
+  }
+
   triggerFileInput() {
-    // CHANGED: safer optional chaining to avoid runtime error if ViewChild not ready
     this.fileInput?.nativeElement?.click();
   }
 
   onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profileImage = e.target.result;
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
+  const input = event.target as HTMLInputElement;
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const originalBase64 = e.target.result;
+
+      // Compress image to reduce base64 size (prevents 431 errors)
+      this.imageCompress.compressFile(originalBase64, -1, 30, 30).then(compressed => {
+        this.profileImage = compressed; // show preview
+        if (this.user) this.user.userImage = compressed; // send to backend
+      });
+    };
+
+    reader.readAsDataURL(file);
   }
+}
 
   toggleEdit() {
-    // CHANGED: entering edit mode should cancel any delete prompt
     this.deleteConfirmMode = false;
-
     this.editMode = !this.editMode;
-    if (this.editMode) {
-      this.newUsername = this.username;
-      this.newEmail = this.email;
+    if (this.editMode && this.user) {
+      this.newUsername = this.user.username;
+      this.newEmail = this.user.email;
       this.newPassword = '';
       this.confirmPassword = '';
     }
   }
 
   saveChanges() {
+    if (!this.user) return;
+
     if (this.newPassword !== this.confirmPassword) {
       this.passwordMatch = false;
       return;
     }
+
     this.passwordMatch = true;
-    this.username = this.newUsername;
-    this.email = this.newEmail;
-    if (this.newPassword) this.password = '********';
-    this.editMode = false;
+
+    this.user.username = this.newUsername;
+    this.user.email = this.newEmail;
+    this.user.password = this.newPassword || 'defaultPassword123';
+
+   this.userService.updateUser(this.userId, this.user).subscribe(() => {
+  this.editMode = false;
+  
+  // 🔥 Notify other components (like navbar)
+  this.userService.setUser(this.user!);
+});
   }
 
   cancelChanges() {
@@ -78,24 +113,24 @@ export class Profile {
     this.passwordMatch = this.newPassword === this.confirmPassword;
   }
 
-  // CHANGED: triggered when user clicks the Delete Account button
   promptDelete() {
     this.deleteConfirmMode = true;
   }
 
-  // CHANGED: cancel the in-place delete prompt
   cancelPromptDelete() {
     this.deleteConfirmMode = false;
   }
 
-  // CHANGED: final delete action (hook this to your backend)
   confirmDelete() {
-    // TODO: replace with actual delete API call
     console.log('User confirmed deletion — call backend API and then logout/redirect.');
-
-    // After deletion (or simulated):
     this.deleteConfirmMode = false;
-    // Optionally redirect or clear user state:
-    // this.router.navigate(['/welcome']);
+  }
+
+  get maskedPassword(): string {
+    return this.user?.password ? '********' : '';
+  }
+
+  get createdAt(): string {
+    return this.user?.createdAt ?? '';
   }
 }
