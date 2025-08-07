@@ -30,7 +30,7 @@ export const routes: Routes = [
     { path: 'signup', component: SignupPage, title: 'Signup' },
     { path: 'profile', component: ProfilePage, title: 'Profile' },
     { path: 'search', component: SearchPage, title: 'Search' },
-    { path: 'genres', component: AllgenresPage, title: 'Genres' ,/*canActivate:[authGuard]*/},
+    { path: 'genres', component: AllgenresPage, title: 'Genres' ,canActivate:[authGuard]},
     { path: 'genres/:id', component: GenrePage },                                                           ///////////////////
     { path: 'movies', component: MoviesPage, title: 'Movies'},
     { path: 'series', component: SeriesPage, title: 'Series' },

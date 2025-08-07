@@ -12,6 +12,6 @@ namespace Project.BLL.DTOs.UserDTO
         public string Username { get; set; }
         public string Email { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string UserImage { get; set; }
+        public string? UserImage { get; set; }
     }
 }

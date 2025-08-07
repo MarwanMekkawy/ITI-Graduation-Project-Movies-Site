@@ -13,7 +13,7 @@ namespace Project.DAL.Models_Entities_
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public DateTime CreatedAt { get; set; }
-        public byte[]? UserImage { get; set; }
+        public string? UserImage { get; set; }
 
         public ICollection<UserRating> UserRatings { get; set; }
         public ICollection<Watchlist> Watchlists { get; set; }
