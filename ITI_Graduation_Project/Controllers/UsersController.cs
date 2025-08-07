@@ -132,9 +132,16 @@ namespace ITI_Graduation_Project.Controllers
             var existingUser = await _service.GetUserByIdAsync(id);
             if (existingUser == null) return NotFound();
 
+            // Hash the password before passing to the service
+            if (!string.IsNullOrWhiteSpace(dto.Password))
+            {
+                dto.Password = HashPassword(dto.Password); // still uses SHA256
+            }
+
             await _service.UpdateUserAsync(id, dto);
             return NoContent();
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
