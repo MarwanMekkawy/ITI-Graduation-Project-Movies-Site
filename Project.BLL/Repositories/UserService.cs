@@ -42,16 +42,10 @@ namespace Project.BLL.Repositories
             if (user == null) return;
 
             user.Username = dto.Username;
-            user.Email = dto.Email;
-
-            if (!string.IsNullOrWhiteSpace(dto.Password))
-            {
-                user.PasswordHash = dto.Password; // Already hashed in the controller
-            }
 
             if (!string.IsNullOrEmpty(dto.UserImage))
             {
-                user.UserImage = dto.UserImage;
+                user.UserImage = dto.UserImage; // Save base64 string directly
             }
 
             await _userRepo.SaveAsync();
