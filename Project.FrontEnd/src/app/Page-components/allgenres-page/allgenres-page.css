@@ -2,9 +2,10 @@
 .container-fluid {
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-top: 4.5rem !important;
   width: 100%;
-  min-height: 100vh;
-  background-color: #0a0a0a;
+  min-height: 85vh;
+ background-color: var(--background-color);
 }
 
 /* Fixed shape box */

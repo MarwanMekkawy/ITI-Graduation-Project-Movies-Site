@@ -1,14 +1,11 @@
 /* watchlist-page.css */
 .watchlist-wrapper {
-  height: 100vh;
-  padding: 1rem 2rem;
+  min-height: 85vh;
+  padding: 4.5rem 2rem 1rem 2rem;
   background-color: var(--background-color);
 }
 
 .watchlist-title {
-  padding-top: 50px;
-  font-size: 2rem;
-  font-weight: 700;
   color: white;
   margin-bottom: 1rem;
 }

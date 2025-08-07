@@ -1,4 +1,5 @@
 .movies-page-container {
     background-color: var(--background-color);
     padding-top: 4.5rem;
+    min-height: 85vh;
 }
