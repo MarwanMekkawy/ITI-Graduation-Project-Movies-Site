@@ -1,0 +1,49 @@
+
+  <div class="card" tabindex="0">
+    <!-- stacked images -->
+    <img class="poster poster-default"
+         [src]="movie.posterUrl"
+         [alt]="movie.title"
+         loading="lazy" />
+
+    <img class="poster poster-hover"
+         [src]="movie.movieImage"
+         [alt]="movie.title"
+         loading="lazy" />
+
+    <!-- gradient that fades in on hover -->
+    <div class="shade"></div>
+
+    <!-- actions (fade in + slide up on hover) -->
+    <div class="actions">
+      <h3 class="title">{{ movie.title }}</h3>
+
+       
+
+    <div class="hover-actions">
+        <button class="play" (click)="onWatchClick()">
+      <i class="fas fa-play"></i> Play
+    </button>
+      <!-- ADD: disabled when already in watchlist or busy -->
+      <button
+        class="action-btn add"
+        [disabled]="isInWatchlist || busy"
+        (click)="onAddClick()"
+        title="Add to Watchlist"
+        aria-label="Add to Watchlist">
+        <i class="fas" [ngClass]="isInWatchlist ? 'fa-check' : 'fa-plus'"></i>
+      </button>
+
+      <!-- REMOVE: disabled when NOT in watchlist or busy -->
+      <button
+        class="action-btn block"
+        [disabled]="!isInWatchlist || busy"
+        (click)="onRemoveClick()"
+        title="Remove from Watchlist"
+        aria-label="Remove from Watchlist">
+        <i class="fas fa-ban"></i>
+      </button>
+    </div>
+    </div>
+  </div>
+

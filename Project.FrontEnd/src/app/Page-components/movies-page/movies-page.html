@@ -2,8 +2,13 @@
   <!-- General Carousels -->
   
   <app-carousel title="Recommended Movies" [movies]="movies"></app-carousel>
-  <app-carousel title="Top Rated Movies" [movies]="topRatedMovies"></app-carousel>
   <app-carousel title="Latest Movies" [movies]="LatestMovies"></app-carousel>
+    <app-expanded-carousel
+    [title]="'Top Rated Movies'"
+    [movies]="topRatedMovies"
+  >
+  </app-expanded-carousel>
+  
 
 
   <!-- Dynamic Genre Carousels -->

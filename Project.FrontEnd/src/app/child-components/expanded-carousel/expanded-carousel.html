@@ -1,0 +1,48 @@
+<!-- Render nothing if there are no movies -->
+<div class="carousel-container" *ngIf="hasMovies">
+  <!-- Header -->
+  <div class="carousel-header">
+    <h2 class="carousel-title">{{ title }}</h2>
+    <a class="see-more" href="#">See more &gt;</a>
+  </div>
+
+  <!-- Body -->
+  <div class="carousel-wrapper">
+    <!-- Left Arrow -->
+    <button
+      class="scroll-button left"
+      type="button"
+      (click)="scroll('left')"
+      [class.hidden]="!canLeft"
+      aria-label="Scroll left"
+    >
+      &#10094;
+    </button>
+
+    <!-- Scrollable Track -->
+    <div class="carousel-scrollbar-wrapper">
+      <div
+        #scrollContainer
+        class="carousel-scrollbar"
+        (scroll)="onScrolled()"
+      >
+        <div class="carousel-track">
+          <div class="card-wrapper" *ngFor="let movie of movies; trackBy: trackByMovieId">
+            <app-expanded-movie-card [movie]="movie"></app-expanded-movie-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Arrow -->
+    <button
+      class="scroll-button right"
+      type="button"
+      (click)="scroll('right')"
+      [class.hidden]="!canRight"
+      aria-label="Scroll right"
+    >
+      &#10095;
+    </button>
+  </div>
+</div>

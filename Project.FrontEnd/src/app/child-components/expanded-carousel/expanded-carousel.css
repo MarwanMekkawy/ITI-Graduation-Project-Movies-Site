@@ -1,0 +1,92 @@
+/* container */
+.carousel-container {
+ margin-bottom: 30px;
+  color: #fff;
+}
+
+/* header */
+.carousel-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0 1vw;
+  margin-bottom: 0.5rem;
+}
+.carousel-title {
+  padding-top: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.see-more {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.see-more:hover { color: #82cfff; }
+
+/* structure */
+.carousel-wrapper,
+.carousel-scrollbar-wrapper,
+.carousel-scrollbar,
+.carousel-track {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+}
+
+.carousel-scrollbar {
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE/Edge */
+}
+.carousel-scrollbar::-webkit-scrollbar { display: none; }  /* WebKit */
+
+/* IMPORTANT: remove side padding; let items sit tight */
+.carousel-track {
+  display: flex;
+  gap: 12px;                       /* small gap between cards */
+  padding: 0;                      /* no left/right padding => no outer spaces */
+}
+
+/* each card wrapper becomes the flex item; width controlled by card */
+.card-wrapper {
+  flex: 0 0 auto;
+  width: auto;                     /* let ExpandedMovieCard width drive layout */
+  overflow: visible;               /* allow hover-growth to be visible */
+  margin: 0; padding: 0;
+}
+
+/* arrows */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-51%);
+  height: 79%;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  width: 42px;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.75rem;
+  transition: all .2s ease;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+.scroll-button.left  { left: 0;  border-radius: 0 10px 10px 0; }
+.scroll-button.right { right: 0; border-radius: 10px 0 0 10px; }
+.scroll-button:hover { background: rgba(0,0,0,0.6); font-size: 2.2rem; }
+.scroll-button.hidden { opacity: 0; pointer-events: none; }
+
+/* make sure widening cards aren’t clipped by parents */
+.carousel-track, .card-wrapper { overflow: visible; }
+
+/* small screens: optional tighter spacing */
+@media (max-width: 768px) {
+  .carousel-track { gap: 10px; }
+}

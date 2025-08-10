@@ -2,13 +2,37 @@
   <form (submit)="$event.preventDefault()">
     <div class="row">
       <!-- Profile Picture -->
-      <div class="col-md-4 d-flex align-items-center justify-content-center">
-        <div class="profile-pic-wrapper position-relative" (click)="triggerFileInput()">
-          <img [src]="profileImage" alt="Profile" class="profile-pic rounded-circle" />
-          <div class="overlay text-white d-flex justify-content-center align-items-center">Change</div>
-        </div>
-        <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
-      </div>
+      <!-- Profile Picture -->
+<div class="col-md-4 d-flex align-items-center justify-content-center">
+  <div
+    class="profile-pic-wrapper position-relative"
+    [class.locked]="!editMode"
+    [attr.aria-disabled]="!editMode"
+    (click)="onPicClick($event)"
+  >
+    <img
+      [src]="profileImage || 'assets/ProfilePlaceholder.jpg'"
+      (error)="onImgError()"
+      alt="Profile"
+      class="profile-pic rounded-circle"
+    />
+
+    <!-- Only show overlay when editing -->
+    <div *ngIf="editMode" class="overlay text-white d-flex justify-content-center align-items-center">
+      Change
+    </div>
+  </div>
+
+  <!-- hidden file input -->
+  <input
+    type="file"
+    #fileInput
+    accept="image/*"
+    (change)="onFileSelected($event)"
+    hidden
+  />
+</div>
+
 
       <!-- Profile Info -->
       <div class="col-md-8">
@@ -42,7 +66,7 @@
 
         <div class="form-group mb-3">
           <label>Date Created</label>
-          <div>{{ createdAt }}</div>
+          <div>{{ createdAt | date:'yyyy-MM-dd':'UTC' }}</div>
         </div>
 
         <!-- Action Buttons -->

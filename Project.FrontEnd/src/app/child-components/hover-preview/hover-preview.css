@@ -1,134 +1,160 @@
 .hover-card {
+  /* set your image height here */
+  --imgH: 220px; /* try 260px / 280px if you want more */
   position: relative;
-  top: -25px;
-  left: 0;
-  background: #111;
-  color: white;
+  top: -20px;
+  background: var(--background-color);
+  color: #fff;
   border-radius: 12px;
-  width: 320px;
-  max-width: 90vw;
-  padding: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+  width: 360px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.85);
   pointer-events: auto;
-  animation: fadeIn 0.35s ease-out;
+  overflow: visible;
+  isolation: isolate;
+  transform-origin: top center;
+  animation: grow-y 240ms ease-out both;
+  will-change: transform;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* soft outer black blur/halo */
+.hover-card::before{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius: calc(12px + 8px);
+  background: radial-gradient(closest-side, rgba(0,0,0,.35), rgba(0,0,0,0));
+  filter: blur(10px);
+  z-index:-1;
+  pointer-events:none;
 }
 
-.hover-card img.hover-img {
+/* image: explicit height */
+.hover-card .hover-img{
   width: 100%;
-  border-radius: 12px;
-  margin-bottom: 12px;
+  height: var(--imgH);
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  margin: 0 0 5px 0;
+  transform-origin: center;
+  animation: zoom-in 240ms ease-out both;
 }
 
-.title {
+/* content */
+.hover-data{ padding: 5px 15px; }
+
+.title{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 13px;
+}
+
+.play{
+  background-color:#2e2e2e;
+  color:var(--white-color);
+  padding:15px;
+  border:none;
+  border-radius:8px;
+  font-weight:700;
   font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 4px;
+  width:100%;
+  margin-bottom:12px;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition: background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.play:hover{
+  background: var(--white-color);
+  color:#000;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,.3);
 }
 
-.episode {
-  color: #00d95f;
-  font-size: 14px;
-  margin-bottom: 12px;
+.hover-actions{
+  display:flex;
+  gap:16px;
+  margin-bottom:12px;
 }
 
-.play {
-  background-color: #2e2e2e;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  width: 100%;
-  margin-bottom: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+/* action buttons */
+.action-btn{
+  background: rgba(51,51,51,.85);
+  border:none;
+  width:53px; height:53px;
+  border-radius:50%;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  font-size:21px;
+}
+.action-btn:hover{
+  background:#fff;
+  color:#000;
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,.35);
+}
+.action-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
 }
 
-.hover-actions {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 12px;
-}
+/* optional icon color cues */
 
-.action-btn {
-  background: rgba(51, 51, 51, 0.8);
-  border: none;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
-.action-btn:hover {
-  background: rgba(85, 85, 85, 0.9);
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.hover-meta{
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  font-size:12px; margin-bottom:12px;
 }
-
-.action-btn.add:hover {
-  color: #00d95f;
-}
-
-.action-btn.remove:hover {
-  color: #ffbf00;
-}
-
-.action-btn.watch:hover {
-  color: #00a8e1;
-}
-
-.action-btn.block:hover {
-  color: #ff6b6b;
-}
-
-.hover-meta {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.prime {
-  color: #00a8e1;
-}
-
 .tag {
-  background: #333;
-  padding: 2px 6px;
+  color: gray;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 6px 0px;
   border-radius: 4px;
 }
 
-.hover-desc {
-  font-size: 15px;
-  color: #ccc;
-  line-height: 1.6;
+/* IMDb tag */
+.tag-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  line-height: 1;
+}
+
+.imdb-logo {
+  width: 30px;
+  height: auto;
+  display: block;
+}
+
+.hover-desc{
+  font-size:16px;
+  font-weight:600;
+  color: var(--white-color);
+  line-height:1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp:3; line-clamp:3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: calc(1.6em * 3);
-  white-space: normal;
+}
+.hover-desc:empty { display: none; }
+
+/* animations */
+@keyframes grow-y {
+  from { transform: scaleY(0.975); }
+  to   { transform: scaleY(1); }
+}
+@keyframes zoom-in {
+  from { transform: scale(0.965); opacity: .98; }
+  to   { transform: scale(1);     opacity: 1; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hover-card, .hover-card .hover-img { animation: none; }
 }

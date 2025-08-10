@@ -1,37 +1,34 @@
 import { Movie } from '../../core/models/movie';
-import { MoviesService } from './../../core/services/movies-service';
-import { Component, ViewChild, ElementRef ,Input, inject, OnInit, input } from '@angular/core';
-import { CommonModule } from '@angular/common';            // Required for *ngFor structural directive
-import { MovieCard } from '../movie-card/movie-card';      // The movie card component rendered inside the carousel
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MovieCard } from '../movie-card/movie-card';
 
 @Component({
-  selector: 'app-carousel',                                // Tag to use in parent HTML
-  standalone: true,                                        // No NgModule required
-  templateUrl: './carousel.html',                          // Template file
-  styleUrl: './carousel.css',                              // Stylesheet
-  imports: [CommonModule, MovieCard]                       // Declares usage of ngFor and MovieCard
+  selector: 'app-carousel',
+  standalone: true,
+  templateUrl: './carousel.html',
+  styleUrl: './carousel.css',
+  imports: [CommonModule, MovieCard]
 })
-export class CarouselComponent  {
-    @Input() title: string = '';  // Title passed from parent
-    @Input() movies!:Movie[];
- 
-  // Access the scrollable div using template reference
-  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+export class CarouselComponent {
+  @Input() title: string = '';
+  @Input() movies!: Movie[];
 
-  // List of movie objects shown inside the carousel
-  
+  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef<HTMLDivElement>;
 
-  /**
-   * Scrolls the carousel container left or right
-   * @param direction 'left' | 'right'
-   */
+  get hasMovies(): boolean {
+    return Array.isArray(this.movies) && this.movies.length > 0;
+  }
+
   scroll(direction: 'left' | 'right'): void {
     const container = this.scrollContainer.nativeElement;
-    const scrollAmount = 320 + 16; // Width of one card + 1rem gap
-
+    const scrollAmount = 320 + 16; // card width + gap
     container.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth' // Enables smooth scrolling
+      behavior: 'smooth'
     });
   }
+
+  // (optional) better *ngFor performance
+  trackByMovieId = (_: number, m: Movie) => m.movieId;
 }
