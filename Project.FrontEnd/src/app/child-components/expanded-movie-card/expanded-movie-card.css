@@ -1,0 +1,166 @@
+:host {
+  display: inline-block;
+  /* timing + easing vars so it's easy to tweak */
+  --t-expand: 360ms;
+  --ease-smooth: cubic-bezier(.22,.61,.36,1); /* natural, not jumpy */
+}
+
+/* the component IS the flex item */
+.card{
+  width: 220px;                  /* base */
+  height: 330px;                 /* fixed height */
+  border-radius: 14px;
+  overflow: hidden;
+  background:#0b0f14;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+
+  /* smoother width animation + hint */
+  transition:
+    width var(--t-expand) var(--ease-smooth),
+    box-shadow 260ms ease;
+  will-change: width;
+  /* IMPORTANT: no transform, no z-index => it won’t overlay siblings */
+}
+
+.card:hover,
+.card:focus-visible{
+  width: 550px;                  /* pushes siblings */
+  box-shadow: 0 12px 28px rgba(0,0,0,.55);
+}
+
+/* images: smoother cross-fade + object-position slide */
+.poster{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:
+    opacity calc(var(--t-expand) * .9) var(--ease-smooth),
+    object-position calc(var(--t-expand) * .9) var(--ease-smooth);
+}
+.poster-default{ opacity:1; }
+.poster-hover{ opacity:0; }
+.card:hover .poster-default{ opacity:0; }
+.card:hover .poster-hover{ opacity:1; object-position:center top; }
+
+/* gradient shade, appears on hover to darken bottom */
+.shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,.90) 100%);
+  opacity: 0;
+  transition: opacity calc(var(--t-expand) * .8) var(--ease-smooth);
+  z-index: 3;
+}
+.card:hover .shade { opacity: 1; }
+
+/* actions: fade/slide slightly after the width starts changing */
+/* actions container (already fading/sliding in) */
+.actions{
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;   /* stack title above controls */
+  gap: 10px;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity calc(var(--t-expand,360ms) * .7) cubic-bezier(.22,.61,.36,1) 40ms,
+   transform calc(var(--t-expand,360ms) * .7) cubic-bezier(.22,.61,.36,1) 40ms;
+  z-index: 4;
+}
+.card:hover .actions { opacity: 1; transform: translateY(0); }
+
+/* title above the buttons */
+.actions .title{
+  margin: 0;
+  font-size: 18px;          /* tweak if you want bigger */
+  font-weight: 800;
+  max-width: 100%;
+  color: var(--white-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+/* row with play + add + remove */
+.controls{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Play button */
+.play {
+  background-color: #2e2e2e;
+  color: var(--white-color);
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  transition:
+    background-color 220ms var(--ease-smooth),
+    color 220ms var(--ease-smooth),
+    transform 220ms var(--ease-smooth),
+    box-shadow 220ms var(--ease-smooth);
+}
+.play i { font-size: 18px; }
+.play:hover {
+  background: var(--white-color);
+  color: #000;
+  transform: scale(1.06);
+  box-shadow: 0 4px 8px rgba(0,0,0,.3);
+}
+
+/* Add / Remove buttons */
+
+/* keyboard focus */
+.card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff33, 0 12px 28px rgba(0,0,0,.55);
+}
+
+.hover-actions{
+  display:flex;
+  gap:16px;
+  margin-bottom:12px;
+}
+
+/* action buttons */
+.action-btn{
+  background: rgba(51,51,51,.85);
+  border:none;
+  width:53px; height:53px;
+  border-radius:50%;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  font-size:21px;
+}
+.action-btn:hover{
+  background:#fff;
+  color:#000;
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,.35);
+}
+.action-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
+}
+/* only animate on devices that actually hover */
+@media (hover: none) {
+  .card, .poster, .shade, .actions, .play, .action-btn { transition: none; }
+}
+
+/* accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .card, .poster, .shade, .actions, .play, .action-btn { transition: none; }
+}

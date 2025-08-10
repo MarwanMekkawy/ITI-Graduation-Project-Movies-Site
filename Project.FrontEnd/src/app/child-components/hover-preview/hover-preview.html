@@ -1,41 +1,50 @@
 <div class="hover-card"
-     (mouseenter)="mouseEntered.emit()"  
+     (mouseenter)="mouseEntered.emit()"
      (mouseleave)="mouseLeft.emit()">
 
   <img [src]="movie.movieImage" class="hover-img" />
 
-  <h3 class="title">{{ movie.title }}</h3>
-  <p class="episode">{{ movie.title }}</p>
+  <div class="hover-data">
+    <h3 class="title">{{ movie.title }}</h3>
 
-  <button class="play">Play S1 E1</button>
+    <button class="play" (click)="onWatchClick()">
+      <i class="fas fa-play"></i> Play
+    </button>
 
-  <div class="hover-actions">
-  <!-- Add to Watchlist -->
- <button
-  class="action-btn add"
-  [disabled]="isInWatchlist"
-  (click)="onAddClick()"
-  title="Add to Watchlist">
-  <i class="fas" [ngClass]="isInWatchlist ? 'fa-check' : 'fa-plus'"></i>
-</button>
+    <div class="hover-actions">
+      <!-- ADD: disabled when already in watchlist or busy -->
+      <button
+        class="action-btn add"
+        [disabled]="isInWatchlist || busy"
+        (click)="onAddClick()"
+        title="Add to Watchlist"
+        aria-label="Add to Watchlist">
+        <i class="fas" [ngClass]="isInWatchlist ? 'fa-check' : 'fa-plus'"></i>
+      </button>
 
-  <!-- Watch -->
-  <button class="action-btn watch" (click)="onWatchClick()" title="Watch">
-    <i class="fas fa-tv"></i>
-  </button>
+      <!-- REMOVE: disabled when NOT in watchlist or busy -->
+      <button
+        class="action-btn block"
+        [disabled]="!isInWatchlist || busy"
+        (click)="onRemoveClick()"
+        title="Remove from Watchlist"
+        aria-label="Remove from Watchlist">
+        <i class="fas fa-ban"></i>
+      </button>
+    </div>
 
-  <!-- Block / Remove from Watchlist -->
-  <button class="action-btn block" (click)="onBlockClick()" title="Remove from Watchlist">
-    <i class="fas fa-ban"></i>
-  </button>
-</div>
+    <div class="hover-meta">
+      <span class="tag">
+        {{ movie.releaseDate | date:'MMM yyyy':'UTC' }}
+      </span>
 
+      <span class="tag tag-rating"
+            *ngIf="movie.imDbRating !== undefined && movie.imDbRating !== null">
+        {{ movie.imDbRating }}
+        <img class="imdb-logo" src="IMDB_Logo.svg" alt="IMDb" />
+      </span>
+    </div>
 
-  <div class="hover-meta">
-    <span class="prime">✔ Included with Prime</span>
-    <span class="tag">{{ movie.releaseDate }}</span>
-    <span class="tag">{{ movie.imDbRating }}</span>
+    <p class="hover-desc">{{ movie.description }}</p>
   </div>
-
-  <p class="hover-desc">{{ movie.description }}</p>
 </div>

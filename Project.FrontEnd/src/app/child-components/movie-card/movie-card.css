@@ -1,11 +1,9 @@
 :host {
   margin-top: 10px;
-  
-
-    display: block;                       /* This is critical */
+  display: block;                       /* This is critical */
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   color: white;
   font-family: Arial, sans-serif;
   background-color: transparent;
@@ -15,21 +13,22 @@
 }
 
 .poster-wrapper {
-    
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  transition: opacity 0.3s ease;
-  height: 180px;                             /* Fixed height */
+  height: 180px;
 }
 
 .poster {
-  width: 90%;
+  /* option A: no side gaps */
+  width: 100%;
+  display: block;
   height: 100%;
-  object-fit: fill;                          /* Stretch image to fill */
+  object-fit: cover;        /* don't stretch */
   border-radius: 12px;
-  transition: transform 0.4s ease-in-out 0.1s, border-radius 0.3s ease;
+  transition: transform .4s ease-in-out .1s, border-radius .3s ease;
 }
+
 
 /* Responsive behavior */
 @media screen and (max-width: 768px) {

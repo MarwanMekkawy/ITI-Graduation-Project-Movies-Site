@@ -1,47 +1,106 @@
-<div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
+<div
+  #carousel
+  id="movieCarousel"
+  class="carousel slide"
+  data-bs-ride="carousel"
+  data-bs-pause="hover"
+>
   <div class="carousel-inner">
     <div
       class="carousel-item"
       *ngFor="let movie of movies; let i = index"
       [class.active]="i === 0"
     >
-      <div class="movie-slide" [ngStyle]="{ 'background-image': 'url(' + movie.image + ')' }">
-        <div class="overlay">
-          <div class="content-container">
-             <div class="content">
-            <h1>{{ movie.title }}</h1>
-            <p class="summary">{{ movie.description }}</p>
-            <div class="buttons">
-              <button class="btn-watch">Watch now</button>
-              <button class="btn-add">+</button>
+      <!-- Whole slide (handles hover start/stop) -->
+      <div
+        #slide
+        class="movie-slide"
+        [ngStyle]="{ 'background-image': 'url(' + movie.image + ')' }"
+        [ngClass]="{ 'is-previewing': previewing[i] }"
+        (mouseenter)="queuePreview(i)"
+        (mouseleave)="queueStop(i)"
+      >
+        <!-- 35% content | 65% video using Bootstrap flex + CSS vars -->
+        <div class="overlay d-flex align-items-end w-100">
+          <!-- LEFT: content (35%) -->
+          <div class="pane-text">
+            <div class="content">
+              <h1>{{ movie.title }}</h1>
+              <p class="summary">{{ movie.description }}</p>
+              <div class="buttons">
+                <button
+                  class="action-btn add"
+                  [disabled]="inWatchlist(movie.movieId) || isBusy(movie.movieId)"
+                  (click)="onAddClick(movie)"
+                  title="Add to Watchlist">
+                  <i class="fas" [ngClass]="inWatchlist(movie.movieId) ? 'fa-check' : 'fa-plus'"></i>
+                </button>
+
+                <!-- REMOVE -->
+                <button
+                  class="action-btn block"
+                  [disabled]="!inWatchlist(movie.movieId) || isBusy(movie.movieId)"
+                  (click)="onRemoveClick(movie)"
+                  title="Remove from Watchlist">
+                  <i class="fas fa-ban"></i>
+                </button>
+              </div>
             </div>
           </div>
-          </div>
-         
-          <div class="video-preview">
-            <video
-              [src]="movie.video"
-            
-              loop
-              playsinline
-              preload="auto"
-              (mouseenter)="onVideoEvent($event, 'play')"
-              (mouseleave)="onVideoEvent($event, 'pause')"
-            ></video>
+
+          <!-- RIGHT: video area (65%) -->
+          <div class="pane-video ms-auto">
+            <!-- poster -> black while previewing -->
+            <div class="blackout"></div>
+
+            <!-- video sits above blackout -->
+            <div class="video-wrap">
+              <video
+                #vid
+                preload="metadata"
+                playsinline
+                [muted]="muted"
+                [src]="movie.video"
+                (ended)="onEnded(i)"
+              ></video>
+            </div>
+
+            <!-- Mute -->
+            <button
+              class="mute-btn"
+              type="button"
+              (click)="toggleMute(vid)"
+              aria-label="Toggle mute"
+            >
+              <i
+                class="fas"
+                [ngClass]="muted ? 'fa-volume-mute' : 'fa-volume-up'"
+              ></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <!-- Previous Button -->
-<!-- Previous Button -->
-<button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
-  <i class="fas fa-chevron-left custom-carousel-icon"></i>
-</button>
+  <!-- Prev/Next (minimal arrows) -->
+  <button
+    class="hero-arrow hero-arrow--prev"
+    type="button"
+    data-bs-target="#movieCarousel"
+    data-bs-slide="prev"
+    aria-label="Previous"
+  >
+    <i class="fas fa-chevron-left hero-arrow__icon" aria-hidden="true"></i>
+  </button>
 
-<!-- Next Button -->
-<button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
-  <i class="fas fa-chevron-right custom-carousel-icon"></i>
-</button>
+  <button
+    class="hero-arrow hero-arrow--next"
+    type="button"
+    data-bs-target="#movieCarousel"
+    data-bs-slide="next"
+    aria-label="Next"
+  >
+    <i class="fas fa-chevron-right hero-arrow__icon" aria-hidden="true"></i>
+  </button>
 </div>

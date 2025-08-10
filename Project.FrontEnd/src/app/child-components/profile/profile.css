@@ -2,43 +2,52 @@
   position: relative;
   width: 180px;
   height: 180px;
+  border-radius: 50%;
   cursor: pointer;
+}
+
+/* When not editing: no clicks, normal cursor */
+.profile-pic-wrapper.locked {
+  pointer-events: none;   /* blocks click */
+  cursor: default;
 }
 
 .profile-pic {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%; /* Perfect circle */
+  object-position: center;
+  border-radius: 50%;
+  display: block;
+  background: #2c2c2c; /* subtle fallback bg */
 }
 
+/* overlay is shown only in editMode via *ngIf in template */
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+  inset: 0;
   border-radius: 50%;
-  transition: opacity 0.3s ease;
-  font-weight: bold;
-  font-size: 1.1rem;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s ease;
 }
 
-.profile-pic-wrapper:hover .overlay {
-  opacity: 1;
-}
+/* only allow hover fade when not locked (i.e., editMode=true) */
+.profile-pic-wrapper:not(.locked):hover .overlay { opacity: 1; }
 
+/* ---- existing styles you had ---- */
 .profile-card {
-  /*blury-grey color*/
   backdrop-filter: blur(30px);
-  border: none;
-  box-shadow: none;
-  animation: slideUp 0.8s ease-in-out;
- /******************/
-  color: white;
   border: none !important;
   box-shadow: none !important;
+  animation: slideUp 0.8s ease-in-out;
+  color: white;
   border-radius: 0.75rem;
   padding: 2rem 3rem;
 }
@@ -49,31 +58,17 @@
   border: none !important;
   box-shadow: none !important;
 }
-
 input.form-control:focus {
   outline: none;
   box-shadow: none;
   background-color: #333;
   color: white;
 }
-::placeholder {
-  color: rgba(255, 255, 255, 0.7); /* Bright white-ish placeholder */
-  opacity: 1;
-}
+::placeholder { color: rgba(255,255,255,.7); opacity: 1; }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 }
 
-.confirm-warning {
-  color: #ffcf33; /* subtle yellow warning */
-  font-weight: 600;
-  text-align: center;
-}
+.confirm-warning { color: #ffcf33; font-weight: 600; text-align: center; }

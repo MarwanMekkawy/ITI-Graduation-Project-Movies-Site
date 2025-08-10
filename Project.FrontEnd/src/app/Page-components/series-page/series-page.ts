@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { MoviesService } from './../../core/services/movies-service';
 import { GenreService } from './../../core/services/genre-service';
 import { Movie } from '../../core/models/movie';
+import { ExpandedCarousel } from "../../child-components/expanded-carousel/expanded-carousel";
 
 @Component({
   selector: 'app-series-page',
-  imports: [CarouselComponent,CommonModule],
+  imports: [CarouselComponent, CommonModule, ExpandedCarousel],
   templateUrl: './series-page.html',
   styleUrl: './series-page.css'
 })

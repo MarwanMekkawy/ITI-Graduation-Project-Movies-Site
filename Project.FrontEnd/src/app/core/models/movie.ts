@@ -1,6 +1,6 @@
 import { MovieGenre } from './movie-genre';
 export interface Movie {
-     movieId: number;
+  movieId: number;
   title: string;
   description: string;
   releaseDate: string;          // or Date if parsed
