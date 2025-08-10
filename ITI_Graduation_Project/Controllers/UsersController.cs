@@ -40,7 +40,7 @@ namespace ITI_Graduation_Project.Controllers
             return Ok(user);
         }
 
-        // helper: SHA256 hashing (same as your previous code)
+        //SHA256 hashing
         private static string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();
@@ -49,17 +49,18 @@ namespace ITI_Graduation_Project.Controllers
             return Convert.ToBase64String(hash);
         }
 
+        ///Login/////////////////////////////////////////////////////////////////////////
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDto dto)
         {
-            // 1) get user entity (contains PasswordHash)
+            //get user entity
             var user = await _service.GetUserByUsernameAsync(dto.Username);
             if (user == null) return Unauthorized("Invalid username or password");
-            // 2) hash incoming password with same method
+            //hash incoming password 
             var hashed = HashPassword(dto.Password);
-            // 3) compare the hashes
+            //compare hashes
             if (user.PasswordHash != hashed) return Unauthorized("Invalid username or password");
-            // 4) create token (kept exactly like your current code)
+            //create token
             var userdata = new List<Claim>
             {
             new Claim("Id", user.UserId.ToString()),
@@ -78,31 +79,29 @@ namespace ITI_Graduation_Project.Controllers
                 signingCredentials: PwHash
             );
 
+            //handles token to string
             var token = new JwtSecurityTokenHandler().WriteToken(tokenobj);
             return Ok(new { token });
         }
 
-
+        ///Register/////////////////////////////////////////////////////////////////////////
         [HttpPost("signup")]
         public async Task<IActionResult> Create(UserCreateDto dto)
         {
-            //check for dublication
+            //error checks
             var errors = new List<string>();
 
             if (await _service.UsernameExistsAsync(dto.Username))
                 errors.Add("Username already exists");
-
             if (await _service.EmailExistsAsync(dto.Email))
                 errors.Add("Email already exists");
-
             if (errors.Any()) return BadRequest(new { errors });
 
-            // 1) Hash password here (SHA256 as your project used)
+            //Hash password here (SHA256)
             dto.Password = HashPassword(dto.Password);
-            // 2) Save user (UserService expects dto.Password to already be hashed)
+            //Save user 
             await _service.AddUserAsync(dto);
-
-            // 3) Create token (kept exactly like your current code)
+            //Create token
             var userdata = new List<Claim>
             {
             new Claim(ClaimTypes.Name, dto.Username),
@@ -123,7 +122,7 @@ namespace ITI_Graduation_Project.Controllers
             return Ok(new { token });
         }
       
-        /// /////////////////////////////////////////////////////////////////////////
+        ///Update/////////////////////////////////////////////////////////////////////////
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UserUpdateDto dto)
         {           
@@ -172,7 +171,7 @@ namespace ITI_Graduation_Project.Controllers
             return Ok(new { token });
         }
 
-
+        ///Delete/////////////////////////////////////////////////////////////////////////
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
