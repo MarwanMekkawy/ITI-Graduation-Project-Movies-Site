@@ -56,11 +56,11 @@ namespace ITI_Graduation_Project.Controllers
             //get user entity
             var user = await _service.GetUserByUsernameAsync(dto.Username);
             //check if user exist
-            if (user == null) return Unauthorized("Invalid username or password");
+            if (user == null) return Unauthorized(new { message = "Invalid username or password" });
             //hash incoming password 
             var hashed = HashPassword(dto.Password);
             //compare hashes
-            if (user.PasswordHash != hashed) return Unauthorized("Invalid username or password");
+            if (user.PasswordHash != hashed) return Unauthorized(new { message = "Invalid username or password" });
 
             //create token
             var userdata = new List<Claim>
