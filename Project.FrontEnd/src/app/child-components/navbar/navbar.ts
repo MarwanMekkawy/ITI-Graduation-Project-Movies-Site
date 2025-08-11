@@ -1,4 +1,4 @@
-import { UserService } from './../../core/services/user-service';
+import { UserService } from '../../core/services/auth/user-service';
 import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from "./navbar-search-bar/search-bar";
@@ -6,7 +6,6 @@ import { NavbarProfileDropdown } from "./navbar-profile-dropdown/navbar-profile-
 import { NavbarGenreDropdown } from "./navbar-genre-dropdown/navbar-genre-dropdown";
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
-import { User } from '../../core/models/user';
 
 
 
@@ -21,24 +20,6 @@ export class Navbar implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.user$.subscribe(user => {
-      if (user) {
-        this.user = user;
-
-        // Ensure base64 prefix
-        if (user.userImage && !user.userImage.startsWith('data:image')) {
-          this.profileImage = `data:image/jpeg;base64,${user.userImage}`;
-        } else {
-          this.profileImage = user.userImage || '/ProfilePlaceholder.jpg';
-        }
-      }
-    });
-
-    // Load once (e.g., for first load or page refresh)
-    this.userService.getUser(this.userId).subscribe(user => {
-      this.userService.setUser(user); // trigger initial state
-    });
-
     // Detect route change and hide search bar if navigating to /search
   this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {
@@ -49,9 +30,6 @@ export class Navbar implements OnInit {
   });
   }
 
-  user: User | null = null;
-  private userId = 14; // or fetch from auth/session
-  profileImage = '/ProfilePlaceholder.jpg';
 
   //scroll func./////////////////////////////////////////////////////////////////////////////
   isScrolled = false;

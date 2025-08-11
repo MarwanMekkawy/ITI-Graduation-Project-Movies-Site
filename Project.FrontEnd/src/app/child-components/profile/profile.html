@@ -1,67 +1,89 @@
 <div class="blury-grey profile-card p-5" style="max-width: 960px;">
-  <form (submit)="$event.preventDefault()">
+  <form [formGroup]="updateForm" (ngSubmit)="registerUpdateForm()">
     <div class="row">
       <!-- Profile Picture -->
-      <!-- Profile Picture -->
-<div class="col-md-4 d-flex align-items-center justify-content-center">
-  <div
-    class="profile-pic-wrapper position-relative"
-    [class.locked]="!editMode"
-    [attr.aria-disabled]="!editMode"
-    (click)="onPicClick($event)"
-  >
-    <img
-      [src]="profileImage || 'assets/ProfilePlaceholder.jpg'"
-      (error)="onImgError()"
-      alt="Profile"
-      class="profile-pic rounded-circle"
-    />
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <div class="profile-pic-wrapper position-relative" [class.locked]="!editMode" [attr.aria-disabled]="!editMode"
+          (click)="onPicClick($event)">
+          <img [src]="profileImage || 'assets/ProfilePlaceholder.jpg'" (error)="onImgError()" alt="Profile"
+            class="profile-pic rounded-circle" />
 
-    <!-- Only show overlay when editing -->
-    <div *ngIf="editMode" class="overlay text-white d-flex justify-content-center align-items-center">
-      Change
-    </div>
-  </div>
-
-  <!-- hidden file input -->
-  <input
-    type="file"
-    #fileInput
-    accept="image/*"
-    (change)="onFileSelected($event)"
-    hidden
-  />
-</div>
-
+          @if (editMode) {
+          <div class="overlay text-white d-flex justify-content-center align-items-center">
+            Change
+          </div>
+          }
+        </div>
+        <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
+      </div>
 
       <!-- Profile Info -->
       <div class="col-md-8">
         <div class="form-group mb-3">
           <label>Username</label>
-          <div *ngIf="!editMode">{{ user?.username }}</div>
-          <input *ngIf="editMode" name="newUsername" [(ngModel)]="newUsername" class="form-control" />
+          @if (!editMode) {
+          <div>{{ user?.username }}</div>
+          }
+          @if (editMode) {
+          <input formControlName="username" class="form-control" />
+          }
         </div>
+        @if(updateForm.get(`username`)?.errors && updateForm.get(`username`)?.touched){
+        <div class="text-danger">
+          <ul>
+            @if(updateForm.get(`username`)?.getError(`required`)){<li>name cannot be empty</li>}
+            @else if(updateForm.get(`username`)?.getError(`minlength`)){<li>name min length 4 characters</li>}
+            @else if(updateForm.get(`username`)?.getError(`maxlength`)){<li>name max length 20 characters</li>}
+          </ul>
+        </div>
+        }
 
         <div class="form-group mb-3">
           <label>Email</label>
-          <div *ngIf="!editMode">{{ user?.email }}</div>
-          <input *ngIf="editMode" name="newEmail" [(ngModel)]="newEmail" class="form-control" />
+          @if (!editMode) {
+          <div>{{ user?.email }}</div>
+          }
+          @if (editMode) {
+          <input formControlName="email" class="form-control" />
+          }
         </div>
+        
+        @if(updateForm.get(`email`)?.errors && updateForm.get(`email`)?.touched){
+        <div class="text-danger">
+          <ul>
+            @if(updateForm.get(`email`)?.getError(`required`)){<li>email is required</li>}
+            @else if(updateForm.get(`email`)?.getError(`email`)){<li>only valid E-mail format</li>}
+          </ul>
+        </div>
+        }
 
         <div class="form-group mb-3">
           <label>Password</label>
-          <div *ngIf="!editMode">{{ maskedPassword }}</div>
-
-          <div *ngIf="editMode">
-            <input type="password" name="newPassword" [(ngModel)]="newPassword" class="form-control mb-2"
-              (input)="checkPasswords()" placeholder="New Password" />
-            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" class="form-control"
-              (input)="checkPasswords()" placeholder="Confirm Password" />
-            <small *ngIf="newPassword && confirmPassword"
-              [ngClass]="{ 'text-danger': !passwordMatch, 'text-success': passwordMatch }">
-              {{ passwordMatch ? 'Passwords match' : 'Passwords do not match' }}
-            </small>
+          @if (!editMode) {
+          <div>{{ maskedPassword }}</div>
+          }
+          @if (editMode) {
+          <input type="password" formControlName="password" class="form-control mb-2" (input)="checkPasswords()"
+            placeholder="New Password" />
+          @if(updateForm.get(`password`)?.errors && updateForm.get(`password`)?.touched){
+          <div class="text-danger">
+            <ul>
+              @if(updateForm.get(`password`)?.getError(`pattern`)){<li>[a-z & A-Z & 123] only allowed</li>}
+              @else if(updateForm.get(`password`)?.getError(`minlength`)){<li>password must be at least 8 characters
+              </li>}
+              @else if(updateForm.get(`password`)?.getError(`maxlength`)){<li>password must not exceed 20 characters
+              </li>}
+            </ul>
           </div>
+          }
+          <input type="password" formControlName="confirmPassword" class="form-control" (input)="checkPasswords()"
+            placeholder="Confirm Password" />
+          @if (updateForm.get('password')?.value && updateForm.get('confirmPassword')?.value) {
+          <small [ngClass]="{'text-danger': !passwordMatch, 'text-success': passwordMatch}">
+            {{ passwordMatch ? 'Passwords match' : 'Passwords do not match' }}
+          </small>
+          }
+          }
         </div>
 
         <div class="form-group mb-3">
@@ -69,29 +91,36 @@
           <div>{{ createdAt | date:'yyyy-MM-dd':'UTC' }}</div>
         </div>
 
+        @if (error.length > 0) {
+        <div class="text-danger">
+          <ul class="mb-0">
+            @for (item of error; track $index) {<li class="fw-bold">{{ item }}</li>}
+          </ul>
+        </div>
+        }
+
         <!-- Action Buttons -->
         <div class="d-flex flex-column align-items-center mt-4">
-          <ng-container *ngIf="!editMode">
-            <ng-container *ngIf="!deleteConfirmMode; else deleteConfirmBlock">
-              <button type="button" class="btn btn-primary w-100 mb-2" (click)="toggleEdit()">Change Info</button>
-              <button type="button" class="btn btn-danger w-100" (click)="promptDelete()">Delete Account</button>
-            </ng-container>
+          @if (!editMode) {
+          @if (!deleteConfirmMode) {
+          <button type="button" class="btn btn-primary w-100 mb-2" (click)="toggleEdit()">Change Info</button>
+          <button type="button" class="btn btn-danger w-100" (click)="promptDelete()">Delete Account</button>
+          }
+          @else {
+          <div class="w-100">
+            <div class="mb-2 text-center confirm-warning">Are you sure you want to delete your account?</div>
+            <button type="button" class="btn btn-danger w-100 mb-2" (click)="confirmDelete()">Confirm Delete</button>
+            <button type="button" class="btn btn-secondary w-100" (click)="cancelPromptDelete()">Cancel</button>
+          </div>
+          }
+          }
 
-            <!-- Confirm delete -->
-            <ng-template #deleteConfirmBlock>
-              <div class="w-100">
-                <div class="mb-2 text-center confirm-warning">Are you sure you want to delete your account?</div>
-                <button type="button" class="btn btn-danger w-100 mb-2" (click)="confirmDelete()">Confirm Delete</button>
-                <button type="button" class="btn btn-secondary w-100" (click)="cancelPromptDelete()">Cancel</button>
-              </div>
-            </ng-template>
-          </ng-container>
-
-          <!-- Save/Cancel edit -->
-          <div *ngIf="editMode" class="w-100">
-            <button type="button" class="btn btn-success w-100 mb-2" (click)="saveChanges()">Save Changes</button>
+          @if (editMode) {
+          <div class="w-100">
+            <button type="submit" class="btn btn-success w-100 mb-2">Save Changes</button>
             <button type="button" class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
           </div>
+          }
         </div>
       </div>
     </div>

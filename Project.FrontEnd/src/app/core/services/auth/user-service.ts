@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { User } from '../models/user';
+import { UpdateRequest } from '../../models/update-request';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +11,17 @@ export class UserService {
   private baseUrl = 'http://localhost:5059/api/Users';
 
   // 🔥 NEW: shared user stream
-  private userSubject = new BehaviorSubject<User | null>(null);
+  private userSubject = new BehaviorSubject<UpdateRequest | null>(null);
   user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/${id}`);
-  }
-
-  updateUser(id: number, userData: User): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, userData);
+  getUser(id: number): Observable<UpdateRequest> {
+    return this.http.get<UpdateRequest>(`${this.baseUrl}/${id}`);
   }
 
   // 🔥 NEW: set current user (broadcast updated user to all subscribers)
-  setUser(user: User) {
+  setUser(user: UpdateRequest) {
     this.userSubject.next(user);
   }
 }

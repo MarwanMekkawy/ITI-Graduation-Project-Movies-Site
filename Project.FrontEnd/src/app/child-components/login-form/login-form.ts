@@ -2,11 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './../../core/services/auth/auth-service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../../core/services/auth/login-service';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css'
 })
@@ -16,11 +17,13 @@ export class LoginForm {
     password: new FormControl(null, [Validators.required]),
   })
 
+
+  private readonly loginservice = inject(LoginService);
   private readonly authService = inject(AuthService);
   private readonly redirect = inject(Router);
-  error: string='';
+  error: string = '';
 
-  registerTheForm(): void {
+  registerTheForm(): void { 
     if (this.login.invalid) {           //applies validation
       this.login.markAllAsTouched();
       return;
@@ -29,13 +32,13 @@ export class LoginForm {
     this.authService.sendLoginForm(this.login.value).subscribe({
       next: (res) => {
         if (res.token) {
-          localStorage.setItem(`token`, res.token);
+          this.loginservice.tokenprocessing(res.token);
           this.redirect.navigate([`/home`]);
-        }
+        } 
       },
       error: (err: HttpErrorResponse) => {
-        this.error=err.error.error;      
+        this.error = err.error.errors;
       }
-    })
+    }) 
   }
 }

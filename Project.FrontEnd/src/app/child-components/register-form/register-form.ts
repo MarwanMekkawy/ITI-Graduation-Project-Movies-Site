@@ -2,11 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './../../core/services/auth/auth-service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './register-form.html',
   styleUrl: './register-form.css'
 })
@@ -26,7 +26,7 @@ export class RegisterForm {
   
   registerTheForm(): void {
     if (this.register.invalid) {           //applies validation
-      this.register.markAllAsTouched();
+      this.register.markAllAsTouched(); 
       return;
     }
 

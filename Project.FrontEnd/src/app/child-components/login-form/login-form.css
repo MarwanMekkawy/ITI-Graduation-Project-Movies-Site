@@ -13,7 +13,7 @@ select:-webkit-autofill {
 /* Make login card wider */
 .login-card {
   max-width: 400px; /* زودنا العرض */
-  padding: 6rem 4rem;
+  padding: 4rem 4rem;
   border-radius: 20px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -98,4 +98,8 @@ select:-webkit-autofill {
   .login-input {
     height: 3rem;
   }
+}
+.form-floating{
+  margin-bottom: 0 !important;
+  margin-top: 15px !important;
 }

@@ -34,6 +34,7 @@
     "bootstrap": "^5.3.7",
     "cloudinary-video-player": "^3.1.1",
     "express": "^5.1.0",
+    "jwt-decode": "^4.0.0",
     "ngx-image-compress": "^18.1.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

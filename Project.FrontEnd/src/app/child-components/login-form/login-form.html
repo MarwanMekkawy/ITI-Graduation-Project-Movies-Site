@@ -1,15 +1,15 @@
-<div class="login-card text-white blury-grey">
+<div class="login-card text-white blury-grey"> 
   <h2 class="title">Sign In</h2>
-  <form [formGroup]="login" (ngSubmit)="registerTheForm()">
+  <form [formGroup]="login" (ngSubmit)="registerTheForm()"> 
     <div class="form-floating mb-3">
       <input formControlName="username" type="text" class="form-control login-input" id="floatingUsername"
         placeholder="Username" required />
-      <label for="floatingUsername">Username</label>
+      <label for="floatingUsername"><i class="fa-solid fa-user"></i> Username</label>
     </div>
     <div class="form-floating mb-3">
       <input formControlName="password" type="password" class="form-control login-input" id="floatingPassword"
         placeholder="Password" required />
-      <label for="floatingPassword">Password</label>
+      <label for="floatingPassword"> <i class="fa-solid fa-lock"></i> Password</label>
     </div>
 
     @if(login.get(`username`)?.errors && login.get(`username`)?.touched || login.get(`password`)?.errors &&
@@ -24,13 +24,13 @@
 
     <div class="text-danger">
       <ul class="mb-0">
-    @if (error) {<li class="fw-bold">{{ error }}</li>}
+        @if (error) {<li class="fw-bold">{{ error }}</li>}
       </ul>
     </div>
 
     <button type="submit" class="btn login-button btn-primary mt-3 w-100">Login</button>
     <p class="login-footer mt-3">
-      Don't have an account? <a href="#">Sign up</a>
+      Don't have an account? <a routerLink="/signup">Sign up</a>
     </p>
   </form>
 </div>

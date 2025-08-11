@@ -6,34 +6,34 @@
   data-bs-pause="hover"
 >
   <div class="carousel-inner">
-    <div
-      class="carousel-item"
-      *ngFor="let movie of movies; let i = index"
-      [class.active]="i === 0"
-    >
+  @for (movie of movies; track movie.movieId; let i = $index) {
+    <div class="carousel-item" [class.active]="i === 0">
       <!-- Whole slide (handles hover start/stop) -->
       <div
         #slide
         class="movie-slide"
         [ngStyle]="{ 'background-image': 'url(' + movie.image + ')' }"
-        [ngClass]="{ 'is-previewing': previewing[i] }"
+        [class.is-previewing]="previewing[i]"
         (mouseenter)="queuePreview(i)"
         (mouseleave)="queueStop(i)"
       >
-        <!-- 35% content | 65% video using Bootstrap flex + CSS vars -->
+        <!-- 35% content | 65% video -->
         <div class="overlay d-flex align-items-end w-100">
+          
           <!-- LEFT: content (35%) -->
           <div class="pane-text">
             <div class="content">
               <h1>{{ movie.title }}</h1>
               <p class="summary">{{ movie.description }}</p>
               <div class="buttons">
+                
+                <!-- ADD -->
                 <button
                   class="action-btn add"
                   [disabled]="inWatchlist(movie.movieId) || isBusy(movie.movieId)"
                   (click)="onAddClick(movie)"
                   title="Add to Watchlist">
-                  <i class="fas" [ngClass]="inWatchlist(movie.movieId) ? 'fa-check' : 'fa-plus'"></i>
+                  <i class="fas" [class.fa-check]="inWatchlist(movie.movieId)" [class.fa-plus]="!inWatchlist(movie.movieId)"></i>
                 </button>
 
                 <!-- REMOVE -->
@@ -50,10 +50,7 @@
 
           <!-- RIGHT: video area (65%) -->
           <div class="pane-video ms-auto">
-            <!-- poster -> black while previewing -->
             <div class="blackout"></div>
-
-            <!-- video sits above blackout -->
             <div class="video-wrap">
               <video
                 #vid
@@ -61,8 +58,8 @@
                 playsinline
                 [muted]="muted"
                 [src]="movie.video"
-                (ended)="onEnded(i)"
-              ></video>
+                (ended)="onEnded(i)">
+              </video>
             </div>
 
             <!-- Mute -->
@@ -70,18 +67,16 @@
               class="mute-btn"
               type="button"
               (click)="toggleMute(vid)"
-              aria-label="Toggle mute"
-            >
-              <i
-                class="fas"
-                [ngClass]="muted ? 'fa-volume-mute' : 'fa-volume-up'"
-              ></i>
+              aria-label="Toggle mute">
+              <i class="fas" [class.fa-volume-mute]="muted" [class.fa-volume-up]="!muted"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  }
+</div>
+
 
   <!-- Prev/Next (minimal arrows) -->
   <button

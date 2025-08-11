@@ -1,12 +1,11 @@
 .login-container {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/background.webp")
-    center / cover no-repeat;
+  background: url("/background.webp") center / cover no-repeat;
   overflow: hidden;
 }
 

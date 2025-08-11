@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component ,ElementRef} from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-genre-dropdown',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './navbar-genre-dropdown.html',
   styleUrl: './navbar-genre-dropdown.css'
 })

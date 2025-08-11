@@ -11,8 +11,8 @@ select:-webkit-autofill {
 
 .register-card {
   width: 100%;
-  max-width: 400px;
-  padding: 2rem;
+  max-width: 450px;
+  padding: 2rem 4rem;
   border-radius: 20px;
   color: var(--text-color);
 }
@@ -50,4 +50,8 @@ label {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.form-floating{
+  margin-bottom: 0 !important;
+  margin-top: 10px !important;
 }
