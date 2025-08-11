@@ -13,6 +13,7 @@ import {
 
 import { WatchlistService } from '../../core/services/watchlist-service';
 import { WatchList } from '../../core/models/watch-list';
+
 // If you already have a Movie model, import it. Otherwise use this shape:
 export interface Movie {
   movieId: number;
@@ -52,8 +53,8 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
       title: 'Jurassic World: Rebirth',
       description:
         'Five years after Dominion, an expedition ventures into equatorial isolation to extract ancient DNA for a medical breakthrough.',
-      image: 'temp.png',     // or 'assets/images/temp.png'
-      video: 'temp.mp4',     // or 'assets/videos/temp.mp4'
+      image: 'temp.png',
+      video: 'temp.mp4',
     },
     {
       movieId: 32,
@@ -75,7 +76,11 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
   previewing: boolean[] = [];
   private startTimers = new Map<number, any>();
   private stopTimers = new Map<number, any>();
+
+  // visibility
   private io?: IntersectionObserver;
+  private useFallback = false;
+  private isCarouselVisible = false;
 
   /* ---------------------------
      INIT: seed watchlist state
@@ -94,24 +99,45 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
      Bootstrap + IntersectionObserver
      --------------------------------- */
   ngAfterViewInit(): void {
-    this.io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === this.carouselRef.nativeElement) {
-            if (!entry.isIntersecting || entry.intersectionRatio < 0.35) {
-              this.stopAll(true); // stop previews when scrolled away
+    const supportsIO =
+      typeof window !== 'undefined' && typeof (window as any).IntersectionObserver !== 'undefined';
+
+    if (supportsIO) {
+      // Use IO when available (browser)
+      this.io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === this.carouselRef.nativeElement) {
+              const visible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+              if (this.isCarouselVisible && !visible) this.stopAll(true);
+              this.isCarouselVisible = visible;
             }
-          }
-        });
-      },
-      { threshold: [0, 0.25, 0.35, 0.5, 0.75, 1] }
-    );
-    this.io.observe(this.carouselRef.nativeElement);
+          });
+        },
+        { threshold: [0, 0.25, 0.35, 0.5, 0.75, 1] }
+      );
+      this.io.observe(this.carouselRef.nativeElement);
+    } else {
+      // Fallback for SSR/old browsers: use scroll/resize checks
+      this.useFallback = true;
+      this.boundCheckVisible = this.checkVisibleFallback.bind(this);
+      window.addEventListener('scroll', this.boundCheckVisible, { passive: true });
+      window.addEventListener('resize', this.boundCheckVisible, { passive: true });
+      window.addEventListener('orientationchange', this.boundCheckVisible, { passive: true });
+      // initial check
+      setTimeout(() => this.checkVisibleFallback(), 0);
+    }
   }
 
   ngOnDestroy(): void {
     this.stopAll(true);
     this.io?.disconnect();
+
+    if (this.useFallback) {
+      window.removeEventListener('scroll', this.boundCheckVisible as any);
+      window.removeEventListener('resize', this.boundCheckVisible as any);
+      window.removeEventListener('orientationchange', this.boundCheckVisible as any);
+    }
   }
 
   /* ---------------------------
@@ -135,7 +161,6 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
     this.watchlistService.addToWatchlist(entry).subscribe({
       next: () => {
         this.busyIds.delete(movie.movieId);
-        // success: nothing else to do
         console.log(`➕ Added ${movie.title}`);
       },
       error: (err) => {
@@ -264,5 +289,30 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
       video.muted = this.muted;
       video.volume = this.muted ? 0 : 1;
     }
+  }
+
+  /* ---------------------------
+     Visibility fallback (no IO)
+     --------------------------- */
+  private boundCheckVisible?: () => void;
+
+  private checkVisibleFallback(): void {
+    const el = this.carouselRef?.nativeElement;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    // visible area ratio
+    const visibleW = Math.max(0, Math.min(rect.right, vw) - Math.max(rect.left, 0));
+    const visibleH = Math.max(0, Math.min(rect.bottom, vh) - Math.max(rect.top, 0));
+    const area = rect.width * rect.height;
+    const visibleArea = visibleW * visibleH;
+    const ratio = area > 0 ? visibleArea / area : 0;
+
+    const visible = ratio >= 0.35;
+    if (this.isCarouselVisible && !visible) this.stopAll(true);
+    this.isCarouselVisible = visible;
   }
 }

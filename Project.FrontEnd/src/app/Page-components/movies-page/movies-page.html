@@ -9,7 +9,7 @@
 
   <!-- Dynamic Genre Carousels -->
  @for (genre of genres; track genre.genreId) {
-  @if (genreMoviesMap[genre.genreId]?.length) {
+  @if (genreMoviesMap[genre.genreId].length) {
     <app-carousel [title]="genre.name" [movies]="genreMoviesMap[genre.genreId]"></app-carousel>
   }
 }
