@@ -37,7 +37,7 @@ export class LoginForm {
         } 
       },
       error: (err: HttpErrorResponse) => {
-        this.error = err.error.errors;
+        this.error = err.error.message;
       }
     }) 
   }

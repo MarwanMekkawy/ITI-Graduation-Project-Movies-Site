@@ -59,14 +59,14 @@
   pointer-events: none;
   background:
     radial-gradient(1200px 80% at calc(var(--leftBand) - 8%) 50%,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.12) 40%,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
       rgba(0, 0, 0, 0) 70%),
     linear-gradient(to right,
-      rgba(0, 0, 0, 0.98) 0%,
-      rgba(0, 0, 0, 0.98) calc(var(--leftBand) - 10%),
-      rgba(0, 0, 0, 0.80) var(--leftBand),
-      rgba(0, 0, 0, 0.40) calc(var(--leftBand) + 12%),
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.90) calc(var(--leftBand) - 10%),
+      rgba(0, 0, 0, 0.70) var(--leftBand),
+      rgba(0, 0, 0, 0.30) calc(var(--leftBand) + 12%),
       rgba(0, 0, 0, 0.00) calc(var(--leftBand) + 30%)),
     linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
 }
@@ -184,10 +184,9 @@
 .blackout {
   position: absolute;
   inset: 0;
-  background: #000;
+  background: #000; 
   opacity: 0;
   z-index: 1;
-  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
@@ -208,7 +207,6 @@
   object-fit: cover;
   /* keep aspect; no stretching */
   opacity: 0;
-  transition: opacity 0.35s ease;
 }
 
 .movie-slide.is-previewing .video-wrap video {
