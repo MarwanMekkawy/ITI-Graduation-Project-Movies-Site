@@ -1,0 +1,12 @@
+<div class="see-more-wrapper">
+  <h2 class="see-more-title display-4 fw-bold">{{ title }}</h2>
+
+  <div class="see-more-grid">
+    <!-- same logic: use m + trackById, no remove output -->
+    @for (m of movies; track trackById($index, m)) {
+      <app-movie-card
+        [movie]="m">
+      </app-movie-card>
+    }
+  </div>
+</div>

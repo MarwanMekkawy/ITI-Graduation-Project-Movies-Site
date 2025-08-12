@@ -1,25 +1,41 @@
 <!-- Render nothing if there are no movies -->
-<div class="carousel-container" *ngIf="hasMovies">
+@if (hasMovies) {
+<div class="carousel-container">
   <!-- Header -->
   <div class="carousel-header">
     <h2 class="carousel-title">{{ title }}</h2>
-    <a class="see-more" href="#">See more &gt;</a>
+
+    <!-- Pass the movies + title via router state -->
+    <a
+      class="see-more"
+      [routerLink]="['/browse']"
+      [state]="{ movies, title }"
+    >
+      See more &gt;
+    </a>
   </div>
 
   <!-- Body -->
   <div class="carousel-wrapper">
-    <button class="scroll-button left" (click)="scroll('left')">&#10094;</button>
+    <button class="scroll-button left" (click)="scroll('left')">
+      &#10094;
+    </button>
 
     <div class="carousel-scrollbar-wrapper">
       <div #scrollContainer class="carousel-scrollbar">
         <div class="carousel-track">
-          <div class="card-wrapper" *ngFor="let movie of movies; trackBy: trackByMovieId">
-            <app-movie-card [movie]="movie"></app-movie-card>
-          </div>
+           @for (movie of movies; track movie.movieId) {
+              <div class="card-wrapper">
+                <app-movie-card [movie]="movie"></app-movie-card>
+              </div>
+          }
         </div>
       </div>
     </div>
 
-    <button class="scroll-button right" (click)="scroll('right')">&#10095;</button>
+    <button class="scroll-button right" (click)="scroll('right')">
+      &#10095;
+    </button>
   </div>
 </div>
+}

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-episode-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './episode-list.html',
   styleUrl: './episode-list.css'
 })
@@ -42,6 +41,7 @@ export class EpisodeList {
       image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
       desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
     },
+    
     
   ];
 

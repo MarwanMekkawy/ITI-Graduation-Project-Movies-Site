@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Movie } from '../../core/models/movie';
 import { ExpandedMovieCard } from '../expanded-movie-card/expanded-movie-card';
 
 @Component({
   selector: 'app-expanded-carousel',
   standalone: true,
-  imports: [CommonModule, ExpandedMovieCard],
+  imports: [ RouterModule, ExpandedMovieCard], // <-- RouterModule added
   templateUrl: './expanded-carousel.html',
   styleUrls: ['./expanded-carousel.css']
 })
@@ -25,7 +25,6 @@ export class ExpandedCarousel implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Guard: when *ngIf hides the DOM, scrollContainer is undefined
     this.updateArrows();
   }
 
@@ -36,7 +35,7 @@ export class ExpandedCarousel implements AfterViewInit {
     const el = this.scrollContainer?.nativeElement;
     if (!el) return;
     const first = el.querySelector('.card-wrapper') as HTMLElement | null;
-    const amount = first ? first.offsetWidth + 12 /* gap */ : 320;
+    const amount = first ? first.offsetWidth + 12 : 320; // card width + gap
     el.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' });
     setTimeout(() => this.updateArrows(), 350);
   }
@@ -51,6 +50,5 @@ export class ExpandedCarousel implements AfterViewInit {
     this.canRight = el.scrollLeft + el.clientWidth < el.scrollWidth - eps;
   }
 
-  // (optional) better ngFor perf
   trackByMovieId = (_: number, m: Movie) => m.movieId;
 }

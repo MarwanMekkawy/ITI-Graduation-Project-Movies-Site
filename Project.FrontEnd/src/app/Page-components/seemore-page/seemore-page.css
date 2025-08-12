@@ -1,0 +1,20 @@
+.see-more-wrapper {
+  min-height: 95vh;
+  padding: 4.5rem 2rem 18rem 2rem;
+  background-color: var(--background-color);
+}
+
+.see-more-title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.see-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+  justify-items: start;
+  padding: 1rem 0;
+}

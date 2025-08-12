@@ -26,13 +26,15 @@ export class ExpandedMovieCard implements OnInit {
   private readonly watchlistService = inject(WatchlistService);
 
   // Replace with real auth user id
-  userId = 8;
+   private userId: any = localStorage.getItem(`user_id`); 
+
 
   // UI state
   isInWatchlist = false;
   busy = false; // prevents double-clicks and disables buttons during API calls
 
   ngOnInit(): void {
+      this.userId = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
     this.watchlistService.getUserWatchlist(this.userId).subscribe({
       next: (list: WatchList[]) => {
         this.isInWatchlist = !!list.find(x => x.movieId === this.movie.movieId);

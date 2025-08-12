@@ -1,6 +1,5 @@
 import { WatchlistService } from './../../core/services/watchlist-service';
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MovieCard } from "../../child-components/movie-card/movie-card";
 import { MoviesService } from '../../core/services/movies-service';
 import { Movie } from '../../core/models/movie';
@@ -9,7 +8,7 @@ import { WatchList } from '../../core/models/watch-list';
 @Component({
   selector: 'app-watchlist-page',
   standalone: true,
-  imports: [CommonModule, MovieCard],
+  imports: [ MovieCard],
   templateUrl: './watchlist-page.html',
   styleUrl: './watchlist-page.css'
 })
@@ -18,10 +17,12 @@ export class WatchlistPage implements OnInit {
   private readonly moviesService = inject(MoviesService);
 
   movies: Movie[] = [];
-  userId = 8; // Replace with actual user ID
+    private userId: any = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+ // Replace with actual user ID
 
   ngOnInit(): void {
     this.loadWatchlist();
+    this.userId = localStorage.getItem(`user_id`);
   }
 
   loadWatchlist(): void {

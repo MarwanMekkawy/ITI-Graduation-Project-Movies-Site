@@ -3,13 +3,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { GenreService } from './../../core/services/genre-service';
 import { Movie } from './../../core/models/movie';
 import { MovieCard } from "../../child-components/movie-card/movie-card";
-import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-genre-page',
   standalone: true,
-  imports: [MovieCard, CommonModule],
+  imports: [MovieCard],
   templateUrl: './genre-page.html',
   styleUrls: ['./genre-page.css']
 })

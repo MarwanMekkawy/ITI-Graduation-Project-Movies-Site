@@ -1,14 +1,32 @@
-import { Component } from '@angular/core';
-import { VideoPlayer } from "../../child-components/video-player/video-player";
-import { CarouselComponent } from "../../child-components/carousel/carousel";
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { VideoPlayer } from '../../child-components/video-player/video-player';
+import { CarouselComponent } from '../../child-components/carousel/carousel';
+import { MoviesService } from '../../core/services/movies-service';
+import { Movie } from '../../core/models/movie';
 
 @Component({
   selector: 'app-moviesplayer-page',
-  imports: [VideoPlayer,CarouselComponent,CommonModule],
+  imports: [VideoPlayer, CarouselComponent],
   templateUrl: './moviesplayer-page.html',
-  styleUrl: './moviesplayer-page.css'
+  styleUrl: './moviesplayer-page.css',
 })
 export class MoviesplayerPage {
-activeTab: string = 'related'; 
+  private readonly moviesService = inject(MoviesService);
+  movies!: Movie[];
+  topRatedMovies!: Movie[];
+
+  activeTab: string = 'related';
+  ngOnInit(): void {
+    // Core categories
+
+    this.moviesService.getAllMovies().subscribe({
+      next: (data) => (this.movies = data),
+      error: (err) => console.error('Failed to load movies:', err),
+    });
+
+    this.moviesService.getTopRatedMovies().subscribe({
+      next: (data) => (this.topRatedMovies = data),
+      error: (err) => console.error('Failed to load top rated movies:', err),
+    });
+  }
 }

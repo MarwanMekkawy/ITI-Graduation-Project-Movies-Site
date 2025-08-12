@@ -15,9 +15,8 @@
 
 /* Tab bar styles */
 .tab-bar {
-  width: 97%;
   border-radius: 15px;
-  margin: 3vh auto 1rem auto  ;
+   margin: 3vh 0 0 0;
   position: sticky;
   display: flex;
   background-color: var(--gray-color);
@@ -86,9 +85,12 @@
   transition: width 0.3s, left 0.3s;
 }
 .related-slider{
+    
     min-height: 60vh;
-    padding-top: 2rem; 
+    padding-top: 0.5rem; 
+    margin-bottom: 18rem;
 }
 .episode-list{
-    min-height: 60vh;
+  margin: 0.5rem 0;
+   min-height: 60vh;
 }

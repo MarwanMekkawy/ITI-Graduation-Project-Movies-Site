@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Movie } from '../../core/models/movie';
@@ -20,15 +20,15 @@ export class HoverPreview implements OnInit {
 
   private readonly watchlistService = inject(WatchlistService);
 
-  // Replace with your actual auth user id
-  userId = 8;
+  private userId: any = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
 
-  // UI state
   isInWatchlist = false;
-  busy = false; // prevents double clicks & disables buttons while API is running
+  busy = false;
+
 
   ngOnInit(): void {
-    // Check if this movie is already in the user's watchlist
+      this.userId = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+
     this.watchlistService.getUserWatchlist(this.userId).subscribe({
       next: (watchlist: WatchList[]) => {
         this.isInWatchlist = !!watchlist.find(w => w.movieId === this.movie.movieId);
@@ -36,6 +36,12 @@ export class HoverPreview implements OnInit {
       error: (err) => console.error('Failed to load watchlist for check:', err)
     });
   }
+
+  @HostListener('mouseenter')
+  onOverlayEnter() { this.mouseEntered.emit(); }
+
+  @HostListener('mouseleave')
+  onOverlayLeave() { this.mouseLeft.emit(); }
 
   onAddClick(): void {
     if (this.isInWatchlist || this.busy) return;
@@ -68,7 +74,7 @@ export class HoverPreview implements OnInit {
       next: () => {
         this.isInWatchlist = false;
         this.busy = false;
-        this.removed.emit(this.movie.movieId); // notify parent if needed
+        this.removed.emit(this.movie.movieId);
         console.log(`🗑️ Removed ${this.movie.title}`);
       },
       error: (err) => {
@@ -83,7 +89,6 @@ export class HoverPreview implements OnInit {
   }
 
   onBlockClick(): void {
-    // Kept your legacy handler; it now simply calls the guarded remove
     if (this.isInWatchlist) this.onRemoveClick();
     else console.log('🚫 Not in watchlist to remove:', this.movie);
   }

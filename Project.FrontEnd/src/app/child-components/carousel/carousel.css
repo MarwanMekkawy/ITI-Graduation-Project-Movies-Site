@@ -22,7 +22,8 @@ padding-bottom: 35px;
 }
 
 .carousel-title {
-  padding-top: 10px;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
   font-size: 1.4rem;
   font-weight: bold;
   color: #ffffff;
@@ -71,7 +72,7 @@ padding-bottom: 35px;
 
 .carousel-track {
   display: flex;
-  gap: 0.1rem;         /* keep spacing between cards */
+  gap: 1.2rem;         /* keep spacing between cards */
   padding: 0;        /* was 0 1.5rem 1rem 1.5rem → that added side gaps */
 }
 

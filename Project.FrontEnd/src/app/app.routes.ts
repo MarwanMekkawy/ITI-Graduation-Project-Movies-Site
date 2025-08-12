@@ -14,6 +14,7 @@ import { AllgenresPage } from './Page-components/allgenres-page/allgenres-page';
 import { WelcomePage } from './Page-components/welcome-page/welcome-page';
 import { GenrePage } from './Page-components/genre-page/genre-page';
 import { authGuard } from './core/guards/auth-guard';
+import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 
 
 
@@ -37,6 +38,8 @@ export const routes: Routes = [
     { path: 'movies/player', component: MoviesplayerPage, title: 'MoviesPlayer' },
     { path: 'series/player', component: SeriesplayerPage, title: 'SeriesPlayer' },
     { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' },
+    { path: 'browse', component: SeemorePage, title: 'browse' },
+
 
     { path: '**', component: ErrorPage, title: 'Error' }
 ];

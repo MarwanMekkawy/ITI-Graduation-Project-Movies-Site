@@ -18,13 +18,20 @@
   font-weight: 700;
 }
 .see-more {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
+  color: white;
   text-decoration: none;
-  transition: color .2s ease;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-left: 10px;
 }
-.see-more:hover { color: #82cfff; }
+
+.see-more:hover {
+  color: #82cfff;
+  
+}
+
 
 /* structure */
 .carousel-wrapper,
