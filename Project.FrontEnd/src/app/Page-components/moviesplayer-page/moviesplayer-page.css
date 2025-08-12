@@ -1,23 +1,21 @@
 /* Container spacing */
-
 .tab-container{
-  margin: 0 2rem  ;
+  margin: 0 2rem ;
   display: flex;
   flex-direction: column;
 }
 .page-container {
   display: flex;
   flex-direction: column;
-  padding: 4.3rem 0rem 20rem 0rem;
+  padding-top: 4.3rem;
   gap: 1rem;
   background-color: var(--background-color);
 
 }
 /* Tab bar styles */
 .tab-bar {
-  width: 97%;
   border-radius: 15px;
-  margin: 3vh auto 1rem auto  ;
+  margin: 3vh 0 0 0;
   position: sticky;
   display: flex;
   background-color: var(--gray-color);
@@ -85,6 +83,8 @@
   transition: width 0.3s, left 0.3s;
 }
 .related-slider{
+    margin: 0 2rem  ;
     min-height: 60vh;
     padding-top: 2rem; 
+     margin-bottom: 18rem;
 }

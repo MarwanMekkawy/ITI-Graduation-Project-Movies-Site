@@ -5,8 +5,9 @@
   </app-video-player>
 
   <!-- Tab Bar -->
-  <div class="tab-bar" >
-  
+   <div class="tab-container">
+
+  <div class="tab-bar">
     <div
       class="tab"
       [class.active]="activeTab === 'related'"
@@ -14,11 +15,13 @@
       Related
     </div>
   </div>
+  </div>
 
   <!-- Tab Content -->
-
-  <div class="related-slider" *ngIf="activeTab === 'related'">
-    <app-carousel title="Related" ></app-carousel>
-     <app-carousel title="Recommended Movies" ></app-carousel>
-  </div>
+  @if (activeTab === 'related') {
+    <div class="related-slider">
+      <app-carousel title="Related" [movies]="movies"></app-carousel>
+      <app-carousel title="Recommended Movies" [movies]="topRatedMovies"></app-carousel>
+    </div>
+  }
 </div>

@@ -1,19 +1,19 @@
 <div class="series-page-container">
   <app-carousel title="Recommended Series" [movies]="series"></app-carousel>
-    <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
+  <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
 
-    <app-expanded-carousel
+  <app-expanded-carousel
     [title]="'Top Rated Series'"
-    [movies]="topRatedSeries"
-  >
+    [movies]="topRatedSeries">
   </app-expanded-carousel>
 
   <!-- Dynamic Genre Carousels -->
-  <ng-container *ngFor="let genre of genres">
-    <app-carousel
-      *ngIf="genreSeriesMap[genre.genreId]?.length"
-      [title]="genre.name"
-      [movies]="genreSeriesMap[genre.genreId]">
-    </app-carousel>
-  </ng-container>
+  @for (genre of genres; track genre.genreId) {
+    @if (genreSeriesMap[genre.genreId].length) {
+      <app-carousel
+        [title]="genre.name"
+        [movies]="genreSeriesMap[genre.genreId]">
+      </app-carousel>
+    }
+  }
 </div>

@@ -1,10 +1,26 @@
 <div class="search-wrapper">
-  <h2 class="search-title">Top Results</h2>
+  <h2 class="search-title">
+    @if (query && movies.length === 0) {
+      No results found for “{{ query }}”
+    } @else if (query) {
+      Top Results for “{{ query }}”
+    } @else {
+      Browse
+    }
+  </h2>
 
   <div class="search-grid">
-    <app-movie-card
-      *ngFor="let movie of movies"
-      [movie]="movie">
-    </app-movie-card>
+    @for (movie of movies; track (movie.movieId ?? movie.movieId ?? $index)) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
   </div>
+
+  @if (relatedMovies.length > 0) {
+    <h2 class="search-title">Related Results</h2>
+    <div class="search-grid">
+      @for (movie of relatedMovies; track (movie.movieId ?? movie.movieId ?? $index)) {
+        <app-movie-card [movie]="movie"></app-movie-card>
+      }
+    </div>
+  }
 </div>

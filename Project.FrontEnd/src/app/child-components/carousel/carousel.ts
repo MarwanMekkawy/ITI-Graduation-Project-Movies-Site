@@ -1,6 +1,6 @@
 import { Movie } from '../../core/models/movie';
 import { Component, ViewChild, ElementRef, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MovieCard } from '../movie-card/movie-card';
 
 @Component({
@@ -8,13 +8,14 @@ import { MovieCard } from '../movie-card/movie-card';
   standalone: true,
   templateUrl: './carousel.html',
   styleUrl: './carousel.css',
-  imports: [CommonModule, MovieCard]
+  imports: [ RouterModule, MovieCard]
 })
 export class CarouselComponent {
   @Input() title: string = '';
   @Input() movies!: Movie[];
 
-  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('scrollContainer', { static: false })
+  scrollContainer!: ElementRef<HTMLDivElement>;
 
   get hasMovies(): boolean {
     return Array.isArray(this.movies) && this.movies.length > 0;
@@ -29,6 +30,5 @@ export class CarouselComponent {
     });
   }
 
-  // (optional) better *ngFor performance
-  trackByMovieId = (_: number, m: Movie) => m.movieId;
+trackByMovieId = (_: number, m: Movie) => m.movieId;
 }

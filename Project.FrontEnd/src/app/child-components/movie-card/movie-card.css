@@ -1,38 +1,32 @@
 :host {
-  margin-top: 10px;
-  display: block;                       /* This is critical */
+  display: block;
   position: relative;
+
+  /* Fill cell but don’t grow past a nice max */
   width: 100%;
-  max-width: 300px;
+  max-width: 26rem;      /* ~416px @16px root — tweak to taste */
+  justify-self: center;  /* center the card within its grid column */
+
   color: white;
   font-family: Arial, sans-serif;
   background-color: transparent;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-  transform-origin: center center;
+  transform-origin: center;
+  box-sizing: border-box;
 }
 
 .poster-wrapper {
+  max-width: 20rem;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  height: 180px;
+  aspect-ratio: 16 / 9;
 }
 
 .poster {
-  /* option A: no side gaps */
   width: 100%;
-  display: block;
   height: 100%;
-  object-fit: cover;        /* don't stretch */
+  object-fit: cover;
   border-radius: 12px;
   transition: transform .4s ease-in-out .1s, border-radius .3s ease;
-}
-
-
-/* Responsive behavior */
-@media screen and (max-width: 768px) {
-  .movie-card {
-    max-width: 100%;                         /* Full width on smaller screens */
-  }
 }

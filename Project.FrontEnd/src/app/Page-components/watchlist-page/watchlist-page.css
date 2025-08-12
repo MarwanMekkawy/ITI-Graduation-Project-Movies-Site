@@ -1,20 +1,21 @@
-/* watchlist-page.css */
 .watchlist-wrapper {
-  min-height: 85vh;
-  padding: 4.5rem 2rem 1rem 2rem;
+  min-height: 95vh;
+   padding: 4.5rem 2rem 18rem 2rem;
   background-color: var(--background-color);
 }
 
 .watchlist-title {
+  font-size: 2rem;
   color: white;
   margin-bottom: 1rem;
 }
 
+/* Grid version */
 .watchlist-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* auto-fill instead of auto-fit */
   gap: 1.5rem;
-  justify-content: flex-start; /* or center */
+  align-items: start;
+  justify-items: start; /* force start alignment */
   padding: 1rem 0;
-  overflow: auto;
 }

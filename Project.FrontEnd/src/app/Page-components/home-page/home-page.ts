@@ -6,13 +6,12 @@ import { GenreService } from './../../core/services/genre-service';
 import { Movie } from '../../core/models/movie';
 import { SlideShow } from "../../child-components/slide-show/slide-show";
 import { CarouselComponent } from "../../child-components/carousel/carousel";
-import { ExpandedMovieCard } from "../../child-components/expanded-movie-card/expanded-movie-card";
 import { ExpandedCarousel } from "../../child-components/expanded-carousel/expanded-carousel";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, SlideShow, CarouselComponent, ExpandedCarousel],
+  imports: [ SlideShow, CarouselComponent, ExpandedCarousel],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })

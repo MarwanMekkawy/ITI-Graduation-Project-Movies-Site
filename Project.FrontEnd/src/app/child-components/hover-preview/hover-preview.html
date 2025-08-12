@@ -38,11 +38,12 @@
         {{ movie.releaseDate | date:'MMM yyyy':'UTC' }}
       </span>
 
-      <span class="tag tag-rating"
-            *ngIf="movie.imDbRating !== undefined && movie.imDbRating !== null">
-        {{ movie.imDbRating }}
-        <img class="imdb-logo" src="IMDB_Logo.svg" alt="IMDb" />
-      </span>
+      @if (movie.imDbRating !== undefined && movie.imDbRating !== null) {
+        <span class="tag tag-rating">
+          {{ movie.imDbRating }}
+          <img class="imdb-logo" src="IMDB_Logo.svg" alt="IMDb" />
+        </span>
+      }
     </div>
 
     <p class="hover-desc">{{ movie.description }}</p>
