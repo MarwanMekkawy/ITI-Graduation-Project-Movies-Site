@@ -4,6 +4,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../core/services/auth/login-service';
+import { IsLogged } from '../../core/services/auth/is-logged';
 
 @Component({
   selector: 'app-login-form',
@@ -21,9 +22,11 @@ export class LoginForm {
   private readonly loginservice = inject(LoginService);
   private readonly authService = inject(AuthService);
   private readonly redirect = inject(Router);
+  private readonly logged = inject(IsLogged);
+
   error: string = '';
 
-  registerTheForm(): void { 
+  registerTheForm(): void {
     if (this.login.invalid) {           //applies validation
       this.login.markAllAsTouched();
       return;
@@ -34,11 +37,12 @@ export class LoginForm {
         if (res.token) {
           this.loginservice.tokenprocessing(res.token);
           this.redirect.navigate([`/home`]);
-        } 
+          this.logged.refreshNav();
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = err.error.message;
       }
-    }) 
+    })
   }
 }

@@ -6,6 +6,7 @@ import { NavbarProfileDropdown } from "./navbar-profile-dropdown/navbar-profile-
 import { NavbarGenreDropdown } from "./navbar-genre-dropdown/navbar-genre-dropdown";
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
+import { IsLogged } from '../../core/services/auth/is-logged';
 
 
 
@@ -17,9 +18,14 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./navbar.css'],
 })
 export class Navbar implements OnInit {
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private logged:IsLogged) { }
+
+  UserIsLogged=false;
 
   ngOnInit(): void {
+    // Subscribe to changes from service
+    this.logged.loggedIn$.subscribe(status => { this.UserIsLogged = status;});
+    
     // Detect route change and hide search bar if navigating to /search
   this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {

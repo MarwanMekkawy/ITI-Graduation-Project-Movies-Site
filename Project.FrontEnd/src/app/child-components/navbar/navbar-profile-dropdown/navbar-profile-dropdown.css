@@ -11,9 +11,17 @@
 .account-header {
   font-size: 0.75rem;
   color: #999;
-  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+.user-name{
+  font-weight:400 ;
+  cursor: pointer ;
+}
+
+hr {
+  margin-top: .6rem; 
+  margin-bottom: 1rem; 
 }
 
 .account-content {

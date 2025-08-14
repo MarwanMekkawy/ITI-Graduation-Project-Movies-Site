@@ -13,7 +13,7 @@ import { HomePage } from './Page-components/home-page/home-page';
 import { AllgenresPage } from './Page-components/allgenres-page/allgenres-page';
 import { WelcomePage } from './Page-components/welcome-page/welcome-page';
 import { GenrePage } from './Page-components/genre-page/genre-page';
-import { authGuard } from './core/guards/auth-guard';
+import { loggedOut ,loggedIn } from './core/guards/auth-guard';
 import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 
 
@@ -24,21 +24,20 @@ import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Home' },                              //welcome-each genre still to impelement
 
-    { path: 'welcomepage', component: WelcomePage, title: 'Welcomepage' },
-
-    { path: 'home', component: HomePage, title: 'Home' ,},
-    { path: 'login', component: LoginPage, title: 'Login' },
-    { path: 'signup', component: SignupPage, title: 'Signup' },
-    { path: 'profile', component: ProfilePage, title: 'Profile' },
-    { path: 'search', component: SearchPage, title: 'Search' },
-    { path: 'genres', component: AllgenresPage, title: 'Genres' ,/*canActivate:[authGuard]*/},
-    { path: 'genres/:id', component: GenrePage },                                                           ///////////////////
-    { path: 'movies', component: MoviesPage, title: 'Movies'},
-    { path: 'series', component: SeriesPage, title: 'Series' },
-    { path: 'movies/player', component: MoviesplayerPage, title: 'MoviesPlayer' },
-    { path: 'series/player', component: SeriesplayerPage, title: 'SeriesPlayer' },
-    { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' },
-    { path: 'browse', component: SeemorePage, title: 'browse' },
+    { path: 'welcomepage', component: WelcomePage, title: 'Welcomepage' ,canActivate:[loggedIn]},
+    { path: 'home', component: HomePage, title: 'Home' ,canActivate:[loggedOut]},
+    { path: 'login', component: LoginPage, title: 'Login' ,canActivate:[loggedIn]},
+    { path: 'signup', component: SignupPage, title: 'Signup' ,canActivate:[loggedIn]},
+    { path: 'profile', component: ProfilePage, title: 'Profile' ,canActivate:[loggedOut]},
+    { path: 'search', component: SearchPage, title: 'Search' ,canActivate:[loggedOut]},
+    { path: 'genres', component: AllgenresPage, title: 'Genres' ,canActivate:[loggedOut]},
+    { path: 'genres/:id', component: GenrePage ,canActivate:[loggedOut]},                                                           
+    { path: 'movies', component: MoviesPage, title: 'Movies',canActivate:[loggedOut]},
+    { path: 'series', component: SeriesPage, title: 'Series' ,canActivate:[loggedOut]},
+    { path: 'movies/player', component: MoviesplayerPage, title: 'MoviesPlayer' ,canActivate:[loggedOut]},
+    { path: 'series/player', component: SeriesplayerPage, title: 'SeriesPlayer' ,canActivate:[loggedOut]},
+    { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' ,canActivate:[loggedOut]},
+    { path: 'browse', component: SeemorePage, title: 'browse' ,canActivate:[loggedOut]},
 
 
     { path: '**', component: ErrorPage, title: 'Error' }
