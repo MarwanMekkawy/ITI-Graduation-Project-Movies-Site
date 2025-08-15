@@ -24,7 +24,7 @@ import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Home' },                              //welcome-each genre still to impelement
 
-    { path: 'welcomepage', component: WelcomePage, title: 'Welcomepage' ,canActivate:[loggedIn]},
+    { path: 'welcomepage', component: WelcomePage, title: 'Welcome to Prime' ,canActivate:[loggedIn]},
     { path: 'home', component: HomePage, title: 'Home' ,canActivate:[loggedOut]},
     { path: 'login', component: LoginPage, title: 'Login' ,canActivate:[loggedIn]},
     { path: 'signup', component: SignupPage, title: 'Signup' ,canActivate:[loggedIn]},
