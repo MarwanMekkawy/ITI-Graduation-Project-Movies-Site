@@ -305,11 +305,13 @@
 /* Common Elements */
 /* =================================== */
 .common-button {
-  width: clamp(10rem, 30%, 16rem);
-  height: clamp(2.5rem, 8vw, 4rem)!important;
+  width: 16rem;
+  height: 4rem;
+  min-height: 4rem;   
+  flex-shrink: 0;    
   border-radius: 8px;
   font-size: clamp(0.5rem, 2vw, 1.2rem);
-  font-weight: 600;
+  font-weight: 700;
   background-color: var(--white-color);
   color:var(--black-color);
   border: none;
@@ -320,11 +322,29 @@
   justify-content: center;
 }
 .or{
-  width: clamp(8rem, 30%, 16rem);
+  width: 16rem;
   font-size: clamp(0.5rem, 2vw, 1.2rem);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  position: relative;
+  bottom: -0.2rem; /* moves line up or down */
+}
+
+.or::before {
+  margin-right: 0.5em;
+}
+
+.or::after {
+  margin-left: 0.5em;
 }
 
 .common-button:hover {
@@ -390,5 +410,11 @@
   .or{
     width: 95%;
     font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .left-section1,
+  .right-section2,
+  .left-section4{
+    padding-top: 3rem;
   }
 }
