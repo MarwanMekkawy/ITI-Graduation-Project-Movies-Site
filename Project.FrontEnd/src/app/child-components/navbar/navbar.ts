@@ -10,7 +10,7 @@ import { IsLogged } from '../../core/services/auth/is-logged';
 
 
 
-@Component({
+@Component({ 
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, SearchBarComponent, NavbarProfileDropdown, NavbarGenreDropdown, RouterLink, RouterLinkActive],
@@ -34,6 +34,21 @@ export class Navbar implements OnInit {
       }
     }
   });
+  }
+
+  //dark/light mode switch//
+   isDarkMode = false;
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+
+    if (this.isDarkMode) {
+      document.documentElement.style.setProperty('--primaryddd-color', '#ffffff');
+      document.documentElement.style.setProperty('--backgroundddd-color', '#121212');
+    } else {
+      document.documentElement.style.setProperty('--primaryddd-color', '#3498db');
+      document.documentElement.style.setProperty('--backgroundddd-color', '#ffffff');
+    }
   }
 
 

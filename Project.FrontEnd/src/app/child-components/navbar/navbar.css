@@ -8,7 +8,7 @@
   border: 1px solid var(--text-color);
   border-radius: 0 0 4px 4px;
   background-color: transparent;
-  box-shadow: none;                            
+  box-shadow: none;
 }
 
 .navbar-toggler:focus,
@@ -47,11 +47,12 @@ nav.navbar.scrolled {
   border-radius: 0 0 12px 12px;
 }
 
-.navbar-brand{
-font-size: 1.3rem;
-font-weight: 700;
-cursor: pointer;
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
 }
+
 /* Nav links: pill‑hover, no underline */
 .nav-item {
   font-size: 1.1rem;
@@ -153,4 +154,61 @@ cursor: pointer;
   height: 100vh;
   z-index: 90000;
   background-color: rgba(var(--black-color-2), 0.6);
+}
+
+
+/*dark/light mode switch*/
+
+.custom-switch {
+  width: 45px;
+  /* was 50px → 10% smaller */
+  height: 22.5px;
+  /* was 25px → 10% smaller */
+  background: rgba(204, 204, 204, 0.3);
+  border-radius: 22.5px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-switch .slider {
+  width: 19px;
+  /* was 21px */
+  height: 19px;
+  /* was 21px */
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.75px;
+  /* adjusted for smaller height */
+  left: 2px;
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  /* smoother + bounce */
+}
+
+/* Active (dark mode) */
+.custom-switch.active {
+  background: red;
+}
+
+.custom-switch.active .slider {
+  transform: translateX(23px);
+  /* adjusted for smaller width */
+}
+
+/* custom-icons */
+
+.sun {
+  font-size: 1.3rem;
+  color: gold;
+  margin-left: 4px;
+  padding-top: 5px;
+}
+
+.moon {
+  font-size: 1.3rem;
+  color: gold;
+  margin-right: 3px;
+  padding-top: 5px;
+
 }
