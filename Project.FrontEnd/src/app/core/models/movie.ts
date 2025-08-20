@@ -7,5 +7,12 @@ export interface Movie {
   posterUrl: string;
   movieImage: string;
   imDbRating: number;
+  episodes?: Episode[]; // optional because movies won’t have it
   genres: (MovieGenre| null)[]; // Some items are null
+}
+export interface Episode {
+  episodeId: number;
+  title: string;
+  episodeUrl: string;
+  episodeImage: string;
 }

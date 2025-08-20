@@ -2,13 +2,12 @@ import { DeleteService } from './../../core/services/auth/delete-service';
 import { UpdateService } from './../../core/services/auth/update-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './../../core/services/auth/auth-service';
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UpdateRequest } from '../../core/models/update-request';
 import { UserService } from '../../core/services/auth/user-service';
-import { NgxImageCompressService } from 'ngx-image-compress';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -27,24 +26,22 @@ export class Profile implements OnInit {
     confirmPassword: new FormControl('')
   });
 
-  //   VIEWCHILD & STATE
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  //   STATE
   user: UpdateRequest | null = null;
   profileImage: string = 'ProfilePlaceholder.jpg';
   editMode = false;
   passwordMatch = true;
   deleteConfirmMode = false;
   error: string[] = [];
-  private userId: any = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+  private userId: any = localStorage.getItem(`user_id`);
 
   //   CONSTRUCTOR (SERVICES)
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private imageCompress: NgxImageCompressService,
     private updateService: UpdateService,
-    private deleteService:DeleteService,
-    private router:Router
+    private deleteService: DeleteService,
+    private router: Router
   ) { }
 
   //   LIFECYCLE HOOK
@@ -70,38 +67,9 @@ export class Profile implements OnInit {
     });
   }
 
-  //   IMAGE HANDLING
-  onPicClick(ev: MouseEvent) {
-    if (!this.editMode) {
-      ev.preventDefault();
-      ev.stopPropagation();
-      return;
-    }
-    this.triggerFileInput();
-  }
-
-  triggerFileInput() {
-    this.fileInput?.nativeElement?.click();
-  }
-
+  //   IMAGE FALLBACK
   onImgError() {
     this.profileImage = '/ProfilePlaceholder.jpg';
-  }
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (!input.files || !input.files[0]) return;
-
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      const originalBase64 = e.target.result as string;
-      this.imageCompress.compressFile(originalBase64, -1, 30, 30).then(compressed => {
-        this.profileImage = compressed;
-        if (this.user) this.user.userImage = compressed;
-      });
-    };
-    reader.readAsDataURL(file);
   }
 
   //   EDIT TOGGLE
@@ -120,12 +88,8 @@ export class Profile implements OnInit {
 
   //   FORM SUBMISSION
   registerUpdateForm(): void {
-     if (this.updateForm.invalid) {           //applies validation
-      this.updateForm.markAllAsTouched(); 
-      console.log("hohohohohohoooooo")
-      console.log(this.updateForm.get(`username`)?.errors)
-      console.log(this.updateForm.get(`email`)?.errors)
-      console.log(this.updateForm.get(`password`)?.errors)
+    if (this.updateForm.invalid) {
+      this.updateForm.markAllAsTouched();
       return;
     }
     if (!this.user) return;
@@ -176,15 +140,15 @@ export class Profile implements OnInit {
   cancelPromptDelete() { this.deleteConfirmMode = false; }
 
   confirmDelete() {
-  this.deleteService.DeleteUser(this.userId).subscribe({
-    next: () => {
-      this.router.navigate(['/welcomepage']);
-    },
-    error: (err) => {
-      console.log(`Delete failed : ${err}`);
-    }
-  });
-}
+    this.deleteService.DeleteUser(this.userId).subscribe({
+      next: () => {
+        this.router.navigate(['/welcomepage']);
+      },
+      error: (err) => {
+        console.log(`Delete failed : ${err}`);
+      }
+    });
+  }
 
   //   GETTERS
   get maskedPassword(): string { return this.user?.password ? '********' : '********'; }

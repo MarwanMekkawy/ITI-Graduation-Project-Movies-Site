@@ -3,18 +3,12 @@
     <div class="row">
       <!-- Profile Picture -->
       <div class="col-md-4 d-flex align-items-center justify-content-center">
-        <div class="profile-pic-wrapper position-relative" [class.locked]="!editMode" [attr.aria-disabled]="!editMode"
-          (click)="onPicClick($event)">
-          <img [src]="profileImage || 'assets/ProfilePlaceholder.jpg'" (error)="onImgError()" alt="Profile"
-            class="profile-pic rounded-circle" />
-
-          @if (editMode) {
-          <div class="overlay text-white d-flex justify-content-center align-items-center">
-            Change
-          </div>
-          }
+        <div class="profile-pic-wrapper position-relative">
+          <img [src]="profileImage || 'assets/ProfilePlaceholder.jpg'"
+               (error)="onImgError()"
+               alt="Profile"
+               class="profile-pic rounded-circle" />
         </div>
-        <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
       </div>
 
       <!-- Profile Info -->
@@ -22,67 +16,65 @@
         <div class="form-group mb-3">
           <label>Username</label>
           @if (!editMode) {
-          <div>{{ user?.username }}</div>
+            <div>{{ user?.username }}</div>
           }
           @if (editMode) {
-          <input formControlName="username" class="form-control" />
+            <input formControlName="username" class="form-control" />
           }
         </div>
         @if(updateForm.get(`username`)?.errors && updateForm.get(`username`)?.touched){
-        <div class="text-danger">
-          <ul>
-            @if(updateForm.get(`username`)?.getError(`required`)){<li>name cannot be empty</li>}
-            @else if(updateForm.get(`username`)?.getError(`minlength`)){<li>name min length 4 characters</li>}
-            @else if(updateForm.get(`username`)?.getError(`maxlength`)){<li>name max length 20 characters</li>}
-          </ul>
-        </div>
+          <div class="text-danger">
+            <ul>
+              @if(updateForm.get(`username`)?.getError(`required`)){<li>name cannot be empty</li>}
+              @else if(updateForm.get(`username`)?.getError(`minlength`)){<li>name min length 4 characters</li>}
+              @else if(updateForm.get(`username`)?.getError(`maxlength`)){<li>name max length 20 characters</li>}
+            </ul>
+          </div>
         }
 
         <div class="form-group mb-3">
           <label>Email</label>
           @if (!editMode) {
-          <div>{{ user?.email }}</div>
+            <div>{{ user?.email }}</div>
           }
           @if (editMode) {
-          <input formControlName="email" class="form-control" />
+            <input formControlName="email" class="form-control" />
           }
         </div>
         
         @if(updateForm.get(`email`)?.errors && updateForm.get(`email`)?.touched){
-        <div class="text-danger">
-          <ul>
-            @if(updateForm.get(`email`)?.getError(`required`)){<li>email is required</li>}
-            @else if(updateForm.get(`email`)?.getError(`email`)){<li>only valid E-mail format</li>}
-          </ul>
-        </div>
+          <div class="text-danger">
+            <ul>
+              @if(updateForm.get(`email`)?.getError(`required`)){<li>email is required</li>}
+              @else if(updateForm.get(`email`)?.getError(`email`)){<li>only valid E-mail format</li>}
+            </ul>
+          </div>
         }
 
         <div class="form-group mb-3">
           <label>Password</label>
           @if (!editMode) {
-          <div>{{ maskedPassword }}</div>
+            <div>{{ maskedPassword }}</div>
           }
           @if (editMode) {
-          <input type="password" formControlName="password" class="form-control mb-2" (input)="checkPasswords()"
-            placeholder="New Password" />
-          @if(updateForm.get(`password`)?.errors && updateForm.get(`password`)?.touched){
-          <div class="text-danger">
-            <ul>
-              @if(updateForm.get(`password`)?.getError(`pattern`)){<li>[a-z & A-Z & 123] only allowed</li>}
-              @else if(updateForm.get(`password`)?.getError(`minlength`)){<li>password must be at least 8 characters
-              </li>}
-              @else if(updateForm.get(`password`)?.getError(`maxlength`)){<li>password must not exceed 20 characters
-              </li>}
-            </ul>
-          </div>
-          }
-          <input type="password" formControlName="confirmPassword" class="form-control" (input)="checkPasswords()"
-            placeholder="Confirm Password" />
-          @if (updateForm.get('password')?.value && updateForm.get('confirmPassword')?.value) {
-          <small [ngClass]="{'text-danger': !passwordMatch, 'text-success': passwordMatch}">
-            {{ passwordMatch ? 'Passwords match' : 'Passwords do not match' }}
-          </small>
-          }
+            <input type="password" formControlName="password" class="form-control mb-2" (input)="checkPasswords()"
+                   placeholder="New Password" />
+            @if(updateForm.get(`password`)?.errors && updateForm.get(`password`)?.touched){
+              <div class="text-danger">
+                <ul>
+                  @if(updateForm.get(`password`)?.getError(`pattern`)){<li>[a-z & A-Z & 123] only allowed</li>}
+                  @else if(updateForm.get(`password`)?.getError(`minlength`)){<li>password must be at least 8 characters</li>}
+                  @else if(updateForm.get(`password`)?.getError(`maxlength`)){<li>password must not exceed 20 characters</li>}
+                </ul>
+              </div>
+            }
+            <input type="password" formControlName="confirmPassword" class="form-control" (input)="checkPasswords()"
+                   placeholder="Confirm Password" />
+            @if (updateForm.get('password')?.value && updateForm.get('confirmPassword')?.value) {
+              <small [ngClass]="{'text-danger': !passwordMatch, 'text-success': passwordMatch}">
+                {{ passwordMatch ? 'Passwords match' : 'Passwords do not match' }}
+              </small>
+            }
           }
         </div>
 
@@ -92,34 +84,34 @@
         </div>
 
         @if (error.length > 0) {
-        <div class="text-danger">
-          <ul class="mb-0">
-            @for (item of error; track $index) {<li class="fw-bold">{{ item }}</li>}
-          </ul>
-        </div>
+          <div class="text-danger">
+            <ul class="mb-0">
+              @for (item of error; track $index) {<li class="fw-bold">{{ item }}</li>}
+            </ul>
+          </div>
         }
 
         <!-- Action Buttons -->
         <div class="d-flex flex-column align-items-center mt-4">
           @if (!editMode) {
-          @if (!deleteConfirmMode) {
-          <button type="button" class="btn btn-primary w-100 mb-2" (click)="toggleEdit()">Change Info</button>
-          <button type="button" class="btn btn-danger w-100" (click)="promptDelete()">Delete Account</button>
-          }
-          @else {
-          <div class="w-100">
-            <div class="mb-2 text-center confirm-warning">Are you sure you want to delete your account?</div>
-            <button type="button" class="btn btn-danger w-100 mb-2" (click)="confirmDelete()">Confirm Delete</button>
-            <button type="button" class="btn btn-secondary w-100" (click)="cancelPromptDelete()">Cancel</button>
-          </div>
-          }
+            @if (!deleteConfirmMode) {
+              <button type="button" class="btn btn-primary w-100 mb-2" (click)="toggleEdit()">Change Info</button>
+              <button type="button" class="btn btn-danger w-100" (click)="promptDelete()">Delete Account</button>
+            }
+            @else {
+              <div class="w-100">
+                <div class="mb-2 text-center confirm-warning">Are you sure you want to delete your account?</div>
+                <button type="button" class="btn btn-danger w-100 mb-2" (click)="confirmDelete()">Confirm Delete</button>
+                <button type="button" class="btn btn-secondary w-100" (click)="cancelPromptDelete()">Cancel</button>
+              </div>
+            }
           }
 
           @if (editMode) {
-          <div class="w-100">
-            <button type="submit" class="btn btn-success w-100 mb-2">Save Changes</button>
-            <button type="button" class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
-          </div>
+            <div class="w-100">
+              <button type="submit" class="btn btn-success w-100 mb-2">Save Changes</button>
+              <button type="button" class="btn btn-secondary w-100" (click)="cancelChanges()">Cancel</button>
+            </div>
           }
         </div>
       </div>

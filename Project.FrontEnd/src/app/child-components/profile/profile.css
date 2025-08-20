@@ -3,7 +3,6 @@
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  cursor: pointer;
 }
 
 /* When not editing: no clicks, normal cursor */

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Movie } from '../../core/models/movie';
 import { WatchList } from '../../core/models/watch-list';
 import { WatchlistService } from '../../core/services/watchlist-service';
+import { ActivatedRoute, Router } from '@angular/router';  // ✅ FIXED import
 
 @Component({
   selector: 'app-hover-preview',
@@ -20,14 +21,14 @@ export class HoverPreview implements OnInit {
 
   private readonly watchlistService = inject(WatchlistService);
 
-  private userId: any = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
-
+  private userId: any = localStorage.getItem(`user_id`);
   isInWatchlist = false;
   busy = false;
 
+  constructor(private router: Router) {}   // ✅ Angular Router injected here
 
   ngOnInit(): void {
-      this.userId = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+    this.userId = localStorage.getItem(`user_id`);
 
     this.watchlistService.getUserWatchlist(this.userId).subscribe({
       next: (watchlist: WatchList[]) => {
@@ -38,10 +39,14 @@ export class HoverPreview implements OnInit {
   }
 
   @HostListener('mouseenter')
-  onOverlayEnter() { this.mouseEntered.emit(); }
+  onOverlayEnter() {
+    this.mouseEntered.emit();
+  }
 
   @HostListener('mouseleave')
-  onOverlayLeave() { this.mouseLeft.emit(); }
+  onOverlayLeave() {
+    this.mouseLeft.emit();
+  }
 
   onAddClick(): void {
     if (this.isInWatchlist || this.busy) return;
@@ -85,11 +90,20 @@ export class HoverPreview implements OnInit {
   }
 
   onWatchClick(): void {
-    console.log('▶️ Watch clicked:', this.movie);
+  const isSeries = Array.isArray(this.movie.episodes);
+
+  if (isSeries) {
+    this.router.navigate(['/series/player', this.movie.movieId]);
+  } else {
+    this.router.navigate(['/movies/player', this.movie.movieId]);
   }
+}
 
   onBlockClick(): void {
-    if (this.isInWatchlist) this.onRemoveClick();
-    else console.log('🚫 Not in watchlist to remove:', this.movie);
+    if (this.isInWatchlist) {
+      this.onRemoveClick();
+    } else {
+      console.log('🚫 Not in watchlist to remove:', this.movie);
+    }
   }
 }
