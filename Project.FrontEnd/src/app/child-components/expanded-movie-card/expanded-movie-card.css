@@ -11,8 +11,8 @@
   height: 330px;                 /* fixed height */
   border-radius: 14px;
   overflow: hidden;
-  background:#0b0f14;
-  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  background:var(--ep-card-grey);
+  box-shadow: 0 6px 18px rgba(var(--black-color-2),.35);
 
   /* smoother width animation + hint */
   transition:
@@ -25,7 +25,7 @@
 .card:hover,
 .card:focus-visible{
   width: 550px;                  /* pushes siblings */
-  box-shadow: 0 12px 28px rgba(0,0,0,.55);
+  box-shadow: 0 12px 28px rgba(var(--black-color-2),.55);
 }
 
 /* images: smoother cross-fade + object-position slide */
@@ -45,7 +45,7 @@
 /* gradient shade, appears on hover to darken bottom */
 .shade {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,.90) 100%);
+  background: linear-gradient(to bottom, rgba(var(--black-color-2),0) 20%, rgba(var(--black-color-2),.90) 100%);
   opacity: 0;
   transition: opacity calc(var(--t-expand) * .8) var(--ease-smooth);
   z-index: 3;
@@ -80,7 +80,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  text-shadow: 0 1px 2px rgba(var(--black-color-2),.6);
 }
 
 /* row with play + add + remove */
@@ -92,7 +92,7 @@
 
 /* Play button */
 .play {
-  background-color: #2e2e2e;
+  background-color: var(--dark-gray-color);
   color: var(--white-color);
   padding: 12px 25px;
   border: none;
@@ -112,9 +112,9 @@
 .play i { font-size: 18px; }
 .play:hover {
   background: var(--white-color);
-  color: #000;
+  color: var(--black-color);
   transform: scale(1.06);
-  box-shadow: 0 4px 8px rgba(0,0,0,.3);
+  box-shadow: 0 4px 8px rgba(var(--black-color-2),.3);
 }
 
 /* Add / Remove buttons */
@@ -122,7 +122,7 @@
 /* keyboard focus */
 .card:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #ffffff33, 0 12px 28px rgba(0,0,0,.55);
+  box-shadow: 0 0 0 2px rgba(var(--white-color), 0.2), 0 12px 28px rgba(var(--black-color-2),.55);
 }
 
 .hover-actions{
@@ -133,21 +133,21 @@
 
 /* action buttons */
 .action-btn{
-  background: rgba(51,51,51,.85);
+  background: rgba(46,46,46,.85);
   border:none;
   width:53px; height:53px;
   border-radius:50%;
-  color:#fff;
+  color:var(--white-color);
   display:flex; align-items:center; justify-content:center;
   cursor:pointer;
   transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
   font-size:21px;
 }
 .action-btn:hover{
-  background:#fff;
-  color:#000;
+  background:var(--white-color);
+  color:var(--black-color);
   transform: scale(1.08);
-  box-shadow: 0 6px 14px rgba(0,0,0,.35);
+  box-shadow: 0 6px 14px rgba(var(--black-color-2),.35);
 }
 .action-btn:disabled{
   opacity:.45;

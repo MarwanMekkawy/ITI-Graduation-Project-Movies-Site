@@ -10,7 +10,7 @@
 .bg-image {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630');
+  background-image: url(/genre3.jpg);
   background-size: cover;
   background-position: center;
   filter: blur(12px);

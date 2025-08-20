@@ -23,7 +23,7 @@
   justify-content: center;
 }
 
-.left-section1 {
+.left-section1 { 
   width: 51%;
   height: 100%;
   display: flex;
@@ -43,12 +43,12 @@
 }
 
 .left-section1 p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 600;
 }
 
 .sub-heading {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 2rem;
 }
 
@@ -72,7 +72,7 @@
 
 .left-shadow-edge {
   height: 100%;
-  width: 50%;
+  width: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -139,14 +139,14 @@
 }
 
 .right-section2 .sub-heading {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   margin-bottom: 2rem;
   font-weight: 600;
 }
 
 .right-shadow-edge {
   height: 100%;
-  width: 50%;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -211,7 +211,7 @@
 .second-image h2,
 .third-image h2 {
   padding: 10% 0;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 800;
 }
 
@@ -257,12 +257,12 @@
 }
 
 .left-section4 p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 600;
 }
 
 .sub-heading4 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 2rem;
 }
 
@@ -282,7 +282,7 @@
 
 .left-shadow-edge4 {
   height: 100%;
-  width: 50%;
+  width: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -305,11 +305,13 @@
 /* Common Elements */
 /* =================================== */
 .common-button {
-  width: clamp(120px, 30%, 200px);
-  height: clamp(2.5rem, 8vw, 3.5rem);
+  width: 16rem;
+  height: 4rem;
+  min-height: 4rem;   
+  flex-shrink: 0;    
   border-radius: 8px;
-  font-size: clamp(0.5rem, 2vw, 1rem);
-  font-weight: 600;
+  font-size: clamp(0.5rem, 2vw, 1.2rem);
+  font-weight: 700;
   background-color: var(--white-color);
   color:var(--black-color);
   border: none;
@@ -319,9 +321,100 @@
   align-items: center;
   justify-content: center;
 }
+.or{
+  width: 16rem;
+  font-size: clamp(0.5rem, 2vw, 1.2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  position: relative;
+  bottom: -0.2rem; /* moves line up or down */
+}
+
+.or::before {
+  margin-right: 0.5em;
+}
+
+.or::after {
+  margin-left: 0.5em;
+}
 
 .common-button:hover {
   transform: scale(1.05);
   background-color: var(--text-color);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive stacking order for smaller screens */
+@media (max-width: 768px) {
+  /* Section 1: image above text */
+  .section1 {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  .left-section1,
+  .right-section1 {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Section 2: image above text */
+  .section2 {
+    flex-direction: column;
+    height: auto;
+  }
+  .left-section2,
+  .right-section2 {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Section 4: text above image */
+  .section4 {
+    flex-direction: column;
+    height: auto;
+  }
+  .left-section4,
+  .right-section4 {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Section 3: make cards stack if needed */
+  .section3 {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+  .first-image,
+  .second-image,
+  .third-image {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .common-button {
+    width: 95%;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    height: clamp(3rem, 10vw, 4rem) !important;
+  }
+
+  .or{
+    width: 95%;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .left-section1,
+  .right-section2,
+  .left-section4{
+    padding-top: 3rem;
+  }
 }

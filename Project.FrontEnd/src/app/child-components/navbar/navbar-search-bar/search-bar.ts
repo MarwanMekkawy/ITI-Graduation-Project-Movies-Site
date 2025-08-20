@@ -71,10 +71,10 @@ export class SearchBarComponent {
           this.query = selected.title;
 
           ////swap commnets for insta serach when picking from recomended1////////////////////////////
-            // this.search();
-            this.query = selected.title;
-            this.results = [];
-            this.highlightedIndex = -1;
+            this.search();
+            // this.query = selected.title;
+            // this.results = [];
+            // this.highlightedIndex = -1;
           ////////////////////////////////////////////////////////////////////////////////////////////
 
         } else {
@@ -110,10 +110,10 @@ export class SearchBarComponent {
     this.query = result.title;
 
     ////swap commnets for insta serach when picking from recomended1////////////////////////////
-      //this.search();
-      this.query = result.title;
-      this.results = [];
-      this.highlightedIndex = -1;
+      this.search();
+      // this.query = result.title;
+      // this.results = [];
+      // this.highlightedIndex = -1;
     ////////////////////////////////////////////////////////////////////////////////////////////
 
   }

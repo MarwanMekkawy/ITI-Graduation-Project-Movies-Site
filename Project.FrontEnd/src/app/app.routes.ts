@@ -13,7 +13,7 @@ import { HomePage } from './Page-components/home-page/home-page';
 import { AllgenresPage } from './Page-components/allgenres-page/allgenres-page';
 import { WelcomePage } from './Page-components/welcome-page/welcome-page';
 import { GenrePage } from './Page-components/genre-page/genre-page';
-import { authGuard } from './core/guards/auth-guard';
+import { loggedOut ,loggedIn } from './core/guards/auth-guard';
 import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 
 
@@ -23,6 +23,7 @@ import { SeemorePage } from './Page-components/seemore-page/seemore-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Home' },                              //welcome-each genre still to impelement
+
 
     { path: 'welcomepage', component: WelcomePage, title: 'Welcomepage' },
 
@@ -39,7 +40,6 @@ export const routes: Routes = [
     { path: 'series/player/:id', component: SeriesplayerPage, title: 'SeriesPlayer' },
     { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' },
     { path: 'browse', component: SeemorePage, title: 'browse' },
-
 
     { path: '**', component: ErrorPage, title: 'Error' }
 ];

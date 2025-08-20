@@ -6,14 +6,16 @@
       <div class="d-flex align-items-center">
         <span class="navbar-brand text-white me-4" routerLink="/home">prime video</span>
 
+        @if (UserIsLogged){
         <!-- 🔽 Toggler for small screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa-solid fa-caret-down text-color"></i>
         </button>
+        }
       </div>
-
-      <!-- 🔽 Collapsible nav links --> 
+      @if (UserIsLogged){
+      <!-- 🔽 Collapsible nav links -->
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <div class="navbar-nav">
           <a class="nav-item nav-link" routerLink="/home" routerLinkActive="nav-item-active">Home</a>
@@ -26,8 +28,19 @@
 
       <!-- Right side (search moved before genres) -->
       <div class="d-flex align-items-center">
+
+        <!-- Dark/light mode -->
+        <!-- <i class="fa-solid fa-sun sun"></i>
+        <div class="custom-switch" [class.active]="isDarkMode" (click)="toggleTheme()">
+          <div class="custom-switch">
+            <div class="slider"></div>
+          </div>
+        </div>
+        <i class="fa-solid fa-moon moon"></i> -->
+
+
         <!-- Search -->
-        <div class="icon-wrapper mx-3" (click)="toggleSearch()"  [class.active-search]="searchVisible">
+        <div class="icon-wrapper mx-3" (click)="toggleSearch()" [class.active-search]="searchVisible">
           <i class="fas fa-search fa-lg text-color"></i>
         </div>
 
@@ -44,23 +57,35 @@
         </div>
 
       </div>
+      }
+      @else {
+      <!-- Profile -->
+      <div class="icon-wrapper profile-wrapper ms-3" #profileTrigger (mouseenter)="onProfileTriggerEnter()"
+        (mouseleave)="onProfileTriggerLeave()">
+        <img alt="Avatar" class="profile-img" />
+      </div>
+      }
     </div>
   </nav>
 
   <div class="childs-container">
     <div class="search-container">
-      <app-navbar-search-bar *ngIf="searchVisible" #searchBarComp>
-      </app-navbar-search-bar>
+      @if (searchVisible) {<app-navbar-search-bar #searchBarComp></app-navbar-search-bar>}
     </div>
     <div class="dropdown-container">
       <div class="move-to-right-container">
-        <app-navbar-genre-dropdown *ngIf="showDropdown" (mouseenter)="onDropdownEnter()" (mouseleave)="onDropdownLeave()">
+        @if (showDropdown) {
+        <app-navbar-genre-dropdown (mouseenter)="onDropdownEnter()" (mouseleave)="onDropdownLeave()">
         </app-navbar-genre-dropdown>
-        <app-navbar-profile-dropdown *ngIf="showProfileDropdown" (mouseenter)="onProfileDropdownEnter()" (mouseleave)="onProfileDropdownLeave()">
+        }
+        @if (showProfileDropdown) {
+        <app-navbar-profile-dropdown (mouseenter)="onProfileDropdownEnter()" (mouseleave)="onProfileDropdownLeave()">
         </app-navbar-profile-dropdown>
+        }
       </div>
     </div>
   </div>
-  
+
+
 </section>
-<div *ngIf="searchVisible" class="tranperant-layer"></div>
+@if (searchVisible) {<div class="tranperant-layer"></div>}

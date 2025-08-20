@@ -1,5 +1,9 @@
 <div class="account-container blury-grey">
   <h5 class="account-header">Your Account</h5>
+@if (UserIsLogged){
+  <span class="user-name" routerLink="/profile"> User :  {{username}}</span>
+   <hr>
+}
   <div class="account-content">
     <div class="left-column">
       <div class="account-item">Help</div>
@@ -9,5 +13,6 @@
       <div class="account-item" routerLink="/profile">Manage Profile</div>
     </div>
   </div>
+
 </div>
  

@@ -26,14 +26,14 @@ padding-bottom: 35px;
   padding-bottom: 0.5rem;
   font-size: 1.4rem;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--white-color);
   
 }
 
 .see-more {
   font-size: 1.3rem;
   font-weight: 700;
-  color: white;
+  color: var(--white-color);
   text-decoration: none;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -72,8 +72,8 @@ padding-bottom: 35px;
 
 .carousel-track {
   display: flex;
-  gap: 1.2rem;         /* keep spacing between cards */
-  padding: 0;        /* was 0 1.5rem 1rem 1.5rem → that added side gaps */
+  gap: 1.2rem;         
+  padding: 0;        
 }
 
 /* === MOVIE CARD === */
@@ -99,7 +99,7 @@ padding-bottom: 35px;
   cursor: pointer;
   padding: 0 0.75rem;
   width: 42px;
-  color: white;
+  color: var(--white-color);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -120,7 +120,7 @@ padding-bottom: 35px;
 }
 
 .scroll-button:hover {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(var(--black-color), 0.6);
   font-size: 2.5rem;
   
 }
