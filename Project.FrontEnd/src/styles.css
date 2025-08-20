@@ -3,14 +3,16 @@
   --background-color: rgb(0, 3, 12);
   --text-color: rgb(213, 215, 216);
   --gray-color: rgb(66, 70, 77);
+  --dark-gray-color:rgb(46, 46, 46);
   --footer-gray:rgb(33, 33, 33);
+  --ep-card-grey:rgb(24, 27, 35);
   --white-color:rgb(255,255,255);
   --black-color:rgb(0, 0, 0);
   --white-color-2:255,255,255;  
   --black-color-2:0, 0, 0;  
-  --dark-gray-color:#2e2e2e;
-
-
+  --active-icon:rgb(255, 215, 0);
+  --non-active-icon:rgb(226, 226, 226);
+   /* var() */
 
 
 

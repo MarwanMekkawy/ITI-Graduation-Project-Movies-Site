@@ -164,7 +164,7 @@ nav.navbar.scrolled {
   /* was 50px → 10% smaller */
   height: 22.5px;
   /* was 25px → 10% smaller */
-  background: rgba(204, 204, 204, 0.3);
+  background: rgba(100, 100, 100, 0.3);
   border-radius: 22.5px;
   position: relative;
   cursor: pointer;
@@ -188,7 +188,7 @@ nav.navbar.scrolled {
 
 /* Active (dark mode) */
 .custom-switch.active {
-  background: red;
+  background: rgba(235, 235, 235, 0.3);
 }
 
 .custom-switch.active .slider {
@@ -200,15 +200,14 @@ nav.navbar.scrolled {
 
 .sun {
   font-size: 1.3rem;
-  color: gold;
-  margin-left: 4px;
+  color: var(--non-active-icon);
+  margin-right: 4px;
   padding-top: 5px;
 }
 
 .moon {
   font-size: 1.3rem;
-  color: gold;
-  margin-right: 3px;
+  color: var(--active-icon);
+  margin-left: 3px;
   padding-top: 5px;
-
 }

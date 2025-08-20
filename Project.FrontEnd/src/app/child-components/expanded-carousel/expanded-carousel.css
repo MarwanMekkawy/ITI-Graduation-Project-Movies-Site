@@ -1,7 +1,7 @@
 /* container */
 .carousel-container {
  margin-bottom: 30px;
-  color: #fff;
+ color: var(--white-color);
 }
 
 /* header */
@@ -20,7 +20,7 @@
 .see-more {
   font-size: 1.3rem;
   font-weight: 700;
-  color: white;
+  color: var(--white-color);
   text-decoration: none;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -47,10 +47,10 @@
   overflow-x: auto;
   overflow-y: visible;
   scroll-behavior: smooth;
-  scrollbar-width: none;           /* Firefox */
-  -ms-overflow-style: none;        /* IE/Edge */
+  scrollbar-width: none;           
+  -ms-overflow-style: none;        
 }
-.carousel-scrollbar::-webkit-scrollbar { display: none; }  /* WebKit */
+.carousel-scrollbar::-webkit-scrollbar { display: none; }  
 
 /* IMPORTANT: remove side padding; let items sit tight */
 .carousel-track {
@@ -73,10 +73,10 @@
   top: 50%;
   transform: translateY(-51%);
   height: 79%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(var(--black-color-2), 0.4);
   border: none;
   width: 42px;
-  color: #fff;
+  color:var(--white-color);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0 0.75rem;

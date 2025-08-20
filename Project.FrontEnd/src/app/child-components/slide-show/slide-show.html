@@ -37,7 +37,7 @@
                 </button>
 
                 <!-- REMOVE -->
-                <button
+                <button              
                   class="action-btn block"
                   [disabled]="!inWatchlist(movie.movieId) || isBusy(movie.movieId)"
                   (click)="onRemoveClick(movie)"
