@@ -35,8 +35,8 @@ export const routes: Routes = [
     { path: 'genres/:id', component: GenrePage },                                                           ///////////////////
     { path: 'movies', component: MoviesPage, title: 'Movies'},
     { path: 'series', component: SeriesPage, title: 'Series' },
-    { path: 'movies/player', component: MoviesplayerPage, title: 'MoviesPlayer' },
-    { path: 'series/player', component: SeriesplayerPage, title: 'SeriesPlayer' },
+    { path: 'movies/player/:id', component: MoviesplayerPage, title: 'MoviesPlayer' },
+    { path: 'series/player/:id', component: SeriesplayerPage, title: 'SeriesPlayer' },
     { path: 'watchlist', component: WatchlistPage, title: 'Watchlist' },
     { path: 'browse', component: SeemorePage, title: 'browse' },
 

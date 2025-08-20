@@ -4,6 +4,7 @@ import { Component, Input, OnInit, EventEmitter, Output, inject } from '@angular
 import { Movie } from './../../core/models/movie';
 import { WatchList } from '../../core/models/watch-list';
 import { WatchlistService } from '../../core/services/watchlist-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-expanded-movie-card',
@@ -13,6 +14,8 @@ import { WatchlistService } from '../../core/services/watchlist-service';
   styleUrls: ['./expanded-movie-card.css']
 })
 export class ExpandedMovieCard implements OnInit {
+    constructor(private router: Router) {}   // ✅ Angular Router injected here
+
   @Input() movie!: Movie;
 
   /** Optional sizing & look */
@@ -92,7 +95,13 @@ export class ExpandedMovieCard implements OnInit {
     });
   }
 
-  onWatchClick(): void {
-    console.log('▶️ Watch clicked:', this.movie);
+   onWatchClick(): void {
+  const isSeries = Array.isArray(this.movie.episodes);
+
+  if (isSeries) {
+    this.router.navigate(['/series/player', this.movie.movieId]);
+  } else {
+    this.router.navigate(['/movies/player', this.movie.movieId]);
   }
+}
 }

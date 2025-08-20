@@ -9,41 +9,32 @@ import { Component } from '@angular/core';
 })
 export class EpisodeList {
   episodes = [
-    {
-      title: 'S1 E1 - Suits Pilot - Part 1',
-      date: 'June 23, 2011',
-      duration: '40min',
-      rating: '16+',
-      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
-      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
-    },
-     {
-      title: 'S1 E1 - Suits Pilot - Part 1',
-      date: 'June 23, 2011',
-      duration: '40min',
-      rating: '16+',
-      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
-      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
-    },
-     {
-      title: 'S1 E1 - Suits Pilot - Part 1',
-      date: 'June 23, 2011',
-      duration: '40min',
-      rating: '16+',
-      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
-      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
-    },
-     {
-      title: 'S1 E1 - Suits Pilot - Part 1',
-      date: 'June 23, 2011',
-      duration: '40min',
-      rating: '16+',
-      image: 'https://m.media-amazon.com/images/M/MV5BZWFkMjk5NGUtNjBlNS00ODU0LThjNDYtMGRiNTE3YjcxZDAyXkEyXkFqcGc@._V1_.jpg',
-      desc: 'When Harvey\'s promotion requires him to recruit and hire a graduate of Harvard Law, he chooses Mike Ross. Part 1 of 2.'
-    },
-    
-    
-  ];
+  {
+    title: 'S1 E1',
+    date: 'June 18, 2011',
+    duration: '40min',
+    rating: '16+',
+    image: 'e1.jpg',
+    desc: 'A shocking tragedy shakes the nation when a passenger spacecraft suffers a catastrophic failure. Experts begin piecing together the final moments in a race against time to uncover the truth.'
+  },
+  {
+    title: 'S1 E2',
+    date: 'June 23, 2011',
+    duration: '40min',
+    rating: '16+',
+    image: 'e2.jpg',
+    desc: 'Investigators turn to engineering data and flight communications, retracing the countdown second by second to reveal overlooked warning signs that may have doomed the mission.'
+  },
+  {
+    title: 'S1 E3',
+    date: 'June 30, 2011',
+    duration: '40min',
+    rating: '16+',
+    image: 'e3.jpg',
+    desc: 'As families of the victims demand answers, scientists and officials clash over responsibility. The search for accountability pushes the investigation into unexpected and controversial territory.'
+  }
+];
+
 
   onPlay(episode: any) {
     // TODO: Handle play video logic here
