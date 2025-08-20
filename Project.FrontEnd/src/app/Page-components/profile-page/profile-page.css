@@ -1,10 +1,24 @@
 .profile-container {
   height: 100vh;      
-  width: 100%;
-  background-color: var(--background-color);    
+  width: 100%; 
   display: flex;
   justify-content: center; 
-  align-items: center;     
+  align-items: center;    
+  background:  url("/profile.jpg") center / cover no-repeat;
+  overflow: hidden; 
+}
+.profile-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;   
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 1;
+}
+
+/* Make sure content stays above the overlay */
+.profile-container > * {
+  position: relative;
+  z-index: 2;
 }
 
 .profile-resize{
