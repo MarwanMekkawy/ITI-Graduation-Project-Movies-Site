@@ -7,11 +7,12 @@ import { Movie } from '../../core/models/movie';
 import { SlideShow } from "../../child-components/slide-show/slide-show";
 import { CarouselComponent } from "../../child-components/carousel/carousel";
 import { ExpandedCarousel } from "../../child-components/expanded-carousel/expanded-carousel";
+import { LoadingSpinner } from "../../child-components/loading-spinner/loading-spinner";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [ SlideShow, CarouselComponent, ExpandedCarousel],
+  imports: [SlideShow, CarouselComponent, ExpandedCarousel, LoadingSpinner],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
