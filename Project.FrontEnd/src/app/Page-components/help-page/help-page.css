@@ -1,0 +1,28 @@
+.help-wrapper {
+  --background-color: rgb(0, 3, 12);
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+.help-card {
+  background-color: #1c1c1c;
+  border-radius: 12px;
+}
+
+.accordion-button {
+  color: #fff;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #2c2c2c;
+  color: #fff;
+}
+
+.accordion-body {
+  background-color: #121212;
+  color: #ddd;
+}
+
+.btn-primary {
+  border-radius: 8px;
+}
