@@ -2,18 +2,25 @@
   <app-carousel title="Recommended Series" [movies]="series"></app-carousel>
   <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
 
-  <app-expanded-carousel
-    [title]="'Top Rated Series'"
-    [movies]="topRatedSeries">
+  <app-expanded-carousel [title]="'Top Rated Series'" [movies]="topRatedSeries">
   </app-expanded-carousel>
 
+  <div #afterTopRated class="defer-trigger" aria-hidden="true"></div>
+
+  @defer (on timer(2000)) {
+  @defer (on viewport(afterTopRated)) {
   <!-- Dynamic Genre Carousels -->
   @for (genre of genres; track genre.genreId) {
-    @if (genreSeriesMap[genre.genreId].length) {
-      <app-carousel
-        [title]="genre.name"
-        [movies]="genreSeriesMap[genre.genreId]">
-      </app-carousel>
-    }
+  @if (genreSeriesMap[genre.genreId].length) {
+  <app-carousel [title]="genre.name" [movies]="genreSeriesMap[genre.genreId]">
+  </app-carousel>
   }
+  }}@placeholder{
+  <app-loading-spinner></app-loading-spinner>
+  }
+  }
+  @placeholder{
+  <app-loading-spinner></app-loading-spinner>
+  }
+
 </div>

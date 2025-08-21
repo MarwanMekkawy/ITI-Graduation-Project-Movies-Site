@@ -5,10 +5,11 @@ import { MoviesService } from './../../core/services/movies-service';
 import { GenreService } from './../../core/services/genre-service';
 import { Movie } from '../../core/models/movie';
 import { ExpandedCarousel } from "../../child-components/expanded-carousel/expanded-carousel";
+import { LoadingSpinner } from "../../child-components/loading-spinner/loading-spinner";
 
 @Component({
   selector: 'app-series-page',
-  imports: [CarouselComponent, ExpandedCarousel],
+  imports: [CarouselComponent, ExpandedCarousel, LoadingSpinner],
   templateUrl: './series-page.html',
   styleUrl: './series-page.css'
 })

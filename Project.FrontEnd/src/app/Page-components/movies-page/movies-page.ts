@@ -6,11 +6,12 @@ import { MoviesService } from './../../core/services/movies-service';
 import { GenreService } from './../../core/services/genre-service';
 import { Movie } from '../../core/models/movie';
 import { ExpandedCarousel } from "../../child-components/expanded-carousel/expanded-carousel";
+import { LoadingSpinner } from "../../child-components/loading-spinner/loading-spinner";
 
 
 @Component({
   selector: 'app-movies-page',
-  imports: [CarouselComponent, CommonModule, ExpandedCarousel],
+  imports: [CarouselComponent, CommonModule, ExpandedCarousel, LoadingSpinner],
   templateUrl: './movies-page.html',
   styleUrl: './movies-page.css'
 })

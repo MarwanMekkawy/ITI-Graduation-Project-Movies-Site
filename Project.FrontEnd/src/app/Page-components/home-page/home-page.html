@@ -3,37 +3,29 @@
 
   <app-carousel title="Recommended Movies" [movies]="movies"></app-carousel>
   <app-carousel title="Latest Movies" [movies]="LatestMovies"></app-carousel>
+  <app-expanded-carousel [title]="'Top Rated Movies'" [movies]="topRatedMovies"></app-expanded-carousel>
 
-  <!-- Deferred Block 1 -->
-  <div class="defer-section">
-    @defer (on viewport) {
-      <app-expanded-carousel [title]="'Top Rated Movies'" [movies]="topRatedMovies"></app-expanded-carousel>
-      <app-carousel title="Recommended Series" [movies]="series"></app-carousel>
-    } @placeholder {
-      <app-loading-spinner></app-loading-spinner>
-    }
-  </div>
+  <div #afterTopRated class="defer-trigger" aria-hidden="true"></div>
 
-  <!-- Deferred Block 2 -->
-  <div class="defer-section">
-    @defer (on viewport) {
-      <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
-      <app-expanded-carousel [title]="'Top Rated Series'" [movies]="topRatedSeries"></app-expanded-carousel>
-    } @placeholder {
-      <app-loading-spinner></app-loading-spinner>
-    }
-  </div>
+  @defer (on timer(2000)) {
+  @defer (on viewport(afterTopRated)) {
+  <app-carousel title="Recommended Series" [movies]="series"></app-carousel>
+  <app-carousel title="Latest Series" [movies]="LatestSeries"></app-carousel>
+  <app-expanded-carousel [title]="'Top Rated Series'" [movies]="topRatedSeries"></app-expanded-carousel>
 
-  <!-- Deferred Block 3 -->
-  <div class="defer-section">
-    @defer (on viewport) {
-      @for (genre of genres; track genre.genreId) {
-        @if (genreItemsMap[genre.genreId] && genreItemsMap[genre.genreId].length > 0) {
-          <app-carousel [title]="genre.name" [movies]="genreItemsMap[genre.genreId]"></app-carousel>
-        }
-      }
-    } @placeholder {
-      <app-loading-spinner></app-loading-spinner>
-    }
-  </div>
+  @defer (on timer(2000)) {
+  @for (genre of genres; track genre.genreId) {
+  @if (genreItemsMap[genre.genreId] && genreItemsMap[genre.genreId].length > 0) {
+  <app-carousel [title]="genre.name" [movies]="genreItemsMap[genre.genreId]"></app-carousel>
+  }
+  }
+  }
+  @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+  }
+  } @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+  }} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+  }
 </div>

@@ -6,7 +6,7 @@
 }
   <div class="account-content">
     <div class="left-column">
-      <div class="account-item">Help</div>
+      <div class="account-item" routerLink="/help">Help</div>
        @if (UserIsLogged){<div class="account-item" (click)="signout()" >Sign Out</div>}
     </div>
     <div class="right-column">

@@ -32,7 +32,7 @@
 .search-input {
   background-color: transparent;
   border: none;
-  color: var(--black-color);
+  color: var(--white-color);
   width: 100%;
   padding-left: 2rem;
   font-size: 0.95rem;

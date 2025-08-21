@@ -2,6 +2,7 @@
   --background-color: rgb(0, 3, 12);
   background-color: var(--background-color);
   min-height: 100vh;
+  padding-top: 2%;
 }
 
 .help-card {
@@ -25,4 +26,11 @@
 
 .btn-primary {
   border-radius: 8px;
+}
+.card-section{
+  padding: 2rem 1rem 5rem 1rem;
+  margin-bottom: 5rem !important;
+}
+.max-width{
+  max-width: 1000px;
 }
