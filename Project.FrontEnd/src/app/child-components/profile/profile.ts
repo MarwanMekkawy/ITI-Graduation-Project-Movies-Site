@@ -1,3 +1,4 @@
+import { IsLogged } from './../../core/services/auth/is-logged';
 import { DeleteService } from './../../core/services/auth/delete-service';
 import { UpdateService } from './../../core/services/auth/update-service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -41,7 +42,8 @@ export class Profile implements OnInit {
     private authService: AuthService,
     private updateService: UpdateService,
     private deleteService: DeleteService,
-    private router: Router
+    private router: Router,
+     private logged: IsLogged
   ) { }
 
   //   LIFECYCLE HOOK
@@ -140,9 +142,11 @@ export class Profile implements OnInit {
   cancelPromptDelete() { this.deleteConfirmMode = false; }
 
   confirmDelete() {
-    this.deleteService.DeleteUser(this.userId).subscribe({
+    this.deleteService.DeleteUser(this.userId).subscribe({        
       next: () => {
-        this.router.navigate(['/welcomepage']);
+        localStorage.clear();
+        this.router.navigate(['/welcomepage']); 
+        this.logged.refreshNav();
       },
       error: (err) => {
         console.log(`Delete failed : ${err}`);
