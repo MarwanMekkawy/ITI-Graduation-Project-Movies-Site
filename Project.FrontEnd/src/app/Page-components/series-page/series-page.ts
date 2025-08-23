@@ -14,16 +14,16 @@ import { LoadingSpinner } from "../../child-components/loading-spinner/loading-s
   styleUrl: './series-page.css'
 })
 export class SeriesPage {
-private readonly moviesService = inject(MoviesService);
+  private readonly moviesService = inject(MoviesService);
   private readonly genreService = inject(GenreService);
 
-  
+
 
   series!: Movie[];
   topRatedSeries!: Movie[];
   LatestSeries!: Movie[];
 
-genres: MovieGenre[] = [];
+  genres: MovieGenre[] = [];
   genreSeriesMap: { [genreId: number]: Movie[] } = {};
 
   ngOnInit(): void {
@@ -46,16 +46,16 @@ genres: MovieGenre[] = [];
 
     // Load genres and items per genre
     this.genreService.getAllGenres().subscribe({
-  next: (allGenres) => {
-    this.genres = allGenres.filter(g => g.genreId !== 3);
-    for (const genre of this.genres) {
-      this.genreService.getSeriesByGenreId(genre.genreId).subscribe({
-        next: (items) => this.genreSeriesMap[genre.genreId] = items,
-        error: (err) => console.error(`Failed to load genre '${genre.name}':`, err)
-      });
-    }
-  },
-  error: (err) => console.error('Failed to load genres:', err)
-});
+      next: (allGenres) => {
+        this.genres = allGenres.filter(g => g.genreId !== 3);
+        for (const genre of this.genres) {
+          this.genreService.getSeriesByGenreId(genre.genreId).subscribe({
+            next: (items) => this.genreSeriesMap[genre.genreId] = items,
+            error: (err) => console.error(`Failed to load genre '${genre.name}':`, err)
+          });
+        }
+      },
+      error: (err) => console.error('Failed to load genres:', err)
+    });
   }
 }
