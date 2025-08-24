@@ -2,6 +2,8 @@ A full-stack clone of **Amazon Prime Video**, developed as part of my ITI gradua
 The project demonstrates **modern web development practices** with a focus on scalability, performance, and clean architecture.  
 
 ---
+## 🎥 Demo
+👉 [Watch Demo Video](https://drive.google.com/file/d/1_ToCHSC9R3qJ_wnwySkDV8lqyV_McPTE/view?usp=drive_link)
 
 ## 🚀 Features
 - 🔐 User authentication (Register, Login, JWT-based sessions)  
