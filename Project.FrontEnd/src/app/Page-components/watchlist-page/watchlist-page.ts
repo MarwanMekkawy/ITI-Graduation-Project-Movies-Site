@@ -17,7 +17,7 @@ export class WatchlistPage implements OnInit {
   private readonly moviesService = inject(MoviesService);
 
   movies: Movie[] = [];
-    private userId: any = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+    private userId: any = localStorage.getItem(`user_id`); 
  // Replace with actual user ID
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class WatchlistPage implements OnInit {
         for (const entry of watchlist) {
           this.moviesService.getItemById(entry.movieId).subscribe({
             next: (movie) => {
-              this.movies.push(movie); // ✅ Fixed: single Movie, not spread
+              this.movies.push(movie); //single Movie, not spread
             },
             error: (err) => console.error(`Failed to load movie ID ${entry.movieId}:`, err)
           });

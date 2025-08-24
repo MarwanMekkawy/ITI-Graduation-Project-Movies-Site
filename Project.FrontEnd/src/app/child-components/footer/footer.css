@@ -12,8 +12,7 @@
 /* Logo sizing & spacing override */
 .footer-logo {
   height: 35px;
-  margin-bottom: 0.05rem !important;                                /* tighter than mb-1 default */
-  /* filter: brightness(0) invert(0);                                        to make it black */
+  margin-bottom: 0.05rem !important;                                                                      
 }
 
 /* Nav-link styling */

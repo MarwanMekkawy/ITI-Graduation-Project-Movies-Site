@@ -3,12 +3,12 @@ export interface Movie {
   movieId: number;
   title: string;
   description: string;
-  releaseDate: string;          // or Date if parsed
+  releaseDate: string;          
   posterUrl: string;
   movieImage: string;
   imDbRating: number;
-  episodes?: Episode[]; // optional because movies won’t have it
-  genres: (MovieGenre| null)[]; // Some items are null
+  episodes?: Episode[]; 
+  genres: (MovieGenre| null)[]; 
 }
 export interface Episode {
   episodeId: number;

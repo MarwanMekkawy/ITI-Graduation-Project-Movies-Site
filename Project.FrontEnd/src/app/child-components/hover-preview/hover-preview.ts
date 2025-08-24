@@ -62,7 +62,7 @@ export class HoverPreview implements OnInit {
       next: () => {
         this.isInWatchlist = true;
         this.busy = false;
-        console.log(`➕ Added ${this.movie.title}`);
+        console.log(` Added ${this.movie.title}`);
       },
       error: (err) => {
         console.error('Failed to add to watchlist:', err);
@@ -80,7 +80,7 @@ export class HoverPreview implements OnInit {
         this.isInWatchlist = false;
         this.busy = false;
         this.removed.emit(this.movie.movieId);
-        console.log(`🗑️ Removed ${this.movie.title}`);
+        console.log(` Removed ${this.movie.title}`);
       },
       error: (err) => {
         console.error('Failed to remove from watchlist:', err);
@@ -103,7 +103,7 @@ export class HoverPreview implements OnInit {
     if (this.isInWatchlist) {
       this.onRemoveClick();
     } else {
-      console.log('🚫 Not in watchlist to remove:', this.movie);
+      console.log(' Not in watchlist to remove:', this.movie);
     }
   }
 }

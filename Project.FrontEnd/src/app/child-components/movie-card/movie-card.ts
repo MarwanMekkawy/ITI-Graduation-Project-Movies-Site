@@ -35,9 +35,9 @@ export class MovieCard implements OnInit, OnDestroy {
   private isCardHovered = false;
   private isOverlayHovered = false;
 
-  // 🚫 Hover allowed only if card is (almost) fully inside the carousel viewport
+ 
   private io?: IntersectionObserver;
-  private isInViewport = false; // updated by IntersectionObserver
+  private isInViewport = false; 
 
   constructor(
     private overlay: Overlay,
@@ -50,11 +50,11 @@ export class MovieCard implements OnInit, OnDestroy {
     this.io = new IntersectionObserver(
       (entries) => {
         const e = entries[0];
-        // require ~fully visible to avoid right-edge/next-page hovers
+        
         this.isInViewport = e.intersectionRatio >= 0.98;
       },
       {
-        root: root ?? null,         // carousel viewport (or viewport if none)
+        root: root ?? null,         
         threshold: [0, 0.5, 0.98, 1]
       }
     );
@@ -64,7 +64,7 @@ export class MovieCard implements OnInit, OnDestroy {
   @HostListener('mouseenter')
   onCardEnter(): void {
     this.isCardHovered = true;
-    if (!this.isInViewport) return;          // ⛔ block if clipped/off-page
+    if (!this.isInViewport) return;          
     if (!this.overlayCreated) this.showPreview();
   }
 

@@ -6,7 +6,7 @@ import { ExpandedMovieCard } from '../expanded-movie-card/expanded-movie-card';
 @Component({
   selector: 'app-expanded-carousel',
   standalone: true,
-  imports: [ RouterModule, ExpandedMovieCard], // <-- RouterModule added
+  imports: [ RouterModule, ExpandedMovieCard], 
   templateUrl: './expanded-carousel.html',
   styleUrls: ['./expanded-carousel.css']
 })

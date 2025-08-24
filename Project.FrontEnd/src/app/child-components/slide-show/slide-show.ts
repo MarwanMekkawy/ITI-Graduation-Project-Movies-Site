@@ -32,21 +32,21 @@ export interface Movie {
 })
 export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
   // timings (tweak to taste)
-  readonly startDelayMs = 500;  // hover delay before video starts
-  readonly leaveGraceMs = 1000; // keep playing after mouse leaves
-  readonly fadeMs = 350;        // CSS fade time for video
+  readonly startDelayMs = 500;  
+  readonly leaveGraceMs = 1000; 
+  readonly fadeMs = 350;        
 
   muted = true;
 
-  // 💾 Auth user (replace with real auth)
+  //  Auth user 
   userId = 8;
 
-  // ✅ Watchlist state (fast lookups + per-movie busy flags)
+  //  Watchlist state 
   private readonly watchlistService = inject(WatchlistService);
   private watchIds = new Set<number>();
   private busyIds = new Set<number>();
 
-  // Slides (use movieId for service compatibility)
+  // Slides 
   movies: Movie[] = [
     {
       movieId: 16,
@@ -161,7 +161,7 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
     this.watchlistService.addToWatchlist(entry).subscribe({
       next: () => {
         this.busyIds.delete(movie.movieId);
-        console.log(`➕ Added ${movie.title}`);
+        console.log(` Added ${movie.title}`);
       },
       error: (err) => {
         console.error('Failed to add to watchlist:', err);
@@ -182,7 +182,7 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
     this.watchlistService.removeFromWatchlist(this.userId, movie.movieId).subscribe({
       next: () => {
         this.busyIds.delete(movie.movieId);
-        console.log(`🗑️ Removed ${movie.title}`);
+        console.log(` Removed ${movie.title}`);
       },
       error: (err) => {
         console.error('Failed to remove from watchlist:', err);
@@ -194,7 +194,7 @@ export class SlideShow implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onWatchClick(movie: Movie): void {
-    console.log('▶️ Watch clicked:', movie);
+    console.log(' Watch clicked:', movie);
     // navigate/play as you wish
   }
 

@@ -7,7 +7,7 @@
 
 /* When not editing: no clicks, normal cursor */
 .profile-pic-wrapper.locked {
-  pointer-events: none;   /* blocks click */
+  pointer-events: none;   
   cursor: default;
 }
 
@@ -18,7 +18,7 @@
   object-position: center;
   border-radius: 50%;
   display: block;
-  background: #2c2c2c; /* subtle fallback bg */
+  background: #2c2c2c; 
 }
 
 /* overlay is shown only in editMode via *ngIf in template */

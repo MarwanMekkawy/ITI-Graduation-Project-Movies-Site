@@ -4,8 +4,8 @@
 
   /* Fill cell but don’t grow past a nice max */
   width: 100%;
-  max-width: 26rem;      /* ~416px @16px root — tweak to taste */
-  justify-self: center;  /* center the card within its grid column */
+  max-width: 26rem;      
+  justify-self: center;  
 
   color: var(--white-color);
   font-family: Arial, sans-serif;

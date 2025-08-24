@@ -21,7 +21,7 @@
   background-color: var(--gray-color);
   padding-left: 2rem;
   height: 7vh;
-  align-items: center; /* Align tabs to bottom for better underline alignment */
+  align-items: center; 
   gap: 2rem;
 }
 
@@ -48,12 +48,12 @@
   pointer-events: none;
 }
 
-/* 🔸 Fade in underline on hover */
+/* Fade in underline on hover */
 .tab:hover::after {
   opacity: 1;
 }
 
-/* 🔹 Keep underline if selected */
+/* Keep underline if selected */
 .tab.active::after {
   opacity: 1;
 }

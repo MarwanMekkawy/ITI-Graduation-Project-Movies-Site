@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./expanded-movie-card.css']
 })
 export class ExpandedMovieCard implements OnInit {
-    constructor(private router: Router) {}   // ✅ Angular Router injected here
+    constructor(private router: Router) {}   
 
   @Input() movie!: Movie;
 
   /** Optional sizing & look */
-  @Input() width = 220;   // px (applied inline)
-  @Input() radius = 14;   // px (applied inline)
-  @Input() zoom = 1.06;   // not used directly here, but kept for API parity
+  @Input() width = 220;   
+  @Input() radius = 14;   
+  @Input() zoom = 1.06;   
 
   /** Optional: tell parent a removal happened */
   @Output() removed = new EventEmitter<number>();
@@ -34,10 +34,10 @@ export class ExpandedMovieCard implements OnInit {
 
   // UI state
   isInWatchlist = false;
-  busy = false; // prevents double-clicks and disables buttons during API calls
+  busy = false; 
 
   ngOnInit(): void {
-      this.userId = localStorage.getItem(`user_id`); ////////////////////////////////////////////////////////ssr problem
+      this.userId = localStorage.getItem(`user_id`);
     this.watchlistService.getUserWatchlist(this.userId).subscribe({
       next: (list: WatchList[]) => {
         this.isInWatchlist = !!list.find(x => x.movieId === this.movie.movieId);
@@ -62,7 +62,7 @@ export class ExpandedMovieCard implements OnInit {
     this.watchlistService.addToWatchlist(entry).subscribe({
       next: () => {
         this.busy = false;
-        console.log(`➕ Added ${this.movie.title}`);
+        console.log(` Added ${this.movie.title}`);
       },
       error: (err) => {
         console.error('Failed to add to watchlist:', err);
